@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-absolute" data-topbar-color="default">
+<nav class="navbar navbar-default navbar-absolute" data-topbar-color="default" style="background-image: linear-gradient(#5785B0, #00B4B4) !important;">
     <div class="container-fluid">
         <div class="navbar-minimize">
             <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon">

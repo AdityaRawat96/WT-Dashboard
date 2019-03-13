@@ -1,4 +1,4 @@
-<?php 
+<?php
     $a=$_POST['Username'];
     $b=$_POST['Password'];
     session_start();
@@ -15,10 +15,10 @@ or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : 
     {
        while($row=mysqli_fetch_array($result))
        {
-            $p1=$row['NAME'];
-            $p2=$row['USERNAME'];
-            $p3=$row['PASSWORD'];
-            $p4=$row['STATUS'];
+            $p1=$row['name'];
+            $p2=$row['username'];
+            $p3=$row['password'];
+            $p4=$row['status'];
 
            if(strcmp($b,$p3)==0)
            {

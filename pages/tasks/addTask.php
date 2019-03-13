@@ -21,7 +21,23 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
   <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
-  <script src="../../assets/js/task.js"></script>
+
+  <script type="text/javascript">
+    function addTask(){
+      $.ajax({
+          type: 'POST',
+          url: 'addTaskDatabase.php',
+          data: { task_category: $('#task_category').val(), task_id: $('#task_id').val(), task_name: $('#task_name').val(), task_description: $('#task_description').val(), task_deadline: $('#task_deadline').val() },
+          beforeSend: function() {
+          },
+          success: function(response) {
+              alert('Data Successfully inserted');
+                      }
+                    });
+                  }
+  </script>
+
+
 
 </head>
 
@@ -36,7 +52,7 @@
           <!--  Navbar included     -->
           <?php include('../pageElements/navbar.php'); ?>
 
-            <div class="content" style="margin:5% 10%;">
+            <div class="content">
                 <div class="container-fluid">
 
                   <!--  Page content goes here!    -->
@@ -52,7 +68,7 @@
                                 <div class="row">
                                   <label class="col-sm-2 label-on-left" for="category">TASK CATEGORY:</label>
                                     <div class="col-sm-3">
-                                        <select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
+                                        <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" data-size="7" id="task_category">
                                             <option disabled selected>SELECT CATEGORY</option>
                                             <option value="2">WEB DEVELOPMENT</option>
                                             <option value="3">CONTENT WRITING</option>
@@ -105,11 +121,11 @@
                                   <br>
 
                                   <div class="row">
-                                    <div class="col-sm-6 text-right">
+                                    <div class="col-md-6 text-center">
                                       <button type="button" class="btn btn-info btn-round">RESET &nbsp;<i class="material-icons">close</i></button>
 
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-md-6 text-center">
                                       <button type="button" class="btn btn-info btn-round" onclick="addTask();">SUBMIT &nbsp;<i class="material-icons">keyboard_arrow_right</i></button>
 
                                     </div>
@@ -140,27 +156,7 @@
 
     </div>
 
-<?php
-include("../../assets/connection/connection.php");
-$task_category = $_POST['task_category'];
-$task_id = $_POST['task_id'];
-$task_name = $_POST['task_name'];
-$task_description = $_POST['task_description'];
-$task_deadline = $_POST['task_deadline'];
-?>
-<?php
 
-include('connection.php');
- $roh= mysqli_select_db($con,'wtintern_wt')
-  or die("Unable to connect to the database server!");
-$sql= mysqli_query($con,"insert into tasks(task_category,task_id,task_name,task_description,task_deadline) values ('$task_category','$task_id',$task_name,'$task_description','$task_deadline')")
-
-or die('Uppss.. an Error accured...(unable to process this request)br>Reason : &nbsp;'. mysqli_error($con).'<br><hr width=800 style=height:1px;></hr><center><input type=button value=OK class=buttons id=1 onclick=cancelit();></center>' );
-
-
-
-echo"Data sucessfully Uploaded";
- ?>
 </body>
 <!--   Core JS Files   -->
 <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>

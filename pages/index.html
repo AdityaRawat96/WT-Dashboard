@@ -17,7 +17,7 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link href="../../../maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/vendors/maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     <script type="text/javascript">
         function loginFunction(e)
@@ -83,7 +83,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-image: linear-gradient(#5785B0, #00B4B4) !important;">
   <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
       <div class="container">
           <div class="navbar-header">
@@ -108,16 +108,16 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                             <form>
-                                <div class="card card-login card-hidden">
+                                <div class="card card-login card-hidden" style="background: rgba(255, 255, 255, 0.1);">
                                     <div class="card-header text-center">
-                                        <h4 class="card-title">Login</h4>
+                                        <h3 class="card-title" style="color:#fff;">LOGIN</h3>
                                     </div>
-                                    <div class="card-content">
+                                    <div class="card-content" >
 
                                         <h5 class="text-center">Turbo Account</h5>
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                <i class="material-icons">face</i>
+                                                <i style='color:black;' class="material-icons">face</i>
                                             </span>
                                             <div class="form-group label-floating">
                                                 <label class="control-label">User Name</label>
@@ -128,7 +128,7 @@
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                <i class="material-icons">lock_outline</i>
+                                                <i style='color:black;'  class="material-icons">lock_outline</i>
                                             </span>
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Password</label>
@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-wd btn-lg btn-success" onclick="loginFunction();" id="login_btn">Sign In</button><br>
+                                        <button type="button" class="btn btn-wd btn-lg btn-primary" onclick="loginFunction();" id="login_btn">Sign In</button><br>
                                     </div>
                                 </div>
                             </form>
