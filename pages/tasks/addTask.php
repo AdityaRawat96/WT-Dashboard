@@ -21,6 +21,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
   <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
+  <script src="../../assets/js/task.js"></script>
 
 </head>
 
@@ -49,7 +50,7 @@
                               <div class="card-content">
 
                                 <div class="row">
-                                  <label class="col-sm-2 label-on-left">TASK CATEGORY:</label>
+                                  <label class="col-sm-2 label-on-left" for="category">TASK CATEGORY:</label>
                                     <div class="col-sm-3">
                                         <select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
                                             <option disabled selected>SELECT CATEGORY</option>
@@ -63,11 +64,11 @@
                                 <br>
 
                                   <div class="row">
-                                      <label class="col-sm-2 label-on-left">TASK ID:</label>
+                                      <label class="col-sm-2 label-on-left" for="task_id">TASK ID:</label>
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
                                               <label class="control-label"></label>
-                                              <input type="text" placeholder="" disabled="" class="form-control">
+                                              <input type="text" placeholder="" class="form-control" name="task_id" id="task_id">
                                           </div>
                                       </div>
                                   </div>
@@ -77,7 +78,7 @@
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
                                               <label class="control-label"></label>
-                                              <input type="text" class="form-control" placeholder="">
+                                              <input type="text" class="form-control" placeholder="" name="task_name" id="task_name">
                                           </div>
                                       </div>
                                   </div>
@@ -87,7 +88,7 @@
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
                                               <label class="control-label"></label>
-                                              <input type="text" class="form-control" placeholder="">
+                                              <input type="text" class="form-control" placeholder="" name="task_description" id="task_description">
                                           </div>
                                       </div>
                                   </div>
@@ -96,7 +97,7 @@
                                       <label class="col-sm-2 label-on-left">TASK DEADLINE:</label>
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
-                                            <input type="text" class="form-control datetimepicker" value="10/05/2016" />
+                                            <input type="text" class="form-control datetimepicker" value="10/05/2016" name="task_deadline" id="task_deadline" />
                                           </div>
                                       </div>
                                   </div>
@@ -109,7 +110,7 @@
 
                                     </div>
                                     <div class="col-sm-6">
-                                      <button type="button" class="btn btn-info btn-round">SUBMIT &nbsp;<i class="material-icons">keyboard_arrow_right</i></button>
+                                      <button type="button" class="btn btn-info btn-round" onclick="addTask();">SUBMIT &nbsp;<i class="material-icons">keyboard_arrow_right</i></button>
 
                                     </div>
 
@@ -138,6 +139,28 @@
 
 
     </div>
+
+<?php
+include("../../assets/connection/connection.php");
+$task_category = $_POST['task_category'];
+$task_id = $_POST['task_id'];
+$task_name = $_POST['task_name'];
+$task_description = $_POST['task_description'];
+$task_deadline = $_POST['task_deadline'];
+?>
+<?php
+
+include('connection.php');
+ $roh= mysqli_select_db($con,'wtintern_wt')
+  or die("Unable to connect to the database server!");
+$sql= mysqli_query($con,"insert into tasks(task_category,task_id,task_name,task_description,task_deadline) values ('$task_category','$task_id',$task_name,'$task_description','$task_deadline')")
+
+or die('Uppss.. an Error accured...(unable to process this request)br>Reason : &nbsp;'. mysqli_error($con).'<br><hr width=800 style=height:1px;></hr><center><input type=button value=OK class=buttons id=1 onclick=cancelit();></center>' );
+
+
+
+echo"Data sucessfully Uploaded";
+ ?>
 </body>
 <!--   Core JS Files   -->
 <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
