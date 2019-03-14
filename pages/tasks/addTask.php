@@ -22,20 +22,7 @@
 
   <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
 
-  <script type="text/javascript">
-    function addTask(){
-      $.ajax({
-          type: 'POST',
-          url: 'addTaskDatabase.php',
-          data: { task_category: $('#task_category').val(), task_id: $('#task_id').val(), task_name: $('#task_name').val(), task_description: $('#task_description').val(), task_deadline: $('#task_deadline').val() },
-          beforeSend: function() {
-          },
-          success: function(response) {
-              alert('Data Successfully inserted');
-                      }
-                    });
-                  }
-  </script>
+
 
 
 
@@ -70,24 +57,15 @@
                                     <div class="col-sm-3">
                                         <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" data-size="7" id="task_category">
                                             <option disabled selected>SELECT CATEGORY</option>
-                                            <option value="2">WEB DEVELOPMENT</option>
-                                            <option value="3">CONTENT WRITING</option>
-                                            <option value="4">DIGITAL MARKETING</option>
-                                            <option value="5">GRAPHIC DESIGNING</option>
+                                            <option >WEB DEVELOPMENT</option>
+                                            <option >CONTENT WRITING</option>
+                                            <option >DIGITAL MARKETING</option>
+                                            <option >GRAPHIC DESIGNING</option>
                                         </select>
                                     </div>
                                 </div>
-                                <br>
+                                <br><br>
 
-                                  <div class="row">
-                                      <label class="col-sm-2 label-on-left" for="task_id">TASK ID:</label>
-                                      <div class="col-sm-10">
-                                          <div class="form-group label-floating is-empty">
-                                              <label class="control-label"></label>
-                                              <input type="text" placeholder="" class="form-control" name="task_id" id="task_id">
-                                          </div>
-                                      </div>
-                                  </div>
 
                                   <div class="row">
                                       <label class="col-sm-2 label-on-left">TASK NAME:</label>
@@ -104,7 +82,7 @@
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
                                               <label class="control-label"></label>
-                                              <input type="text" class="form-control" placeholder="" name="task_description" id="task_description">
+                                              <textarea rows="4" type="text" class="form-control" placeholder="" name="task_description" id="task_description"></textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -113,7 +91,7 @@
                                       <label class="col-sm-2 label-on-left">TASK DEADLINE:</label>
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
-                                            <input type="text" class="form-control datetimepicker" value="10/05/2016" name="task_deadline" id="task_deadline" />
+                                            <input type="text" class="form-control datetimepicker" name="task_deadline" id="task_deadline" />
                                           </div>
                                       </div>
                                   </div>
@@ -122,7 +100,7 @@
 
                                   <div class="row">
                                     <div class="col-md-6 text-center">
-                                      <button type="button" class="btn btn-info btn-round">RESET &nbsp;<i class="material-icons">close</i></button>
+                                      <button type="button" class="btn btn-info btn-round" onclick="clearFields();">RESET &nbsp;<i class="material-icons">close</i></button>
 
                                     </div>
                                     <div class="col-md-6 text-center">
@@ -206,6 +184,87 @@
     $(document).ready(function() {
         demo.initFormExtendedDatetimepickers();
     });
+
 </script>
+
+<script type="text/javascript">
+
+  function addTask(){
+    //alert($('#task_category').val());
+
+    if($('#task_category').val()==null)
+    {
+      alert("Task category cannot be left empty!");
+      $('#task_category').focus();
+      return false;
+    }
+    else if($('#task_name').val()=='')
+    {
+      alert("Task Name cannot be left empty!");
+      $('#task_name').focus();
+      return false;
+    }
+    else if($('#task_description').val()=='')
+    {
+      alert("Task description cannot be left empty!");
+      $('#task_description').focus();
+      return false;
+    }
+    else if($('#task_deadline').val()=='')
+    {
+      alert("Task deadline cannot be left empty!");
+      $('#task_deadline').focus();
+      return false;
+    }
+    else
+    {
+      if(navigator.onLine)
+      {
+        var taskId = ($('#task_category')).val();
+        var fname = taskId.substring(0,taskId.indexOf(" "));
+        var lname = taskId.substring(taskId.indexOf(" ")+1,taskId.length);
+        taskId=" ";
+        taskId = fname.substring(0,1)+lname.substring(0,1)+Math.floor(Date.now() /1000);
+
+        $.ajax({
+          type: 'POST',
+          url: '../php/addTaskDatabase.php',
+          data: { task_id: taskId, task_category: $('#task_category').val(), task_name: $('#task_name').val(), task_description: $('#task_description').val(), task_deadline: $('#task_deadline').val(), task_status: "PENDING"},
+          beforeSend: function() {
+
+          },
+          success: function(response) {
+            showAlert();
+          }
+        });
+      }
+      else
+      {
+        alert('no internet connection');
+      }
+    }
+  }
+
+  function showAlert(){
+    swal({
+          title: "Done!",
+          timer: 5000,
+          text: "Task added successfully!",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          type: "success"
+      });
+      clearFields();
+  }
+
+  function clearFields(){
+    $('#task_name').val('');
+    $('#task_description').val('');
+    $('#task_deadline').val('');
+  }
+
+</script>
+
+
 
 </html>

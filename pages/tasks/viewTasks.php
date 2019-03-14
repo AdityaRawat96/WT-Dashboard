@@ -21,9 +21,109 @@
   <!--    JQuery UI     -->
   <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
 
+
+
+  <script type="text/javascript">
+  var tableDataPendingAll ='';
+  var tableDataPendingWebDevelopment ='';
+  var tableDataPendingContentWriting ='';
+  var tableDataPendingDigitalMarketing ='';
+  var tableDataPendingGraphicDesigning ='';
+
+  var tableDataOngoingAll ='';
+  var tableDataOngoingWebDevelopment ='';
+  var tableDataOngoingContentWriting ='';
+  var tableDataOngoingDigitalMarketing ='';
+  var tableDataOngoingGraphicDesigning ='';
+
+  var tableDataCompletedAll ='';
+  var tableDataCompletedWebDevelopment ='';
+  var tableDataCompletedContentWriting ='';
+  var tableDataCompletedDigitalMarketing ='';
+  var tableDataCompletedGraphicDesigning ='';
+
+    function loadTableData(data, category){
+      if(category == 'PWD'){
+        tableDataPendingWebDevelopment = tableDataPendingWebDevelopment + data;
+        tableDataPendingAll = tableDataPendingAll + data;
+      }
+      else if(category == 'PCW'){
+        tableDataPendingContentWriting = tableDataPendingContentWriting + data;
+        tableDataPendingAll = tableDataPendingAll + data;
+      }
+      else if(category == 'PDM'){
+        tableDataPendingDigitalMarketing = tableDataPendingDigitalMarketing + data;
+        tableDataPendingAll = tableDataPendingAll + data;
+      }
+      else if(category == 'PGD'){
+        tableDataPendingGraphicDesigning = tableDataPendingGraphicDesigning + data;
+        tableDataPendingAll = tableDataPendingAll + data;
+      }
+
+
+      else if(category == 'OWD'){
+        tableDataOngoingWebDevelopment = tableDataOngoingWebDevelopment + data;
+        tableDataOngoingAll = tableDataOngoingAll + data;
+      }
+      else if(category == 'OCW'){
+        tableDataOngoingContentWriting = tableDataOngoingContentWriting + data;
+        tableDataOngoingAll = tableDataOngoingAll + data;
+      }
+      else if(category == 'ODM'){
+        tableDataOngoingDigitalMarketing = tableDataOngoingDigitalMarketing + data;
+        tableDataOngoingAll = tableDataOngoingAll + data;
+      }
+      else if(category == 'OPGD'){
+        tableDataOngoingGraphicDesigning = tableDataOngoingGraphicDesigning + data;
+        tableDataOngoingAll = tableDataOngoingAll + data;
+      }
+
+
+      else if(category == 'CWD'){
+        tableDataCompletedWebDevelopment = tableDataCompletedWebDevelopment + data;
+        tableDataCompletedAll = tableDataCompletedAll + data;
+      }
+      else if(category == 'CCW'){
+        tableDataCompletedContentWriting = tableDataCompletedContentWriting + data;
+        tableDataCompletedAll = tableDataCompletedAll + data;
+      }
+      else if(category == 'CDM'){
+        tableDataCompletedDigitalMarketing = tableDataCompletedDigitalMarketing + data;
+        tableDataCompletedAll = tableDataCompletedAll + data;
+      }
+      else if(category == 'CGD'){
+        tableDataCompletedGraphicDesigning = tableDataCompletedGraphicDesigning + data;
+        tableDataCompletedAll = tableDataCompletedAll + data;
+      }
+
+    }
+    function showData(){
+      $('.datatables').DataTable().destroy();
+      $('#tableBodyPendingAll').html(tableDataPendingAll);
+      $('#tableBodyPendingWebDevelopment').html(tableDataPendingWebDevelopment);
+      $('#tableBodyPendingContentWriting').html(tableDataPendingContentWriting);
+      $('#tableBodyPendingDigitalMarketing').html(tableDataPendingDigitalMarketing);
+      $('#tableBodyPendingGraphicDesigning').html(tableDataPendingGraphicDesigning);
+
+      $('#tableBodyOngoingAll').html(tableDataOngoingAll);
+      $('#tableBodyOngoingWebDevelopment').html(tableDataOngoingWebDevelopment);
+      $('#tableBodyOngoingContentWriting').html(tableDataOngoingContentWriting);
+      $('#tableBodyOngoingDigitalMarketing').html(tableDataOngoingDigitalMarketing);
+      $('#tableBodyOngoingGraphicDesigning').html(tableDataOngoingGraphicDesigning);
+
+      $('#tableBodyCompletedAll').html(tableDataCompletedAll);
+      $('#tableBodyCompletedWebDevelopment').html(tableDataCompletedWebDevelopment);
+      $('#tableBodyCompletedContentWriting').html(tableDataCompletedContentWriting);
+      $('#tableBodyCompletedDigitalMarketing').html(tableDataCompletedDigitalMarketing);
+      $('#tableBodyCompletedGraphicDesigning').html(tableDataCompletedGraphicDesigning);
+      $('.datatables').DataTable().draw();
+    }
+
+  </script>
+
 </head>
 
-<body>
+<body onload="showData()">
   <div class="wrapper">
 
       <!--  Sidebar included     -->
@@ -38,6 +138,10 @@
               <div class="container-fluid">
 
                 <!--  Page content goes here!    -->
+
+                <?php include('../php/enterDataViewTask.php'); ?>
+
+
                 <div class="row">
                   <div class="col-lg-12">
 
@@ -47,72 +151,117 @@
                         </div>
 
                         <div class="card-content">
-                            <h4 class="w-100 md-bg-red-300 p-t-15 p-b-15 p-l-30 f-400">Pending</h4>
-                            <div id="simple-accordion-alt-2" class="accordion accordion-alt">
-                                <h3 class="accordion-header">ALL</h3>
-                                <div class="accordion-content" data-wrapper="true" style="height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
-                                    <div>
-                                      <!-- Table starts! -->
-                                      <div class="card" style="background-color:#dee1e5;">
-                                          <div class="card-content">
-                                              <div class="toolbar">
-                                                  <!--        Here you can write extra buttons/actions for the toolbar              -->
-                                              </div>
-                                              <div class="material-datatables">
-                                                  <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                                      <thead>
-                                                          <tr>
-                                                              <th>Category</th>
-                                                              <th>Task Id</th>
-                                                              <th>Task Name</th>
-                                                              <th>Task Description</th>
-                                                              <th>Deadline</th>
-                                                              <th class="disabled-sorting text-right">Actions</th>
-                                                          </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                          <tr>
-                                                              <td>Web Designing</td>
-                                                              <td>WDES140021</td>
-                                                              <td>Design landing page</td>
-                                                              <td>Designing landing page of WT solutions</td>
-                                                              <td>2011/04/25</td>
-                                                              <td class="text-right">
-                                                                  <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                                                  <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                                                  <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td>Web Development</td>
-                                                              <td>WDEV144521</td>
-                                                              <td>Develop user authentication.</td>
-                                                              <td>Create form validator to authenticate user.</td>
-                                                              <td>2011/07/25</td>
-                                                              <td class="text-right">
-                                                                  <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-                                                                  <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-                                                                  <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
-                                                              </td>
-                                                          </tr>
-                                                      </tbody>
-                                                  </table>
-                                              </div>
-                                          </div>
-                                      </div>
+                          <h4 class="w-100 md-bg-red-300 p-t-15 p-b-15 p-l-30 f-400">Pending</h4>
+                          <div id="simple-accordion-alt-3" class="accordion accordion-alt">
+                              <h3 class="accordion-header">ALL</h3>
+                              <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                  <div>
+                                    <div class="material-datatables">
+                                        <table id='tablePA' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Category</th>
+                                                    <th>Task Id</th>
+                                                    <th>Task Name</th>
+                                                    <th>Deadline</th>
+                                                    <th class="disabled-sorting text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableBodyPendingAll">
 
-                                      <!-- Table ends!   -->
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
+                                  </div>
+                              </div>
+
 
                                 <h3 class="accordion-header">Web Development</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tablePWD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyPendingWebDevelopment">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
 
-                                <h3 class="accordion-header">Web Designing</h3>
+                                <h3 class="accordion-header">Content Writing</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tablePCW' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyPendingContentWriting">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="accordion-header">Digital Marketing</h3>
+                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tablePDM' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyPendingDigitalMarketing">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="accordion-header">Graphic Designing</h3>
+                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tablePGD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyPendingGraphicDesigning">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -120,17 +269,112 @@
                             <div id="simple-accordion-alt-3" class="accordion accordion-alt">
                                 <h3 class="accordion-header">ALL</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableOA' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyOngoingAll">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
 
                                 <h3 class="accordion-header">Web Development</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableOWD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyOngoingWebDevelopment">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
 
-                                <h3 class="accordion-header">Web Designing</h3>
+                                <h3 class="accordion-header">Content Writing</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableOCW' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyOngoingContentWriting">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="accordion-header">Digital Marketing</h3>
+                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableODM' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyOngoingDigitalMarketing">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="accordion-header">Graphic Designing</h3>
+                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableOGD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyOngoingGraphicDesigning">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -138,17 +382,112 @@
                             <div id="simple-accordion-alt-3" class="accordion accordion-alt">
                                 <h3 class="accordion-header">ALL</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableCA' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyCompletedAll">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
 
                                 <h3 class="accordion-header">Web Development</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableCWD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyCompletedWebDevelopment">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
 
-                                <h3 class="accordion-header">Web Designing</h3>
+                                <h3 class="accordion-header">Content Writing</h3>
                                 <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
-                                    <div></div>
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableCCW' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyCompletedContentWriting">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="accordion-header">Digital Marketing</h3>
+                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableCDM' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyCompletedDigitalMarketing">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="accordion-header">Graphic Designing</h3>
+                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableCGD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyCompletedGraphicDesigning">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -199,8 +538,6 @@
 <script src="../../assets/vendors/jquery-jvectormap.js"></script>
 <!-- Sliders Plugin -->
 <script src="../../assets/vendors/nouislider.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js"></script>
 <!-- Select Plugin -->
 <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
 <!--  DataTables.net Plugin    -->
@@ -280,20 +617,132 @@
             alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
         });
 
-        // Delete a record
-        table.on('click', '.remove', function(e) {
-            $tr = $(this).closest('tr');
-            table.row($tr).remove().draw();
-            e.preventDefault();
-        });
-
         //Like record
         table.on('click', '.like', function() {
             alert('You clicked on Like button');
         });
 
         $('.card .material-datatables label').addClass('form-group');
+
+
+
+
+        $(document).on('click', '.remove', function () {
+          if($(this).closest('table').attr('id') == 'tablePA'){
+            var table = $('#tablePA').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tablePWD'){
+            var table = $('#tablePWD').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+            //removeEntry($(this).closest('tr').attr('id'));
+          }
+          else if($(this).closest('table').attr('id') == 'tablePCW'){
+            var table = $('#tablePCW').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tablePDM'){
+            var table = $('#tablePDM').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tablePGD'){
+            var table = $('#tablePGD').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+
+          else if($(this).closest('table').attr('id') == 'tableOA'){
+            var table = $('#tableOA').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tableOWD'){
+            var table = $('#tableOWD').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+            //removeEntry($(this).closest('tr').attr('id'));
+          }
+          else if($(this).closest('table').attr('id') == 'tableOCW'){
+            var table = $('#tableOCW').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tableODM'){
+            var table = $('#tableODM').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tableOGD'){
+            var table = $('#tableOGD').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+
+          else if($(this).closest('table').attr('id') == 'tableCA'){
+            var table = $('#tableCA').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tableCWD'){
+            var table = $('#tableCWD').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+            //removeEntry($(this).closest('tr').attr('id'));
+          }
+          else if($(this).closest('table').attr('id') == 'tableCCW'){
+            var table = $('#tableCCW').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tableCDM'){
+            var table = $('#tableCDM').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+          else if($(this).closest('table').attr('id') == 'tableCGD'){
+            var table = $('#tableCGD').DataTable();
+            var rid = $(this).closest('tr').attr('id');
+          }
+
+          swal({
+                  title: 'Are you sure?',
+                  text: 'You want to delete this task!',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes, delete it!',
+                  cancelButtonText: 'No, keep it',
+                  confirmButtonClass: "btn btn-success",
+                  cancelButtonClass: "btn btn-danger",
+                  buttonsStyling: false
+              }).then(function() {
+                table.row($("#"+rid)).remove().draw();
+                swal({
+                  title: 'Deleted!',
+                  text: 'Task has been deleted.',
+                  type: 'success',
+                  confirmButtonClass: "btn btn-success",
+                  buttonsStyling: false
+                  })
+              }, function(dismiss) {
+                // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                if (dismiss === 'cancel') {
+                  swal({
+                    title: 'Cancelled',
+                    text: 'Task is safe :)',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-info",
+                    buttonsStyling: false
+                  })
+                }
+              });
+       });
+
     });
+
 </script>
+
+<script type="text/javascript">
+
+function removeEntry(rowId){
+  var s = "#"+rowId;
+  $tr = $(s).closest('tr').attr('id');
+  var table = $('#'+$(s).closest('table').attr('id')+'').DataTable();
+  table.row($tr).remove().draw();
+}
+
+</script>
+
+
+
 
 </html>
