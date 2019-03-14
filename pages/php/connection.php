@@ -1,6 +1,5 @@
 <?php
-$con= mysqli_connect("localhost", "root", "")
- or die("Unable to connect to the database server!");
- $roh= mysqli_select_db($con, 'wt')
-  or die("Unable to connect to the database server! <br><hr width=800 style=height:1px;></hr><center><input type=button value=OK id=1 class=buttons onclick=cancelit();></center>");
+
+    $con= mysqli_connect("103.21.59.27", "wtintern_bob", "Tiger@1995", "wtintern_wt")
+    or die("Unable to connect to the database server!");
 ?>
