@@ -20,7 +20,16 @@ if($p0 == 'PENDING'){
   if($p1 == 'WEB DEVELOPMENT'){
     ?>
     <script type="text/javascript">
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    var date = '<?php echo $p4 ?>';
+    date = date.slice(0,date.indexOf(" "));
+    date = new Date(date);
+    var deadline = new Date();
+    if(deadline > date){
+      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
+    else{
+      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
     loadTableData(data, "PWD");
     </script>
     <?php
@@ -28,7 +37,16 @@ if($p0 == 'PENDING'){
   else if($p1 == 'CONTENT WRITING'){
     ?>
     <script type="text/javascript">
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    var date = '<?php echo $p4 ?>';
+    date = date.slice(0,date.indexOf(" "));
+    date = new Date(date);
+    var deadline = new Date();
+    if(deadline > date){
+      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
+    else{
+      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
     loadTableData(data, "PCW");
     </script>
     <?php
@@ -36,7 +54,16 @@ if($p0 == 'PENDING'){
   else if($p1 == 'DIGITAL MARKETING'){
     ?>
     <script type="text/javascript">
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    var date = '<?php echo $p4 ?>';
+    date = date.slice(0,date.indexOf(" "));
+    date = new Date(date);
+    var deadline = new Date();
+    if(deadline > date){
+      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
+    else{
+      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
     loadTableData(data, "PDM");
     </script>
     <?php
@@ -44,7 +71,16 @@ if($p0 == 'PENDING'){
   else if($p1 == 'GRAPHIC DESIGNING'){
     ?>
     <script type="text/javascript">
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    var date = '<?php echo $p4 ?>';
+    date = date.slice(0,date.indexOf(" "));
+    date = new Date(date);
+    var deadline = new Date();
+    if(deadline > date){
+      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
+    else{
+      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
+    }
     loadTableData(data, "PGD");
     </script>
     <?php

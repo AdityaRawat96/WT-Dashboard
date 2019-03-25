@@ -592,7 +592,7 @@
 <!-- Script for table! -->
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#datatables').DataTable({
+        $('.datatables').DataTable({
             "pagingType": "full_numbers",
             "lengthMenu": [
                 [5, 10, 15, -1],
@@ -607,7 +607,7 @@
         });
 
 
-        var table = $('#datatables').DataTable();
+        var table = $('.datatables').DataTable();
 
         // Edit record
         table.on('click', '.edit', function() {
@@ -628,70 +628,55 @@
 
 
         $(document).on('click', '.remove', function () {
+
+          var rid = $(this).closest('tr').attr('id');
+
           if($(this).closest('table').attr('id') == 'tablePA'){
             var table = $('#tablePA').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tablePWD'){
             var table = $('#tablePWD').DataTable();
-            var rid = $(this).closest('tr').attr('id');
-            //removeEntry($(this).closest('tr').attr('id'));
           }
           else if($(this).closest('table').attr('id') == 'tablePCW'){
             var table = $('#tablePCW').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tablePDM'){
             var table = $('#tablePDM').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tablePGD'){
             var table = $('#tablePGD').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
 
           else if($(this).closest('table').attr('id') == 'tableOA'){
             var table = $('#tableOA').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tableOWD'){
             var table = $('#tableOWD').DataTable();
-            var rid = $(this).closest('tr').attr('id');
-            //removeEntry($(this).closest('tr').attr('id'));
           }
           else if($(this).closest('table').attr('id') == 'tableOCW'){
             var table = $('#tableOCW').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tableODM'){
             var table = $('#tableODM').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tableOGD'){
             var table = $('#tableOGD').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
 
           else if($(this).closest('table').attr('id') == 'tableCA'){
             var table = $('#tableCA').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tableCWD'){
             var table = $('#tableCWD').DataTable();
-            var rid = $(this).closest('tr').attr('id');
-            //removeEntry($(this).closest('tr').attr('id'));
           }
           else if($(this).closest('table').attr('id') == 'tableCCW'){
             var table = $('#tableCCW').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tableCDM'){
             var table = $('#tableCDM').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
           else if($(this).closest('table').attr('id') == 'tableCGD'){
             var table = $('#tableCGD').DataTable();
-            var rid = $(this).closest('tr').attr('id');
           }
 
           swal({
@@ -705,7 +690,7 @@
                   cancelButtonClass: "btn btn-danger",
                   buttonsStyling: false
               }).then(function() {
-                table.row($("#"+rid)).remove().draw();
+                table.row("#"+rid).remove().draw();
                 swal({
                   title: 'Deleted!',
                   text: 'Task has been deleted.',
@@ -730,19 +715,5 @@
     });
 
 </script>
-
-<script type="text/javascript">
-
-function removeEntry(rowId){
-  var s = "#"+rowId;
-  $tr = $(s).closest('tr').attr('id');
-  var table = $('#'+$(s).closest('table').attr('id')+'').DataTable();
-  table.row($tr).remove().draw();
-}
-
-</script>
-
-
-
 
 </html>

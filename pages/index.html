@@ -19,6 +19,7 @@
     <!--     Fonts and icons     -->
     <link href="../assets/vendors/maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+    <link rel="stylesheet" href="../assets/css/style.css">
     <script type="text/javascript">
         function loginFunction(e)
             {
@@ -42,13 +43,13 @@
                         }
                        else if ( response.match(/username_problem/) )
                         {
-                            $('#username').focus();
-                            $('#userproblem').css('visibility','visible');
+                            $('#pwd').focus();
+                            $('#incorrectCredentials').css('visibility','visible');
                         }
                         else if ( response.match(/password_problem/) )
                         {
                             $('#pwd').focus();
-                            $('#pwdproblem').css('visibility','visible');
+                            $('#incorrectCredentials').css('visibility','visible');
                         }
                 }
                 });
@@ -120,10 +121,9 @@
                                                 <i style='color:black;' class="material-icons">face</i>
                                             </span>
                                             <div class="form-group label-floating">
-                                                <label class="control-label">User Name</label>
-                                                <input type="text" class="form-control" id="username" oninput="checkusername();">
+                                                <label class="control-label" id="usenameinput">User Name</label>
+                                                <input type="text" class="form-control" id="username" oninput="checkusername();" style="color:white;">
                                                 <br>
-                                                <span id="userproblem" style="color: red;visibility: hidden;">Username is not Correct</span>
                                             </div>
                                         </div>
                                         <div class="input-group">
@@ -132,9 +132,9 @@
                                             </span>
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Password</label>
-                                                <input type="password" class="form-control" id="pwd">
+                                                <input type="password" class="form-control" id="pwd" style="color:white;">
                                                 <br>
-                                                <span id="pwdproblem" style="color: red;visibility: hidden;">Password is not Correct</span>
+                                                <span id="incorrectCredentials" style="color: red;visibility: hidden;">Username or Password is incorrect!</span>
                                             </div>
                                         </div><br>
                                         <div class="text-center">
@@ -236,8 +236,35 @@
         setTimeout(function() {
             // after 1000 ms we add the class animated to the login/register card
             $('.card').removeClass('card-hidden');
-        }, 700)
+        }, 200)
     });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('#username').click(function(){
+    $('#incorrectCredentials').css('visibility','hidden');
+  });
+
+  $('#pwd').click(function(){
+    $('#incorrectCredentials').css('visibility','hidden');
+  });
+
+  $('#pwd').keypress(function(){
+    $('#incorrectCredentials').css('visibility','hidden');
+  });
+
+  $('#pwd').keypress(function(key) {
+        if(key.charCode == 13) loginFunction();
+    });
+
+    $('#username').keypress(function(key) {
+          if(key.charCode == 13) loginFunction();
+      });
+
+});
+
 </script>
 
 </html>
