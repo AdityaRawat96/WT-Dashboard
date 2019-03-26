@@ -619,7 +619,8 @@
 
         //Like record
         table.on('click', '.like', function() {
-            alert('You clicked on Like button');
+            var rid = $(this).closest('tr').attr('id');
+            window.open('assign_task.php?myvar='+rid);
         });
 
         $('.card .material-datatables label').addClass('form-group');

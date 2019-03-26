@@ -51,7 +51,7 @@
                             <a href="../tasks/addTask.php">View Employees</a>
                         </li>
                         <li>
-                            <a href="../tasks/addTask.php">Add Employee</a>
+                            <a href="../employee/addEmployee.php">Add Employee</a>
                         </li>
                         <li>
                             <a href="../tasks/addTask.php">Remove Employee</a>
