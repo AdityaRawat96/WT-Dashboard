@@ -59,16 +59,16 @@
                                   <div class="wizard-navigation">
                                       <ul class="trackPage">
                                           <li>
-                                              <a href="#about" data-toggle="tab">About</a>
+                                              <a href="#about" data-toggle="tab" onclick="changePageNo(1);">About</a>
                                           </li>
                                           <li>
-                                              <a href="#skills" data-toggle="tab" onclick="checkPicture();">Skills</a>
+                                              <a href="#skills" data-toggle="tab" onclick="checkPicture(); changePageNo(2);">Skills</a>
                                           </li>
                                           <li>
-                                              <a href="#address" data-toggle="tab">Address</a>
+                                              <a href="#address" data-toggle="tab" onclick="changePageNo(3);">Address</a>
                                           </li>
                                           <li>
-                                              <a href="#confirm" data-toggle="tab">Confirm</a>
+                                              <a href="#confirm" data-toggle="tab" onclick="changePageNo(4); confirmResult();">Confirm</a>
                                           </li>
                                       </ul>
                                   </div>
@@ -154,7 +154,7 @@
                                           </center>
 
                                           <div class="row">
-                                              <div class="col-lg-10 col-lg-offset-1">
+                                              <div class="col-lg-10">
                                                   <div class="col-sm-4">
                                                       <div class="choice" id="checkboxDivGD" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivGD','checkboxGD');">
                                                           <input type="checkbox" name="jobb" value="Graphic Designing" id="checkboxGD" required>
@@ -191,6 +191,24 @@
                                                           <h6>Digital Marketing</h6>
                                                       </div>
                                                   </div>
+                                                  <div class="col-sm-4">
+                                                      <div class="choice" id="checkboxDivVE" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivVE','checkboxVE');">
+                                                          <input type="checkbox" name="jobb" value="Video Editing" id="checkboxVE" required>
+                                                          <div class="icon">
+                                                              <i class="fas fa-video"></i>
+                                                          </div>
+                                                          <h6>Video Editing</h6>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-sm-4">
+                                                      <div class="choice" id="checkboxDivPR" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivPR','checkboxPR');">
+                                                          <input type="checkbox" name="jobb" value="Public Relations" id="checkboxPR" required>
+                                                          <div class="icon">
+                                                              <i class="fas fa-users"></i>
+                                                          </div>
+                                                          <h6>Public Relations</h6>
+                                                      </div>
+                                                  </div>
                                               </div>
                                           </div>
                                       </div>
@@ -202,7 +220,7 @@
                                               <div class="col-sm-7 col-sm-offset-1">
                                                   <div class="form-group label-floating">
                                                       <label class="control-label">Current Address</label>
-                                                      <input type="text" class="form-control" name="currentAddress" id="currentAddress" required>
+                                                      <input type="text" class="form-control" name="currentAddress" id="currentAddress" required onclick="console.log(pageNo);">
                                                   </div>
                                               </div>
                                               <div class="col-sm-7 col-sm-offset-1">
@@ -220,10 +238,11 @@
                                                   <h4 class="info-text"> Confirm Details! </h4>
                                               </div>
                                               <div class="col-sm-12">
-                                                <table>
+                                                <center>
+                                                <table style="width:90%;">
                                                   <tr>
                                                     <td style="width:20%"><label>First Name:</label></td>
-                                                    <td style="width:50%"><input id="confirmfname" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td style="width:50%"><input id="confirmfname" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                     <td rowspan="3" style="width:30%">
                                                       <div class="picture">
                                                           <img src="../../assets/img/faces/avatar.png" class="picture-src" id="confirmwizardPicturePreview" title="" />
@@ -232,36 +251,34 @@
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Last Name:</label></td>
-                                                    <td style="width:50%"><input id="confirmlname" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td style="width:50%"><input id="confirmlname" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Date of Birth:</label></td>
-                                                    <td style="width:50%"><input id="confirmdob" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td style="width:50%"><input id="confirmdob" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Phone:</label></td>
-                                                    <td colspan="2"><input id="confirmphone" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td colspan="2"><input id="confirmphone" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>e-mail:</label></td>
-                                                    <td colspan="2"><input id="confirmemail" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td colspan="2"><input id="confirmemail" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Skill:</label></td>
-                                                    <td colspan="2"><input id="confirmskill" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td colspan="2"><input id="confirmskill" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Current Address:</label></td>
-                                                    <td colspan="2"><input id="confirmcaddress" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td colspan="2"><input id="confirmcaddress" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Permanent Address:</label></td>
-                                                    <td colspan="2"><input id="confirmpaddress" type="text" name="" value="" class="form-control" disbled></td>
+                                                    <td colspan="2"><input id="confirmpaddress" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                 </table>
-
-
-
+                                              </center>
                                               </div>
 
                                           </div>
@@ -365,10 +382,13 @@
             }
           }
           else if(pageNo == 2){
-            if(checkSkills() && ($('.trackPage > .active >a').text()=="Address")){
+            if(checkSkills()){
               pageNo++;
-              confirmResult();
             }
+          }
+          else if(pageNo == 3){
+            confirmResult();
+            pageNo++;
           }
           // pageNo++;
         });
@@ -376,6 +396,10 @@
           pageNo--;
         });
     });
+
+    function changePageNo(n){
+      pageNo = n;
+    }
 
     function checkPicture(){
       if($("#wizard-picture").val()==''){
@@ -392,11 +416,14 @@
       $('#checkboxCW').removeAttr("checked");
       $('#checkboxWD').removeAttr("checked");
       $('#checkboxDM').removeAttr("checked");
+      $('#checkboxVE').removeAttr("checked");
+      $('#checkboxPR').removeAttr("checked");
       $('#checkboxDivGD').removeClass("active");
       $('#checkboxDivCW').removeClass("active");
       $('#checkboxDivWD').removeClass("active");
       $('#checkboxDivDM').removeClass("active");
-
+      $('#checkboxDivVE').removeClass("active");
+      $('#checkboxDivPR').removeClass("active");
 
       $('#'+s).attr("checked","checked");
     }

@@ -95,7 +95,6 @@
         tableDataCompletedGraphicDesigning = tableDataCompletedGraphicDesigning + data;
         tableDataCompletedAll = tableDataCompletedAll + data;
       }
-
     }
     function showData(){
       $('.datatables').DataTable().destroy();
@@ -116,7 +115,9 @@
       $('#tableBodyCompletedContentWriting').html(tableDataCompletedContentWriting);
       $('#tableBodyCompletedDigitalMarketing').html(tableDataCompletedDigitalMarketing);
       $('#tableBodyCompletedGraphicDesigning').html(tableDataCompletedGraphicDesigning);
+
       $('.datatables').DataTable().draw();
+
     }
 
   </script>
