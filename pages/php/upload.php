@@ -12,7 +12,7 @@ $category=$_POST['confirmskill'];
 $contact=$_POST['confirmphone'];
 $address1=$_POST['confirmcaddress'];
 $address2=$_POST['confirmpaddress'];
-$name=$fname.$lname;
+$name=$fname." ".$lname;
 $username="WT_".$fname.substr($lname,0,2).rand(10,1000);
 date_default_timezone_set("Asia/Calcutta");
 $time= date("H:i:s");

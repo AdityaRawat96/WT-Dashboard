@@ -24,8 +24,7 @@ while($row=mysqli_fetch_array($result))
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
         <td class="text-right">
-            <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-            <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
+            <a href="#" class="btn btn-simple btn-info btn-icon view"><i class="fas fa-info-circle"></i></a>
             <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
         </td>
     </tr>
@@ -41,9 +40,8 @@ while($row=mysqli_fetch_array($result))
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
         <td class="text-right">
-            <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-            <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-            <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+          <a href="#" class="btn btn-simple btn-info btn-icon view"><i class="fas fa-info-circle"></i></a>
+          <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
         </td>
     </tr>
 
@@ -58,9 +56,8 @@ while($row=mysqli_fetch_array($result))
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
         <td class="text-right">
-            <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-            <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-            <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+          <a href="#" class="btn btn-simple btn-info btn-icon view"><i class="fas fa-info-circle"></i></a>
+          <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
         </td>
     </tr>
 
@@ -74,9 +71,8 @@ while($row=mysqli_fetch_array($result))
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
         <td class="text-right">
-            <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-            <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-            <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+          <a href="#" class="btn btn-simple btn-info btn-icon view"><i class="fas fa-info-circle"></i></a>
+          <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
         </td>
     </tr>
 
@@ -91,9 +87,8 @@ while($row=mysqli_fetch_array($result))
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
         <td class="text-right">
-            <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-            <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-            <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+          <a href="#" class="btn btn-simple btn-info btn-icon view"><i class="fas fa-info-circle"></i></a>
+          <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
         </td>
     </tr>
 
@@ -107,9 +102,8 @@ while($row=mysqli_fetch_array($result))
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
         <td class="text-right">
-            <a href="#" class="btn btn-simple btn-info btn-icon like"><i class="material-icons">favorite</i></a>
-            <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i></a>
-            <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+          <a href="#" class="btn btn-simple btn-info btn-icon view"><i class="fas fa-info-circle"></i></a>
+          <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
         </td>
     </tr>
 

@@ -44,12 +44,12 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Basic</h4>
+                                <h4>Employees:</h4>
                             </div>
 
                             <div class="card-content" style="padding:2%;">
-                                <div id="simple-accordion" class="accordion">
-                                    <h3 class="accordion-header"><i class="fas fa-edit"></i>&nbsp; &nbsp;&nbsp;Web Development</h3>
+                                <div id="simple-accordion-colored" class="accordion">
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-edit"></i>&nbsp; &nbsp;&nbsp;Web Development</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -82,7 +82,7 @@
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header"><i class="fas fa-pencil-ruler"></i>&nbsp;&nbsp;&nbsp;Graphic Designing</h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-pencil-ruler"></i>&nbsp;&nbsp;&nbsp;Graphic Designing</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -115,7 +115,7 @@
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header"><i class="fas fa-edit"></i>&nbsp;&nbsp;&nbsp;Content Writing</h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-edit"></i>&nbsp;&nbsp;&nbsp;Content Writing</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -147,7 +147,7 @@
                                           </div>
                                       </div>
                                     </div>
-                                    <h3 class="accordion-header"><i class="fas fa-globe-asia"></i>&nbsp;&nbsp;&nbsp;Digital Marketing</h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-globe-asia"></i>&nbsp;&nbsp;&nbsp;Digital Marketing</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -180,7 +180,7 @@
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header"><i class="fas fa-video"></i>&nbsp;&nbsp;&nbsp;Video Editing</h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-video"></i>&nbsp;&nbsp;&nbsp;Video Editing</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -213,7 +213,7 @@
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header"><i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Public Relations</h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Public Relations</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -306,6 +306,14 @@
 
     $(document).ready(function() {
       $("#simple-accordion").accordion({
+          collapsible: true,
+          animate: 200,
+          activate: function(){
+            $('.datatables').DataTable().responsive.recalc();
+          }
+      });
+
+      $("#simple-accordion-colored").accordion({
           collapsible: true,
           animate: 200,
           activate: function(){
