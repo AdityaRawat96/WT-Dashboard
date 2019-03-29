@@ -12,7 +12,7 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="active">
-                <a href="../index.php">
+                <a href="../dashboard/dashboard.php">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
@@ -48,7 +48,7 @@
                 <div class="collapse" id="employee" aria-expanded="false" style="height: 0px;">
                     <ul class="nav">
                         <li>
-                            <a href="../tasks/addTask.php">View Employees</a>
+                            <a href="../employee/viewEmployee.php">View Employees</a>
                         </li>
                         <li>
                             <a href="../employee/addEmployee.php">Add Employee</a>

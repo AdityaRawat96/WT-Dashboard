@@ -116,6 +116,20 @@
       $('#tableBodyCompletedDigitalMarketing').html(tableDataCompletedDigitalMarketing);
       $('#tableBodyCompletedGraphicDesigning').html(tableDataCompletedGraphicDesigning);
 
+      $('.datatables').DataTable({
+          "pagingType": "full_numbers",
+          "lengthMenu": [
+              [5, 10, 15, -1],
+              [5, 10, 15, "All"]
+          ],
+          responsive: true,
+          language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Search records",
+          }
+
+      });
+
       $('.datatables').DataTable().draw();
 
     }
@@ -151,14 +165,14 @@
                             <h4>TASKS:</h4>
                         </div>
 
-                        <div class="card-content">
+                        <div class="card-content" style="padding:2%;">
                           <h4 class="w-100 md-bg-red-300 p-t-15 p-b-15 p-l-30 f-400">Pending</h4>
                           <div id="simple-accordion-alt-3" class="accordion accordion-alt">
                               <h3 class="accordion-header">ALL</h3>
-                              <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                              <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                   <div>
                                     <div class="material-datatables">
-                                        <table id='tablePA' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                        <table id='tablePA' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>Category</th>
@@ -178,7 +192,7 @@
 
 
                                 <h3 class="accordion-header">Web Development</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tablePWD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -200,7 +214,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Content Writing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tablePCW' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -222,7 +236,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Digital Marketing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tablePDM' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -244,7 +258,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Graphic Designing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tablePGD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -269,7 +283,7 @@
                             <h4 class="w-100 md-bg-blue-300 p-t-15 p-b-15 p-l-30 f-400">Ongoing</h4>
                             <div id="simple-accordion-alt-3" class="accordion accordion-alt">
                                 <h3 class="accordion-header">ALL</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableOA' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -291,7 +305,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Web Development</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableOWD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -313,7 +327,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Content Writing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableOCW' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -335,7 +349,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Digital Marketing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableODM' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -357,7 +371,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Graphic Designing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableOGD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -382,7 +396,7 @@
                             <h4 class="w-100 md-bg-green-300 p-t-15 p-b-15 p-l-30 f-400">Completed</h4>
                             <div id="simple-accordion-alt-3" class="accordion accordion-alt">
                                 <h3 class="accordion-header">ALL</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableCA' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -404,7 +418,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Web Development</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableCWD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -426,7 +440,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Content Writing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableCCW' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -448,7 +462,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Digital Marketing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableCDM' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -470,7 +484,7 @@
                                 </div>
 
                                 <h3 class="accordion-header">Graphic Designing</h3>
-                                <div class="accordion-content" data-wrapper="true" style="overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                <div class="accordion-content" data-wrapper="true" style="padding:0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
                                           <table id='tableCGD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
@@ -580,7 +594,10 @@
         $("#simple-accordion-alt-2, #simple-accordion-alt-3").accordion({
             collapsible: true,
             active: false,
-            animate: 200
+            animate: 200,
+            activate: function(){
+              $('.datatables').DataTable().responsive.recalc();
+            }
         });
 
         $('body').on('click', '#btn-color-targets > .btn', function() {
@@ -593,38 +610,6 @@
 <!-- Script for table! -->
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.datatables').DataTable({
-            "pagingType": "full_numbers",
-            "lengthMenu": [
-                [5, 10, 15, -1],
-                [5, 10, 15, "All"]
-            ],
-            responsive: true,
-            language: {
-                search: "_INPUT_",
-                searchPlaceholder: "Search records",
-            }
-
-        });
-
-
-        var table = $('.datatables').DataTable();
-
-        // Edit record
-        table.on('click', '.edit', function() {
-            $tr = $(this).closest('tr');
-
-            var data = table.row($tr).data();
-            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-        });
-
-        //Like record
-        table.on('click', '.like', function() {
-            var rid = $(this).closest('tr').attr('id');
-            window.open('assign_task.php?myvar='+rid);
-        });
-
-        $('.card .material-datatables label').addClass('form-group');
 
 
 

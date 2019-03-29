@@ -80,7 +80,7 @@
                                                   <div class="picture-container">
                                                       <div class="picture">
                                                           <img src="../../assets/img/faces/avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                          <input type="file" id="wizard-picture" required onclick="$('#picError').fadeOut();">
+                                                          <input name="userImage" type="file" id="wizard-picture" required onclick="$('#picError').fadeOut();">
                                                       </div>
                                                       <h6>Choose Picture</h6>
                                                       <small id="picError" style="display:none; color:red;">Please select a profile picture!</small>
@@ -130,7 +130,7 @@
                                                         <label class="control-label">Phone
                                                           <small>(required)</small>
                                                         </label>
-                                                        <input name="phone" type="phone" class="form-control" required id="ephone">
+                                                        <input name="phone" type="number" class="form-control" required id="ephone">
                                                     </div>
                                                 </div>
                                                   <div class="input-group">
@@ -242,7 +242,7 @@
                                                 <table style="width:90%;">
                                                   <tr>
                                                     <td style="width:20%"><label>First Name:</label></td>
-                                                    <td style="width:50%"><input id="confirmfname" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td style="width:50%"><input id="confirmfname" type="text" name="confirmfname" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                     <td rowspan="3" style="width:30%">
                                                       <div class="picture">
                                                           <img src="../../assets/img/faces/avatar.png" class="picture-src" id="confirmwizardPicturePreview" title="" />
@@ -251,31 +251,31 @@
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Last Name:</label></td>
-                                                    <td style="width:50%"><input id="confirmlname" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td style="width:50%"><input id="confirmlname" type="text" name="confirmlname" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Date of Birth:</label></td>
-                                                    <td style="width:50%"><input id="confirmdob" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td style="width:50%"><input id="confirmdob" type="text" name="confirmdob" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Phone:</label></td>
-                                                    <td colspan="2"><input id="confirmphone" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td colspan="2"><input id="confirmphone" type="text" name="confirmphone" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>e-mail:</label></td>
-                                                    <td colspan="2"><input id="confirmemail" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td colspan="2"><input id="confirmemail" type="text" name="confirmemail" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Skill:</label></td>
-                                                    <td colspan="2"><input id="confirmskill" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td colspan="2"><input id="confirmskill" type="text" name="confirmskill" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Current Address:</label></td>
-                                                    <td colspan="2"><input id="confirmcaddress" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td colspan="2"><input id="confirmcaddress" type="text" name="confirmcaddress" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                   <tr>
                                                     <td style="width:20%"><label>Permanent Address:</label></td>
-                                                    <td colspan="2"><input id="confirmpaddress" type="text" name="" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
+                                                    <td colspan="2"><input id="confirmpaddress" type="text" name="confirmpaddress" value="" class="form-control" disbled  style="margin-bottom:20px;"></td>
                                                   </tr>
                                                 </table>
                                               </center>
@@ -395,6 +395,14 @@
         $("#prevButton").on('click', function(e){
           pageNo--;
         });
+
+        $('#ephone').keypress(function(key) {
+              if(key.charCode < 48 || key.charCode > 57) return false;
+              else if($('#ephone').val().length >= 10)
+              {
+                return false;
+              }
+          });
     });
 
     function changePageNo(n){
