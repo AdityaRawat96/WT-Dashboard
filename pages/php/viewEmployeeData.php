@@ -14,12 +14,13 @@ while($row=mysqli_fetch_array($result))
   $p1=$row['contact'];
   $p2=$row['email'];
   $p3=$row['category'];
+  $p4=$row['id'];
 
   if($p3=="Web Development")
   {
     ?>
 
-    <tr class="wd">
+    <tr class="wd" id="<?php echo $p4; ?>">
         <td><?php echo $p0; ?></td>
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
@@ -31,11 +32,11 @@ while($row=mysqli_fetch_array($result))
 
       <?php
   }
-    if($p3=="Content Writing")
+    if($p3=="Content Writing" )
   {
     ?>
 
-    <tr class="cw">
+    <tr class="cw" id="<?php echo $p4; ?>">
         <td><?php echo $p0; ?></td>
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
@@ -51,7 +52,7 @@ while($row=mysqli_fetch_array($result))
   {
     ?>
 
-    <tr class="gd">
+    <tr class="gd" id="<?php echo $p4; ?>">
         <td><?php echo $p0; ?></td>
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
@@ -66,7 +67,7 @@ while($row=mysqli_fetch_array($result))
   {
     ?>
 
-    <tr class="dm">
+    <tr class="dm" id="<?php echo $p4; ?>">
         <td><?php echo $p0; ?></td>
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
@@ -82,7 +83,7 @@ while($row=mysqli_fetch_array($result))
   {
     ?>
 
-    <tr class="pr">
+    <tr class="pr" id="<?php echo $p4; ?>">
         <td><?php echo $p0; ?></td>
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>
@@ -97,7 +98,7 @@ while($row=mysqli_fetch_array($result))
   {
     ?>
 
-    <tr class="ve">
+    <tr class="ve" id="<?php echo $p4; ?>">
         <td><?php echo $p0; ?></td>
         <td><?php echo $p1; ?></td>
         <td><?php echo $p2; ?></td>

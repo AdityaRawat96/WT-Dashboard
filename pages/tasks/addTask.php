@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
+    <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
@@ -56,11 +57,13 @@
                                   <label class="col-sm-2 label-on-left" for="category">TASK CATEGORY:</label>
                                     <div class="col-sm-3">
                                         <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" data-size="7" id="task_category">
-                                            <option disabled selected>SELECT CATEGORY</option>
-                                            <option >WEB DEVELOPMENT</option>
-                                            <option >CONTENT WRITING</option>
-                                            <option >DIGITAL MARKETING</option>
-                                            <option >GRAPHIC DESIGNING</option>
+                                            <option value='0' disabled selected >SELECT CATEGORY</option>
+                                            <option value="WEB DEVELOPMENT" >WEB DEVELOPMENT</option>
+                                            <option value="CONTENT WRITING" >CONTENT WRITING</option>
+                                            <option value="DIGITAL MARKETING" >DIGITAL MARKETING</option>
+                                            <option value="GRAPHIC DESIGNING" >GRAPHIC DESIGNING</option>
+                                            <option value="PUBLIC RELATIONS" >PUBLIC RELATIONS</option>
+                                            <option value="VIDEO EDITOR" >VIDEO EDITOR</option>
                                         </select>
                                     </div>
                                 </div>
@@ -137,7 +140,7 @@
 
 </body>
 <!--   Core JS Files   -->
-<script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
+
 <script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
 <script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
 <script src="../../assets/vendors/material.min.js" type="text/javascript"></script>
@@ -254,15 +257,31 @@
           confirmButtonClass: "btn btn-success",
           type: "success"
       });
-      clearFields();
+       $('#task_name').val('');
+   		            $('#task_description').val('');
+                    $('#task_deadline').val('');
+                    $('#task_category').val('0').change();
   }
 
-  function clearFields(){
-    $('#task_name').val('');
-    $('#task_description').val('');
-    $('#task_deadline').val('');
+   function clearFields(){
+    swal({
+                  title: 'Are you sure?',
+                  text: 'You want to reset all fields!',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes, reset it!',
+                  cancelButtonText: 'No, keep it',
+                  confirmButtonClass: "btn btn-success",
+                  cancelButtonClass: "btn btn-danger",
+                  buttonsStyling: false
+              }).then(function() {
+                    $('#task_name').val('');
+   		            $('#task_description').val('');
+                    $('#task_deadline').val('');
+                    $('#task_category').val('0').change();
+              }, function(dismiss) {
+              });
   }
-
 </script>
 
 

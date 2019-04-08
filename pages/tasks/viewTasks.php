@@ -29,18 +29,24 @@
   var tableDataPendingContentWriting ='';
   var tableDataPendingDigitalMarketing ='';
   var tableDataPendingGraphicDesigning ='';
+  var tableDataPendingPR ='';
+  var tableDataPendingVideoEditor ='';
 
   var tableDataOngoingAll ='';
   var tableDataOngoingWebDevelopment ='';
   var tableDataOngoingContentWriting ='';
   var tableDataOngoingDigitalMarketing ='';
   var tableDataOngoingGraphicDesigning ='';
+  var tableDataOngoingPR ='';
+  var tableDataOngoingVideoEditor ='';
 
   var tableDataCompletedAll ='';
   var tableDataCompletedWebDevelopment ='';
   var tableDataCompletedContentWriting ='';
   var tableDataCompletedDigitalMarketing ='';
   var tableDataCompletedGraphicDesigning ='';
+  var tableDataCompletedPR ='';
+  var tableDataCompletedVideoEditor ='';
 
     function loadTableData(data, category){
       if(category == 'PWD'){
@@ -60,7 +66,14 @@
         tableDataPendingAll = tableDataPendingAll + data;
       }
 
-
+      else if(category == 'PPR'){
+        tableDataPendingPR = tableDataPendingPR + data;
+        tableDataPendingAll = tableDataPendingAll + data;
+      }
+      else if(category == 'PVE'){
+        tableDataPendingVideoEditor = tableDataPendingVideoEditor + data;
+        tableDataPendingAll = tableDataPendingAll + data;
+      }
       else if(category == 'OWD'){
         tableDataOngoingWebDevelopment = tableDataOngoingWebDevelopment + data;
         tableDataOngoingAll = tableDataOngoingAll + data;
@@ -77,6 +90,15 @@
         tableDataOngoingGraphicDesigning = tableDataOngoingGraphicDesigning + data;
         tableDataOngoingAll = tableDataOngoingAll + data;
       }
+    else if(category == 'OPR'){
+        tableDataOngoingPR = tableDataOngoingPR + data;
+        tableDataOngoingAll = tableDataOngoingAll + data;
+      }
+      else if(category == 'OVE'){
+        tableDataOngoingVideoEditor = tableDataOngoingVideoEditor + data;
+        tableDataOngoingAll = tableDataOngoingAll + data;
+      }
+
 
 
       else if(category == 'CWD'){
@@ -95,6 +117,14 @@
         tableDataCompletedGraphicDesigning = tableDataCompletedGraphicDesigning + data;
         tableDataCompletedAll = tableDataCompletedAll + data;
       }
+        else if(category == 'CPR'){
+        tableDataCompletedPR = tableDataCompletedPR + data;
+        tableDataCompletedAll = tableDataCompletedAll + data;
+      }
+      else if(category == 'CVE'){
+        tableDataCompletedVideoEditor = tableDataCompletedVideoEditor + data;
+        tableDataCompletedAll = tableDataCompletedAll + data;
+      }
     }
     function showData(){
       $('.datatables').DataTable().destroy();
@@ -103,18 +133,24 @@
       $('#tableBodyPendingContentWriting').html(tableDataPendingContentWriting);
       $('#tableBodyPendingDigitalMarketing').html(tableDataPendingDigitalMarketing);
       $('#tableBodyPendingGraphicDesigning').html(tableDataPendingGraphicDesigning);
+        $('#tableBodyPendingPR').html(tableDataPendingPR);
+      $('#tableBodyPendingVideoEditor').html(tableDataPendingVideoEditor);
 
       $('#tableBodyOngoingAll').html(tableDataOngoingAll);
       $('#tableBodyOngoingWebDevelopment').html(tableDataOngoingWebDevelopment);
       $('#tableBodyOngoingContentWriting').html(tableDataOngoingContentWriting);
       $('#tableBodyOngoingDigitalMarketing').html(tableDataOngoingDigitalMarketing);
       $('#tableBodyOngoingGraphicDesigning').html(tableDataOngoingGraphicDesigning);
+         $('#tableBodyOngoingPR').html(tableDataOngoingPR);
+      $('#tableBodyOngoingVideoEditor').html(tableDataOngoingVideoEditor);
 
       $('#tableBodyCompletedAll').html(tableDataCompletedAll);
       $('#tableBodyCompletedWebDevelopment').html(tableDataCompletedWebDevelopment);
       $('#tableBodyCompletedContentWriting').html(tableDataCompletedContentWriting);
       $('#tableBodyCompletedDigitalMarketing').html(tableDataCompletedDigitalMarketing);
       $('#tableBodyCompletedGraphicDesigning').html(tableDataCompletedGraphicDesigning);
+        $('#tableBodyCompletedPR').html(tableDataCompletedPR);
+      $('#tableBodyCompletedVideoEditor').html(tableDataCompletedVideoEditor);
 
       $('.datatables').DataTable({
           "pagingType": "full_numbers",
@@ -278,6 +314,47 @@
                                       </div>
                                     </div>
                                 </div>
+                              <h3 class="accordion-header">Public Relations</h3>
+                                <div class="accordion-content" data-wrapper="true" style="padding:5px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tablePPR' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyPendingPR">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div><h3 class="accordion-header">Video Editor</h3>
+                                <div class="accordion-content" data-wrapper="true" style="padding:5px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tablePVE' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyPendingVideoEditor">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h4 class="w-100 md-bg-blue-400 p-t-15 p-b-15 p-l-30 f-400">Ongoing</h4>
@@ -391,6 +468,50 @@
                                       </div>
                                     </div>
                                 </div>
+                                
+                                <h3 class="accordion-header">Public Relations</h3>
+                                <div class="accordion-content" data-wrapper="true" style="padding:5px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableOPR' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyOngoingPR">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+                                
+                                <h3 class="accordion-header">Video Editor</h3>
+                                <div class="accordion-content" data-wrapper="true" style="padding:5px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableOVE' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyOngoingVideoEditor">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h4 class="w-100 md-bg-green-400 p-t-15 p-b-15 p-l-30 f-400">Completed</h4>
@@ -483,11 +604,12 @@
                                     </div>
                                 </div>
 
-                                <h3 class="accordion-header">Graphic Designing</h3>
+                                
+                                  <h3 class="accordion-header">Public Relations</h3>
                                 <div class="accordion-content" data-wrapper="true" style="padding:5px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                     <div>
                                       <div class="material-datatables">
-                                          <table id='tableCGD' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                          <table id='tableCPR' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
                                               <thead>
                                                   <tr>
                                                       <th>Category</th>
@@ -497,7 +619,30 @@
                                                       <th class="disabled-sorting text-right">Actions</th>
                                                   </tr>
                                               </thead>
-                                              <tbody id="tableBodyCompletedGraphicDesigning">
+                                              <tbody id="tableBodyCompletedPR">
+
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <h3 class="accordion-header">Video Editor</h3>
+                                <div class="accordion-content" data-wrapper="true" style="padding:5px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
+                                    <div>
+                                      <div class="material-datatables">
+                                          <table id='tableCVE' class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Category</th>
+                                                      <th>Task Id</th>
+                                                      <th>Task Name</th>
+                                                      <th>Deadline</th>
+                                                      <th class="disabled-sorting text-right">Actions</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody id="tableBodyCompletedVideoEditor">
 
                                               </tbody>
                                           </table>
@@ -572,6 +717,16 @@
 
 <!-- Script for accordion! -->
 <script type="text/javascript">
+    function myLikeFunction(rid)
+    {
+       window.open('assign_task.php?myvar='+rid,'_self');
+    }
+    
+    function myInfoFunction(rid)
+    {
+        window.open('../php/task_description.php?myvar='+rid,'_self');
+    }
+    
     $(document).ready(function() {
         $("#simple-accordion").accordion({
             collapsible: true,
@@ -610,14 +765,8 @@
 <!-- Script for table! -->
 <script type="text/javascript">
     $(document).ready(function() {
-
-
-
-
         $(document).on('click', '.remove', function () {
-
           var rid = $(this).closest('tr').attr('id');
-
           if($(this).closest('table').attr('id') == 'tablePA'){
             var table = $('#tablePA').DataTable();
           }
@@ -633,7 +782,6 @@
           else if($(this).closest('table').attr('id') == 'tablePGD'){
             var table = $('#tablePGD').DataTable();
           }
-
           else if($(this).closest('table').attr('id') == 'tableOA'){
             var table = $('#tableOA').DataTable();
           }
@@ -649,7 +797,6 @@
           else if($(this).closest('table').attr('id') == 'tableOGD'){
             var table = $('#tableOGD').DataTable();
           }
-
           else if($(this).closest('table').attr('id') == 'tableCA'){
             var table = $('#tableCA').DataTable();
           }
@@ -665,7 +812,6 @@
           else if($(this).closest('table').attr('id') == 'tableCGD'){
             var table = $('#tableCGD').DataTable();
           }
-
           swal({
                   title: 'Are you sure?',
                   text: 'You want to delete this task!',
@@ -677,16 +823,36 @@
                   cancelButtonClass: "btn btn-danger",
                   buttonsStyling: false
               }).then(function() {
-                table.row("#"+rid).remove().draw();
                 swal({
                   title: 'Deleted!',
                   text: 'Task has been deleted.',
                   type: 'success',
                   confirmButtonClass: "btn btn-success",
                   buttonsStyling: false
-                  })
+                  }).then(function(){
+                    
+                    $.ajax({
+                    type: 'POST',
+                    url: '../php/delete.php',
+                    data: {id:rid},
+
+                        beforeSend: function() {
+
+                    },
+                success: function(response) {
+                    if ( response.match(/success/) )
+                        {
+                           table.row("#"+rid).remove().draw();
+                        }
+                    else
+                    {
+                        window.open('../php/error.php?myval=3');    
+                    }
+                }
+                });
+                
+                });
               }, function(dismiss) {
-                // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                 if (dismiss === 'cancel') {
                   swal({
                     title: 'Cancelled',
@@ -698,9 +864,7 @@
                 }
               });
        });
-
     });
-
 </script>
 
 </html>

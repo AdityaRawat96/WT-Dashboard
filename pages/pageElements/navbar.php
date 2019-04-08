@@ -20,7 +20,20 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">notifications</i>
-                        <span class="notification">6</span>
+                        <span class="notification">
+                            <?php
+                            include('../php/connection.php');
+                   // $rows=mysql_num_rows(mysql_query("SELECT COUNT(*) FROM leave_employee WHERE status = 0"));
+                   // $result = mysql_query('SELECT COUNT(*) FROM leave_employee WHERE status = 0');
+                   // $num_rows = mysql_result($result, 0, 0);
+                     //        echo $num_rows;
+                     $result = mysqli_query($con,"SELECT COUNT(*) FROM leave_employee WHERE status = 0");
+$row = mysqli_fetch_array($result);
+
+$total = $row[0];
+echo  $total;
+                             ?>
+                            </span>
                         <p class="hidden-lg hidden-md">
                             Notifications
                             <b class="caret"></b>
@@ -28,9 +41,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">You have 5 new messages</a>
+                            <a href="leave_admin1.php">Check out new leaves</a>
                         </li>
-                        <li>
+                 <!--        <li>
                             <a href="#">You're now friend with Mike</a>
                         </li>
                         <li>
@@ -44,7 +57,7 @@
                         </li>
                         <li>
                             <a href="#">'Prepare Marketing Report' is overdue</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li>

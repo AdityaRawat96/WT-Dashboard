@@ -2,11 +2,21 @@
 include_once 'connection.php';
  // echo "hello";
   //echo "<script type='text/javascript'>alert('$message');</script>";
+$generator = "1abcd3efgh5yz7ijkl90mnop24qrst6uvwx8";
 
+
+   $result = "";
+
+   for ($i = 1; $i <= 8; $i++) {
+       $result .= substr($generator, (rand()%(strlen($generator))), 1);
+   }
 $fname=$_POST['confirmfname'];
 $lname=$_POST['confirmlname'];
 $email=$_POST['confirmemail'];
 $dob=$_POST['confirmdob'];
+$time = strtotime($dob);
+
+$newformat = date('Y-m-d',$time);
 $category=$_POST['confirmskill'];
 
 $contact=$_POST['confirmphone'];
@@ -16,9 +26,9 @@ $name=$fname." ".$lname;
 $username="WT_".$fname.substr($lname,0,2).rand(10,1000);
 date_default_timezone_set("Asia/Calcutta");
 $time= date("H:i:s");
-$date=date("d-m-y");
+$date=date("y-m-d");
 $status='Unconfirmed';
-$password=rand(50,10000).$username;
+$password=$result;
 
 if(is_array($_FILES)) {
 	//echo $fname.$lname.$category;
@@ -36,7 +46,7 @@ $d='../images/'.$contact.'.jpg';
 // or die('Uppss.. an Error accured...(unable to process this request)' );
 
 
-$sql= mysqli_query($con,"insert into users(name,username,password,email,contact,dob,category,status,date,time,permanent_address,temprory_address,img_path) values ('$name','$username','$password','$email','$contact','$dob','$category','$status','$date','$time','$address1','$address2','$d')")
+$sql= mysqli_query($con,"insert into users(name,username,password,email,contact,dob,category,status,date,time,permanent_address,temprory_address,img_path,rights) values ('$name','$username','$password','$email','$contact','$newformat','$category','$status','$date','$time','$address1','$address2','$d','employee')")
         or die("eror in sql");
 }
 }

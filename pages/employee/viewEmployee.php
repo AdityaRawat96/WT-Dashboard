@@ -57,7 +57,7 @@
                                                   <div class="card">
                                                       <div class="card-content">
                                                           <div class="material-datatables">
-                                                              <table class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                              <table class="datatables table table-striped table-no-bordered table-hover" id="wdemployee" cellspacing="0" width="100%" style="width:100%">
                                                                   <thead>
                                                                       <tr>
                                                                           <th>Name</th>
@@ -90,7 +90,7 @@
                                                   <div class="card">
                                                       <div class="card-content">
                                                           <div class="material-datatables">
-                                                              <table class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                              <table class="datatables table table-striped table-no-bordered table-hover" id="gdemployee" cellspacing="0" width="100%" style="width:100%">
                                                                   <thead>
                                                                       <tr>
                                                                           <th>Name</th>
@@ -123,7 +123,7 @@
                                                   <div class="card">
                                                       <div class="card-content">
                                                           <div class="material-datatables">
-                                                              <table class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                              <table class="datatables table table-striped table-no-bordered table-hover" id="cwemployee" cellspacing="0" width="100%" style="width:100%">
                                                                   <thead>
                                                                       <tr>
                                                                           <th>Name</th>
@@ -155,7 +155,7 @@
                                                   <div class="card">
                                                       <div class="card-content">
                                                           <div class="material-datatables">
-                                                              <table class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                              <table class="datatables table table-striped table-no-bordered table-hover" id="dmemployee" cellspacing="0" width="100%" style="width:100%">
                                                                   <thead>
                                                                       <tr>
                                                                           <th>Name</th>
@@ -188,7 +188,7 @@
                                                   <div class="card">
                                                       <div class="card-content">
                                                           <div class="material-datatables">
-                                                              <table class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                              <table class="datatables table table-striped table-no-bordered table-hover" id="veemployee" cellspacing="0" width="100%" style="width:100%">
                                                                   <thead>
                                                                       <tr>
                                                                           <th>Name</th>
@@ -221,7 +221,7 @@
                                                   <div class="card">
                                                       <div class="card-content">
                                                           <div class="material-datatables">
-                                                              <table class="datatables table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                              <table class="datatables table table-striped table-no-bordered table-hover" id="premployee" cellspacing="0" width="100%" style="width:100%">
                                                                   <thead>
                                                                       <tr>
                                                                           <th>Name</th>
@@ -361,24 +361,69 @@
 
 
        var table = $('.datatables').DataTable();
+         
+         
+        $(document).on('click', '.remove', function () {
+            var table=$(this).closest('table').attr('id');
+//            alert(table);
+            var mytable=$('#'+table).DataTable();
+            var tr = $(this).closest('tr').attr('id');
+             swal({
+                  title: 'Are you sure?',
+                  text: 'You want to remove this employee!',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes, remove it!',
+                  cancelButtonText: 'No, keep it',
+                  confirmButtonClass: "btn btn-success",
+                  cancelButtonClass: "btn btn-danger",
+                  buttonsStyling: false
+              }).then(function() {
+                
+                swal({
+                  title: 'Deleted!',
+                  text: 'Employee has been removed.',
+                  type: 'success',
+                  confirmButtonClass: "btn btn-success",
+                  buttonsStyling: false
+                  }).then(function(){
+                    
+                    $.ajax({
+                    type: 'POST',
+                    url: '../php/delete_employee.php',
+                    data: {id:tr},
 
-       // Edit record
-       table.on('click', '.edit', function() {
-           $tr = $(this).closest('tr');
+                        beforeSend: function() {
 
-           var data = table.row($tr).data();
-           alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-       });
-
-       // Delete a record
-       table.on('click', '.remove', function(e) {
-           $tr = $(this).closest('tr');
-           table.row($tr).remove().draw();
-           e.preventDefault();
-       });
+                    },
+                success: function(response) {
+                    if ( response.match(/success/) )
+                        {
+                           mytable.row('#'+tr).remove().draw();
+                        }
+                    else
+                    {
+                        window.open('../php/error.php?myval=4');    
+                    }
+                }
+                });
+                
+                });
+              }, function(dismiss) {
+                if (dismiss === 'cancel') {
+                  swal({
+                    title: 'Cancelled',
+                    text: 'Employee is safe :)',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-info",
+                    buttonsStyling: false
+                  })
+                }
+              });
+        });
 
        //Like record
-       table.on('click', '.like', function() {
+       table.on('click', '.view', function() {
            alert('You clicked on Like button');
        });
 

@@ -105,16 +105,13 @@ $(document).ready(function(){
                             },
                         success: function(response) {
 
-                            
-//                            alert(response);
                               if ( response.match(/done/) )
                         {
-                            window.location.href='../dashboard/dashboard.php';
+                            window.location.href='../dashboard/employee_dashboard.php';
                         }
                         else if ( response.match(/notdone/) )
                         {
-                            $('#myresult').html("Some internal error");
-                             $('#myresult').css("visibility","visible");
+                            $('#myresult').html(response);
                         }
 
                         }
@@ -124,7 +121,7 @@ $(document).ready(function(){
             }
             function skip()
             {
-                       window.location.href='../dashboard/dashboard.php';
+                       window.location.href='../dashboard/employee_dashboard.php';
             }
 
         </script>
@@ -251,7 +248,7 @@ $(document).ready(function(){
         <button type="button" onclick="check();">Submit</button>
         <button type="button" onclick="skip();">Skip</button>
 -->
-        <div id="myResult" style="visibility:hidden;"></div>
+        <div id="myResult" hidden></div>
         
     </body>
     <script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>

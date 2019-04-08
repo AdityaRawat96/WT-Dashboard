@@ -206,6 +206,7 @@ function assignTask() {
 
   },
       success: function(response) {
+//          alert(response);
           if(response.match(/Success/))
           {
             showAlert();
@@ -278,4 +279,7 @@ function showAlert(){
 <script src="../../assets/js/demo.js"></script>
 
 <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
+
+
+
 </html>

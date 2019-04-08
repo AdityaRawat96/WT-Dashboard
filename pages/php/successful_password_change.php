@@ -8,8 +8,9 @@ include('connection.php');
     or die("Unable to connect to the database server! <br><hr width=800 style=height:1px;></hr><center><input type=button value=OK id=1 class=buttons onclick=cancelit();></center>");
 
    $sql="UPDATE users SET password='$pwd',status='Confirmed' where username='$user'";
-
-    if(mysqli_query($con,$sql))
+ $result= mysqli_query($con,$sql)
+     or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : &nbsp;'. mysqli_error($con));
+    if($result)
     {
         echo "done";
     }

@@ -19,7 +19,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#tasks" class="collapsed" aria-expanded="false">
-                    <i class="material-icons">assignment</i>
+                    <i class="material-icons">list</i>
                     <p>Tasks
                         <b class="caret"></b>
                     </p>
@@ -55,6 +55,24 @@
                         </li>
                         <li>
                             <a href="../tasks/addTask.php">Remove Employee</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#reports" class="collapsed" aria-expanded="false">
+                    <i class="material-icons">assignment</i>
+                    <p>Reports
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="reports" aria-expanded="false" style="height: 0px;">
+                    <ul class="nav">
+                        <li>
+                            <a href="../reports/reportByEmployee.php">Employee Report</a>
+                        </li>
+                        <li>
+                            <a href="../reports/reportByDepartment.php">Department Report</a>
                         </li>
                     </ul>
                 </div>

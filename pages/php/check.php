@@ -2,7 +2,7 @@
     $a=$_POST['Username'];
     $b=$_POST['Password'];
     session_start();
-    $_SESSION["Username"] = $a;
+ $_SESSION["Username"] = "";
     $counter=0;
     include('connection.php');
  $roh= mysqli_select_db($con,'wtintern_wt')
@@ -13,17 +13,26 @@ or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : 
 
     if(mysqli_num_rows($result)>0)
     {
+        $_SESSION['Username']=$a;
        while($row=mysqli_fetch_array($result))
        {
             $p1=$row['name'];
             $p2=$row['username'];
             $p3=$row['password'];
             $p4=$row['status'];
+            $p5=$row['rights'];
 
            if(strcmp($b,$p3)==0)
            {
                 $counter=1;
-                echo $p4;
+                if(strcmp($p5,'admin')==0)
+                {
+                   echo "a".$p4;
+                }
+                else
+                {
+                   echo $p4; 
+                }
                 break;
            }
        }
