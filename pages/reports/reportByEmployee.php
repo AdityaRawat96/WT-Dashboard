@@ -103,7 +103,7 @@ else
                                         <label class="col-sm-2 label-on-left">START DATE:</label>
                                         <div class="col-sm-3">
                                             <div class="form-group label-floating is-empty">
-                                              <input type="text" class="form-control datepicker" name="start_date" id="start_date"  style="position:relative;top:-4px;">
+                                              <input type="text" class="form-control datepicker" name="start_date" id="start_date" onkeydown="return false;"  style="position:relative;top:-4px;">
                                             </div>
                                         </div>
                                       </div><br>
@@ -111,7 +111,7 @@ else
                                         <label class="col-sm-2 label-on-left">END DATE:</label>
                                         <div class="col-sm-3">
                                             <div class="form-group label-floating is-empty">
-                                              <input type="text" class="form-control datepicker" name="end_date" id="end_date" style="position:relative;top:-4px;">
+                                              <input type="text" class="form-control datepicker" name="end_date" id="end_date" onkeydown="return false;" style="position:relative;top:-4px;">
                                             </div>
                                         </div>
                                     </div><br>

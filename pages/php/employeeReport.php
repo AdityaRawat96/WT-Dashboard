@@ -36,11 +36,31 @@ else
                     beforeSend: function() {
                     },
                     success: function(response) {
+                      if(response.match(/failure/))
+                      {
+                        $('#ongoingtable').css('visibility','hidden');
+                        $('#completedtable').css('visibility','hidden');
+                        $('body').css('opacity','1');
+                        $('body').css('pointer-events','auto');
+                        $('#nodatafound').html('No Record found');
+                        $('#nodatafound').css('text-align','center');
+                        $('#nodatafound').css('font-size','20px');
+                        $('#nodatafound').css('color','red');
+                        $('#linkbutton').css('visibility','visible');
+
+
+                      }
+                      else {
                         $('#mydiv').html(response);
                         $('#ongoingtable').append($('.ongoing'));
                         $('#completedtable').append($('.completed'));
                         $('body').css('opacity','1');
                         $('body').css('pointer-events','auto');
+                      }
+
+
+
+
                     }
                 });
 
@@ -185,7 +205,7 @@ $j=$_SESSION['reportcontact'];
                       <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-content">
+            <div class="card-content" id='nodatafound'>
                 <h4 class="card-title">ONGOING TASKS</h4>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -213,6 +233,9 @@ $j=$_SESSION['reportcontact'];
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div style="text-align:center;padding-bottom:10px;">
+                <button type="button" class='btn btn-primary' id="linkbutton" onclick="window.open('../reports/reportByEmployee.php');" style="visibility:hidden;">Return Back</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php
 $noticeHead=$_POST['notice_head'];
 $noticeBody=$_POST['notice_body'];
+$noticeTarget=$_POST['notice_target'];
 session_start();
 date_default_timezone_set('Asia/Calcutta');
 $date=date("Y-m-d");
@@ -14,7 +15,7 @@ if(isset($_SESSION['Username']))
   $p1=$row['id'];
 //
   $p2=$row['name'];
-  $sql = "INSERT INTO Notice (admin_id, admin_name, notice_date,notice_head,notice_body) VALUES ('$p1', '$p2', '$date', '$noticeHead', '$noticeBody')";
+  $sql = "INSERT INTO Notice (admin_id, admin_name, notice_date,notice_head,notice_body, notice_department) VALUES ('$p1', '$p2', '$date', '$noticeHead', '$noticeBody', '$noticeTarget')";
   $result=mysqli_query($con,$sql);
   // $row=mysqli_fetch_array($result) or die(mysqli_error($con));
   // echo $p1;

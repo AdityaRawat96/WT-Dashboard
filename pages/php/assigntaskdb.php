@@ -13,7 +13,7 @@ $roh=mysqli_select_db($con,'wtintern_wt')
 or die('Connection failed');
 
 
-$sql= mysqli_query($con, "UPDATE tasks SET assigned_to='$userId',assigned_employee='$userIdName',task_status='ONGOING',assigned_date='$date' where task_id='$taskId'")
+$sql= mysqli_query($con, "UPDATE tasks SET assigned_to='$userId',assigned_employee='$userIdName',task_status='ONGOING',assigned_date='$date',task_cpercentage=0 where task_id='$taskId'")
       or die(mysqli_error($con));
 
 if($sql)

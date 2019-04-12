@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="http://www.urbanui.com/" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
@@ -18,11 +18,36 @@
   <!--     Fonts and icons     -->
   <link href="../../assets/vendors/maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-  <!--    JQuery UI     -->
-  <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
+  <link href="../../assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+
+  <script>
+  function leave(a)
+  {
+    if ($('input[name=test1]:checked').length > 0) {
+      $.ajax({
+        url:"leave_Upload.php",
+        type:"POST",
+        data: {leave_id:a,ar: $("input[name='test1']:checked").val()},
+        beforeSend:function()
+        {
+        },
+        success: function(response)
+        {
+          alert(response);
+        }
+      });
+    }
+
+    else{
+      alert("Select any option");
+    }
+
+  }
+  </script>
+
 </head>
 
-<body>
+<body class="w3-theme-l3">
   <div class="wrapper">
 
     <!--  Sidebar included     -->
@@ -36,39 +61,50 @@
       <div class="content">
         <div class="container-fluid">
 
-          <!--  Page content goes here!    -->
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card" style="height: 350px; overflow-y:scroll;">
-                <div class="card-header card-header-icon">
-                  <i class="material-icons">timeline</i>
-                </div>
-                <div class="card-content">
-                  <h4 class="card-title">NOTICE:
-                  </h4>
-                  <div id="simple-accordion-colored" class="accordion">
+          <?php
+          $dbvalue = 0;
+          $email=0;
+          $data = mysqli_query($con,"SELECT * FROM leave_employee where status=0");
+          ?>
+
+
+          <center><h2>List Of Employees on Leave</h2></center>
+          <br>
+
+          <div class="row" >
+            <?php
+
+            while($row = mysqli_fetch_assoc($data))
+            {
+              ?>
+              <div class="column" >
+                <div class="card">
+                  <div class="container" style="">
+                    <p><strong>Name:</strong><?php echo $row['name'];?></p>
+                    <p><strong>Email:</strong><?php echo $row['email'];?></p>
+                    <p><strong>Description:</strong><?php echo $row['message'];?></p>
+                    <p><strong>Subject:</strong><?php echo $row['subject']; ?></p>
+                    <p><strong>LeaveId:</strong><?php echo $row['leave_id']; ?></p>
+                    <p><strong>Id:</strong><?php echo $row['id']; ?></p>
+                    <input type="radio" name="test1"  id="tag_1" value="accept">
+                    Accept<br>
+                    <input type="radio" name="test1"  id="tag_2" value="reject" >
+                    Reject<br>
+                    <!-- <input type="text" id="idfield" name="idfield" value="<?; ?>"> -->
+
+                    <p><button   class="btn btn-primary " name="reg" onclick="leave(<?php echo $row['leave_id']; ?>);">Submit</button></p>
+
 
                   </div>
-                  <!-- Notice Accordians -->
                 </div>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card" style="min-height: 350px">
-                <div class="card-header">
-                </div>
-                <div class="card-content">
-                  <h4 class="card-title">TASK STATUS:
-                  </h4>
-                  <!-- Some stuff goes here -->
-                  <div id="dash1-sales-chart" class="chart">
-                    <canvas id="myDoughnutChart" height="400" width="498" style="display: block; width: 498px; height: 400px;"></canvas>
+              <?php
+            }
+            ?>
 
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+
+
         </div>
       </div>
 
@@ -118,7 +154,7 @@
 <script src="../../assets/vendors/jquery.datatables.js"></script>
 <!-- Sweet Alert 2 plugin -->
 <script src="../../assets/vendors/sweetalert2.js"></script>
-<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<!--    Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 <script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
 <!--  Full Calendar Plugin    -->
 <script src="../../assets/vendors/fullcalendar.min.js"></script>
@@ -133,77 +169,11 @@
 <script src="../../assets/js/charts/chartjs-charts.js"></script>
 
 <script type="text/javascript">
-var cno=0,pno=0,ono=0;
 $(document).ready(function() {
-  getNotice();
 
+  // Javascript method's body can be found in assets/js/demos.js
+  demo.initVectorMap();
 });
-
-function getNotice(){
-  $.ajax({
-    type: 'POST',
-    url: '../php/getNotice.php',
-    data: {},
-
-    beforeSend: function() {
-
-    },
-    success: function(response) {
-      var accordionData=response.substring(0,response.indexOf('myvarcompleted'));
-      response=response.substring(response.indexOf('myvarcompleted'));
-      cno=response.substring(14,response.indexOf('myvarongoing'));
-      ono=response.substring(response.indexOf('myvarongoing')+12,response.indexOf('myvarpending'));
-      pno=response.substring(response.indexOf('myvarpending')+12);
-      $(".accordion").html(accordionData);
-      $("#simple-accordion-colored").accordion({
-        collapsible: true,
-        animate: 200
-      });
-      showChart();
-    }
-  });
-}
-
-function showChart(){
-  if($('#myDoughnutChart')[0]){
-    // Get context with jQuery - using jQuery's .get() method.
-    var doughnutChartCanvas = $("#myDoughnutChart").get(0).getContext("2d");
-
-    var config = {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [
-            pno,
-            cno,
-            ono
-          ],
-          backgroundColor: [
-            "#FF6384",
-            "#4BC0C0",
-            "#36A2EB"
-          ],
-          label: 'My dataset' // for legend
-
-
-        }],
-        labels: [
-          "PENDING",
-          "COMPLETED",
-          "ONGOING"
-        ]
-      },
-      options: {
-        responsive: true,
-        legend: {
-          display: false
-        }
-      }
-    };
-
-    var myDoughnutChart = new Chart(doughnutChartCanvas, config);
-  }
-}
 </script>
 
 </html>

@@ -49,7 +49,7 @@ or die(mysqli_error($con));
      unset($_SESSION['reportedate']);
      unset($_SESSION['reportcategory']);
      unset($_SESSION['reporteid']);
-
+     echo 'failure';
   ?>
     <!-- <script>window.open('error.php?val=2','_self');</script> -->
     <?php

@@ -52,6 +52,20 @@
                                   <h4 class="card-title">NOTICE HEADING:</h4>
                               </div>
                               <div class="card-content">
+                                <div class="row">
+                                  <label class="col-sm-2 label-on-left" style="top:-5px;">NOTICE TARGET:</label>
+                                  <div class="col-lg-3 col-md-6 col-sm-3">
+                                  <select class="selectpicker" data-style="btn btn-primary btn-round" title="ALL" data-size="7" id="noticeTarget">
+                                      <option disabled selected value="ALL">ALL</option>
+                                      <option value="WEB DEVELOPMENT">WEB DEVELOPMENT</option>
+                                      <option value="CONTENT WRITING">CONTENT WRITING</option>
+                                      <option value="GRAPHIC DESIGNING">GRAPHIC DESIGNING</option>
+                                      <option value="VIDEO EDITING">VIDEO EDITING</option>
+                                      <option value="DIGITAL MARKETING">DIGITAL MARKETING</option>
+                                      <option value="PUBLIC RELATIONS">PUBLIC RELATIONS</option>
+                                  </select>
+                                </div>
+                              </div><br>
                                   <div class="row">
                                       <label class="col-sm-2 label-on-left">NOTICE HEADING:</label>
                                       <div class="col-sm-10">
@@ -170,7 +184,14 @@
   }
 
   function addNotice(){
-    //alert($('#task_category').val());
+    var target = '';
+    if($('#noticeTarget').val()==null){
+      target = "ALL";
+    }
+    else{
+      target = $('#noticeTarget').val();
+    }
+
 
     if($('#headingInput').val()==null)
     {
@@ -192,7 +213,7 @@
         $.ajax({
           type: 'POST',
           url: '../php/addNoticeDatabase.php',
-          data: {  notice_head: noticeHead, notice_body: noticeBody },
+          data: {  notice_head: noticeHead, notice_body: noticeBody, notice_target: target },
           beforeSend: function() {
           },
           success: function(response) {

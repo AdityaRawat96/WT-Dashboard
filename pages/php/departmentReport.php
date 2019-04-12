@@ -8,6 +8,7 @@ if($_SESSION['Username']=='')
 }
 else
 {
+  $a=$_SESSION['no_of_employee'];
     ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -21,13 +22,13 @@ else
     <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-      
+
       <script>
     function myajaxfunction()
       {
           $('body').css('opacity','0.5');
           $('body').css('pointer-events','none');
- 
+
           $.ajax({
                     type: 'POST',
                     url: 'reportajaxdepartment.php',
@@ -36,14 +37,35 @@ else
                     beforeSend: function() {
                     },
                     success: function(response) {
-                        $('#mydiv').html(response);
-                        $('#ongoingtable').append($('.ongoing'));
-                        $('#completedtable').append($('.completed'));
-                        $('body').css('opacity','1');
-                        $('body').css('pointer-events','auto');
+                        if(response.match(/failure/))
+                        {
+                          $('#ongoingtable').css('visibility','hidden');
+                          $('#completedtable').css('visibility','hidden');
+                          $('body').css('opacity','1');
+                          $('body').css('pointer-events','auto');
+                          $('#nodatafound').html('No Record found');
+                          $('#nodatafound').css('text-align','center');
+                          $('#nodatafound').css('font-size','20px');
+                          $('#nodatafound').css('color','red');
+                          $('#linkbutton').css('visibility','visible');
+
+
+                        }
+                        else {
+                          $('#mydiv').html(response);
+                          $('#ongoingtable').append($('.ongoing'));
+                          $('#completedtable').append($('.completed'));
+                          $('body').css('opacity','1');
+                          $('body').css('pointer-events','auto');
+                          $('#ttasks').val(<?php echo $_SESSION['pendingtasks']; ?>+<?php echo $_SESSION['ongoingtasks']; ?>+<?php echo $_SESSION['completedtasks']; ?>);
+                          $('#ptasks').val(<?php echo $_SESSION['pendingtasks']; ?>);
+                          $('#otasks').val(<?php echo $_SESSION['ongoingtasks']; ?>);
+                          $('#ctasks').val(<?php echo $_SESSION['completedtasks']; ?>);
+                        }
+
                     }
                 });
-           
+
       }
     function myblurfunction()
           {
@@ -79,8 +101,7 @@ else
     </style>
   </head>
     <?php
-    session_start();
-    $a=$_SESSION['no_of_employee'];
+
     $b=$_SESSION['ongoingtasks'];
     $c=$_SESSION['completedtasks'];
     $d=$_SESSION['pendingtasks'];
@@ -122,7 +143,7 @@ else
                                       <span><label for="name"> <strong>Total Tasks:</strong> </label></span>
                                     </div>
                                   <div class="col-md-10">
-                                      <span> <input type="text" name="ttasks" value="<?php echo $e; ?>" id="ttasks" readonly style="border:none;"> </span>
+                                      <span> <input type="text" name="ttasks" id="ttasks" readonly style="border:none;"> </span>
                                   </div>
 
                                   </div>
@@ -131,7 +152,7 @@ else
                                       <span><label for="name"> <strong>Pending Tasks:</strong> </label></span>
                                     </div>
                                   <div class="col-md-10">
-                                      <span> <input type="text" name="ptasks" value="<?php echo $d; ?>" id="ptasks" readonly style="border:none;"> </span>
+                                      <span> <input type="text" name="ptasks" id="ptasks" readonly style="border:none;"> </span>
                                   </div>
 
                                   </div>
@@ -140,7 +161,7 @@ else
                                       <span><label for="name"> <strong>Ongoing Tasks:</strong> </label></span>
                                     </div>
                                   <div class="col-md-10">
-                                      <span> <input type="text" name="otasks" value="<?php echo $b; ?>" id="otasks" readonly style="border:none;"> </span>
+                                      <span> <input type="text" name="otasks" id="otasks" readonly style="border:none;"> </span>
                                   </div>
 
                                   </div>
@@ -149,7 +170,7 @@ else
                                       <span><label for="name"> <strong>Completed Tasks:</strong> </label></span>
                                     </div>
                                   <div class="col-md-10">
-                                      <span> <input type="text" name="ctasks" value="<?php echo $c; ?>" id="ctasks" readonly style="border:none;"> </span>
+                                      <span> <input type="text" name="ctasks" id="ctasks" readonly style="border:none;"> </span>
                                   </div>
 
                                   </div>
@@ -182,7 +203,7 @@ else
                       <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-content">
+            <div class="card-content" id="nodatafound">
                 <h4 class="card-title">ONGOING TASKS</h4>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -193,7 +214,7 @@ else
                             <th>TASK DEADLINE</th>
                         </thead>
                         <tbody id="ongoingtable">
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -206,10 +227,13 @@ else
                             <th>TASK CATEGORY</th>
                         </thead>
                         <tbody id="completedtable">
-                           
+
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div style="text-align:center;padding-bottom:10px;">
+                <button type="button" class='btn btn-primary' id="linkbutton" onclick="window.open('../reports/reportByDepartment.php');" style="visibility:hidden;">Return Back</button>
             </div>
         </div>
     </div>

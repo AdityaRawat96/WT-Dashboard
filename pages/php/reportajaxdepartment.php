@@ -15,7 +15,6 @@ $f=$_SESSION['reportcategory'];
 $var=0;
 $var1=0;
 $var2=0;
-
 include('connection.php');
  $roh= mysqli_select_db($con,'wtintern_wt')
     or die("Unable to connect to the database server! <br><hr width=800 style=height:1px;></hr><center><input type=button value=OK id=1 class=buttons onclick=cancelit();></center>");
@@ -53,19 +52,57 @@ or die(mysqli_error($con));
         $_SESSION['ongoingtasks']=$var;
         $_SESSION['completedtasks']=$var1;
         $_SESSION['pendingtasks']=$var2;
+        $result1= mysqli_query($con,"select * from users where category='$f'") or die(mysqli_error($con));
+    
+    
+        if(mysqli_num_rows($result1)>0)
+            {
+                                while($row=mysqli_fetch_array($result1))
+                                {
+                                    $p1=$row['id'];
+                                    $p2=$row['name'];
+                                    ?>
+                                                <tr class="list"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td></tr>
+                                    <?php
+                                }
+
             }
+        else
+        {
+            echo 'employeeloadingfailure';
+        }
+    
+}
+
+
  else
  {
+      $result1= mysqli_query($con,"select * from users where category='$f'") or die(mysqli_error($con));
+    
+    
+        if(mysqli_num_rows($result1)>0)
+            {
+                                while($row=mysqli_fetch_array($result1))
+                                {
+                                    $p1=$row['id'];
+                                    $p2=$row['name'];
+                                    ?>
+                                                <tr class="list"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td></tr>
+                                    <?php
+                                }
+            echo 'failure';
+
+            }
+        else
+        {
+            echo 'failureandemployeeloadingfailure';
+        }
      unset($_SESSION['reportsdate']);
      unset($_SESSION['reportedate']);
      unset($_SESSION['reportcategory']);
-     unset($_SESSION['no_of_employee']);
   ?>
-    <script>window.open('error.php?val=1','_self');</script>
     <?php
  }
-     
-           
 }
-
 ?>
+ 
