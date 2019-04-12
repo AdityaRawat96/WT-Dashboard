@@ -36,16 +36,18 @@
             <div class="content">
                 <div class="container-fluid">
 
+
+
                  <?php
-                    $tid = $_GET['myvar'];
-                
+                    $tid = $_POST['rowId'];
+
                      include('connection.php');
                     $roh= mysqli_select_db($con,'wtintern_wt')
                     or die("Unable to connect to the database server! <br><hr width=800 style=height:1px;></hr><center><input type=button value=OK id=1 class=buttons onclick=cancelit();></center>");
 
                     $result= mysqli_query($con,"select * from tasks where task_id='$tid'")
                     or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : &nbsp;'. mysqli_error($con));
-                    
+
                     $row=mysqli_fetch_array($result);
                     $p1=$row['task_name'];
                     $p2=$row['task_description'];
@@ -103,7 +105,7 @@
                                       </div>
                                   </div>
 
-                                  
+
                                   <div class="row">
                                       <label class="col-sm-2 label-on-left">TASK DEADLINE:</label>
                                       <div class="col-sm-4">
@@ -118,7 +120,7 @@
                                           </div>
                                       </div>
                                   </div>
-                                  
+
                                    <div class="row">
                                          <label class="col-sm-2 label-on-left">ASSIGNED EMPLOYEE ID:</label>
                                       <div class="col-sm-4">
@@ -132,18 +134,18 @@
                                             <input type="text" class="form-control datetimepicker" value="<?php echo $p5; ?>" name="assigned_employee" id="task_deadline" readonly />
                                           </div>
                                       </div>
-                                      
+
                                   </div>
-                                  
+
                                     <br>
-                                  
+
 <!--
                                   <div class="row">
-                                     
+
                                   </div>
 -->
-                                  
-                
+
+
 
 
 
@@ -161,7 +163,7 @@
                 </div>
             </div>
                 <br>
-                
+
 
             <!--  Footer included     -->
             <?php include('../pageElements/footer.php'); ?>

@@ -76,7 +76,7 @@ if($p0 == 'PENDING'){
     ?>
     <script type="text/javascript">
     var date = '<?php echo $p4 ?>';
-    
+
             var rid='<?php echo $p2 ?>';
 date = date.slice(0,date.indexOf(" "));
     date = new Date(date);
