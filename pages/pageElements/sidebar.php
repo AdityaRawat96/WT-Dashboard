@@ -87,13 +87,7 @@
                 <div class="collapse" id="actions" aria-expanded="false" style="height: 0px;">
                     <ul class="nav">
                         <li>
-                            <a href="../tasks/addTask.php">Add tasks</a>
-                        </li>
-                        <li>
-                            <a href="../tasks/addTask.php">View tasks</a>
-                        </li>
-                        <li>
-                            <a href="../tasks/addTask.php">Assign tasks</a>
+                            <a href="../notice/addNotice.php">Send Notice</a>
                         </li>
                     </ul>
                 </div>

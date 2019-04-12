@@ -65,9 +65,10 @@ else
 
                     },
                 success: function(response) {
-
-                  $("#employeeDropdown").append(response);
+                  $("#employeeDropdown").removeAttr('disabled');
+                  $("#employeeDropdown").html(response);
                   $("#employeeDropdown").selectpicker('refresh');
+
                 }
                 });
        }
@@ -133,7 +134,7 @@ else
                                     <div class="row" id="myEmployee">
                                       <label class="col-sm-2 label-on-left" for="employee">SELECT EMPLOYEE:</label>
                                         <div class="col-sm-3" style="position:relative;top:6px;">
-                                            <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" id="employeeDropdown">
+                                            <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" id="employeeDropdown" disabled>
                                             </select>
                                         </div>
                                     </div><br><br>

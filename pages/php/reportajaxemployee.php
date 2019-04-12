@@ -44,18 +44,18 @@ or die(mysqli_error($con));
             }
  else
  {
-     
+
      unset($_SESSION['reportsdate']);
      unset($_SESSION['reportedate']);
      unset($_SESSION['reportcategory']);
      unset($_SESSION['reporteid']);
 
   ?>
-    <script>window.open('error.php?val=2','_self');</script>
+    <!-- <script>window.open('error.php?val=2','_self');</script> -->
     <?php
  }
-     
-           
+
+
 }
 
 ?>

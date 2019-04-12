@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="http://www.urbanui.com/" />
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-    <!-- Bootstrap core CSS     -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <!--  Material Dashboard CSS    -->
-    <link href="../../assets/css/turbo.css" rel="stylesheet" />
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../../assets/css/demo.css" rel="stylesheet" />
-    <!--     Fonts and icons     -->
-    <link href="../../assets/vendors/maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-    <link href="../../assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta name="viewport" content="width=device-width" />
+  <!-- Bootstrap core CSS     -->
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <!--  Material Dashboard CSS    -->
+  <link href="../../assets/css/turbo.css" rel="stylesheet" />
+  <!--  CSS for Demo Purpose, don't include it in your project     -->
+  <link href="../../assets/css/demo.css" rel="stylesheet" />
+  <!--     Fonts and icons     -->
+  <link href="../../assets/vendors/maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+  <!--    JQuery UI     -->
+  <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +37,34 @@
                 <div class="container-fluid">
 
                   <!--  Page content goes here!    -->
+                  <div class="row">
+                      <div class="col-md-8">
+                          <div class="card" style="height: 350px; overflow-y:scroll;">
+                              <div class="card-header card-header-icon">
+                                  <i class="material-icons">timeline</i>
+                              </div>
+                              <div class="card-content">
+                                  <h4 class="card-title">NOTICE:
+                                  </h4>
+                                  <div id="simple-accordion-colored" class="accordion">
 
+                                  </div>
+                                  <!-- Notice Accordians -->
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="card" style="min-height: 350px">
+                              <div class="card-header">
+                              </div>
+                              <div class="card-content">
+                                  <h4 class="card-title">Region-wise Sales
+                                  </h4>
+                                  <!-- Some stuff goes here -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
 
                 </div>
@@ -105,10 +132,27 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initVectorMap();
+        getNotice();
     });
+
+    function getNotice(){
+      $.ajax({
+                    type: 'POST',
+                    url: '../php/getNotice.php',
+                    data: {},
+
+                        beforeSend: function() {
+
+                    },
+                success: function(response) {
+                  $(".accordion").html(response);
+                  $("#simple-accordion-colored").accordion({
+                      collapsible: true,
+                      animate: 200
+                  });
+                }
+                });
+    }
 </script>
 
 </html>

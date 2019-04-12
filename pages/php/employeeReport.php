@@ -21,13 +21,13 @@ else
     <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-      
+
       <script>
     function myajaxfunction()
       {
           $('body').css('opacity','0.5');
           $('body').css('pointer-events','none');
- 
+
           $.ajax({
                     type: 'POST',
                     url: 'reportajaxemployee.php',
@@ -43,14 +43,14 @@ else
                         $('body').css('pointer-events','auto');
                     }
                 });
-           
+
       }
            function myblurfunction()
           {
               unset($_SESSION['reportname']);
               unset($_SESSION['reportusername']);
               unset($_SESSION['reportdob']);
-              unset($_SESSION['reportimg']);              
+              unset($_SESSION['reportimg']);
               unset($_SESSION['reportemail']);
               unset($_SESSION['reportcontact']);
 
@@ -80,9 +80,8 @@ else
         }
     </style>
   </head>
-      
+
  <?php
-session_start();
 $a=$_SESSION['reportname'];
 $b=$_SESSION['reportusername'];
 $c=$_SESSION['reportdob'];
@@ -169,9 +168,9 @@ $j=$_SESSION['reportcontact'];
                                   </h4>
 
                                     <div class="card-profile">
-                                      <div class="card-avatar">
+                                      <div class="card-avatar" style="height:500px;">
                                                     <a href="#pablo">
-                                                        <img class="img" src="<?php echo $h; ?>" />
+                                                        <img class="img" src="<?php echo $h; ?>" style="background-size:cover;"/>
                                                     </a>
                                                 </div>
                                     </div>
@@ -197,7 +196,7 @@ $j=$_SESSION['reportcontact'];
                             <th>TASK DEADLINE</th>
                         </thead>
                         <tbody id="ongoingtable">
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -210,7 +209,7 @@ $j=$_SESSION['reportcontact'];
                             <th>TASK CATEGORY</th>
                         </thead>
                         <tbody id="completedtable">
-                           
+
                         </tbody>
                     </table>
                 </div>
@@ -307,6 +306,6 @@ $j=$_SESSION['reportcontact'];
 
 </html>
 <?php
-    
+
 }
 ?>

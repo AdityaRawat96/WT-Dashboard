@@ -51,7 +51,7 @@ or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : 
        {
            $p1=$row['id'];
            $p2=$row['name'];
-        echo "<option value='$p2'>$p2</option>";
+        echo "<option value='$p1'>$p2</option>";
        }
     }
 }
