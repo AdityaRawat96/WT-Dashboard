@@ -1,7 +1,7 @@
 <?php
 session_start();
-//error_reporting(0);
-if($_SESSION['Username']=='')
+error_reporting(0);
+if($_SESSION['Username']=='' || $_SESSION['Rights']!='admin')
 {
   session_unset();
   session_destroy();

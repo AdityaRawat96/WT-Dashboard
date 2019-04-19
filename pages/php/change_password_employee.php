@@ -1,3 +1,9 @@
+<?php session_start(); 
+error_reporting(0);
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
+{
+?>
+
 <html>
     <head>
 <!--
@@ -302,3 +308,14 @@ $(document).ready(function(){
     });
 </script>
 </html>
+<?php
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
+?>

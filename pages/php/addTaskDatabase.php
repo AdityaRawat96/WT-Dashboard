@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
 $task_id=$_POST['task_id'];
 $task_category=$_POST['task_category'];
 $task_name=($_POST['task_name']);
@@ -17,5 +19,13 @@ or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : 
 
 
 echo"Data sucessfully Uploaded";
-
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
  ?>

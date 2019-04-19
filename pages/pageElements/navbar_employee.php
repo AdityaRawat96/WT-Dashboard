@@ -15,37 +15,40 @@
             </button>
             <a class="navbar-brand" href="#"> Dashboard </a>
         </div>
-        <div class="collapse navbar-collapse" onclick="window.open('../leave/viewLeave1.php');">
+        <div class="collapse navbar-collapse" onclick="myFunction();" style="cursor:pointer;">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">notifications</i>
                          <?php
                             include('../php/connection.php');
-                            $result = mysqli_query($con,"SELECT COUNT(*) FROM leave_employee WHERE status = 0");
+                            $uname=$_SESSION['Username'];
+                            $sql=mysqli_query($con,"select * from users where username='$uname'");
+                            $row=mysqli_fetch_array($sql);
+                            $id=$row['id'];
+                            $result = mysqli_query($con,"SELECT COUNT(*) FROM leave_employee WHERE status!= '0' and seen_status='notseen' and id='$id'");
                             $row = mysqli_fetch_array($result);
 
                             $total = $row[0];
-                        if($total!=0)
-                        {
-                            ?>
-                         <span class="notification">
+                            if($total!=0)
+                            {
+                                ?>
+                                <span class="notification">
+                                    <?php  echo  $total; ?>
+                                </span><?php
+                            }
+                       
                            
-                                <?php echo  $total;
+                               
                              ?>
-                            </span>
-                        <?php
-                        }
-                       ?>
-                    </a>
-                 
-                </li>
-                <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">apps</i>
-                        <p class="hidden-lg hidden-md">Apps</p>
+                           
+                        <p class="hidden-lg hidden-md">
+                            Notifications
+                            <b class="caret"></b>
+                        </p>
                     </a>
                 </li>
+                
                 <li>
                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">person</i>
@@ -54,8 +57,8 @@
                 </li>
                 <li>
                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">settings</i>
-                        <p class="hidden-lg hidden-md">Settings</p>
+                        <i class="material-icons">rotate_left</i>
+                        <p class="hidden-lg hidden-md">Log Out</p>
                     </a>
                 </li>
                 <li class="separator hidden-lg hidden-md"></li>
@@ -63,3 +66,4 @@
         </div>
     </div>
 </nav>
+

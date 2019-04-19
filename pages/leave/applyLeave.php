@@ -1,3 +1,9 @@
+<?php
+session_start();
+error_reporting(0);
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
+{
+?>
 <!doctype html>
 <html lang="en">
 
@@ -23,15 +29,34 @@
 </head>
 
 <script>
+    
+     function myFunction()
+    {
+//        alert('HII');
+         $.ajax({
+                    type: 'POST',
+                    url: '../php/leaveStatus.php',
+                    data: {value:1},
+
+                        beforeSend: function() {
+                    },
+                success: function(response) {
+                 window.open('../leave/viewLeave.php','_self');  
+//                    alert(response);
+                }
+                });
+    }
+    
 function krish()
 {
-  if($("#message").val()=="")
-  alert("Message field required");
-
-  else if($("#sel1").val()=="")
-  alert("Please select any options");
-
-  $.ajax({
+//    alert('gerer'); 
+  if($('#sel1').val()==null || $('#leaveFrom').val()=="" || $('#leaveTo').val()=="" || $('#message').val()=='')
+  {
+    alert('Please enter valid entries');
+  }
+    else
+        {
+          $.ajax({
 
     url:"leave.php",
     type:"POST",
@@ -42,10 +67,34 @@ function krish()
     },
     success: function(response)
     {
-      alert(response);
+//        alert(response);
+        if(response.match(/success/))
+            showAlert();
+        else
+            alert('some Problem occur');
     }
-  });
+  });  
+            
+        }
+  
 }
+    
+    function showAlert(){
+  swal({
+        title: "Done!",
+        timer: 5000,
+        text: "Leave placed successfully!",
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-success",
+        type: "success"
+    }).then(function(){
+       $('#message').val("");
+       $('#leaveFrom').val("");
+       $('#leaveTo').val("");
+       $('#sel1').val("null");
+  });  
+}
+
 
 
 </script>
@@ -54,12 +103,12 @@ function krish()
   <div class="wrapper">
 
     <!--  Sidebar included     -->
-    <?php include('../pageElements/sidebar.php'); ?>
+    <?php include('../pageElements/sidebar_employee.php'); ?>
 
     <div class="main-panel">
 
       <!--  Navbar included     -->
-      <?php include('../pageElements/navbar.php'); ?>
+      <?php include('../pageElements/navbar_employee.php'); ?>
 
       <div class="content">
         <div class="container-fluid">
@@ -79,7 +128,7 @@ function krish()
                             </span>
                             <div class="form-group label-floating">
                               <select class="form-control" id="sel1" name="sellist1">
-                                <option value="">Select any option</option>
+                                <option disabled selected>Select any option</option>
                                 <option value="Medical">Medical Leave</option>
                                 <option value="Paternity">Paternity Leave</option>
                                 <option value="Vacation">Vacation Leave</option>
@@ -102,7 +151,7 @@ function krish()
                                 <label class="control-label">
                                   <small></small>
                                 </label>
-                                <input type="text" id="leaveFrom" class="datepicker form-control" name="employee_dob" required/>
+                                <input type="text" id="leaveFrom" class="datepicker form-control" name="employee_dob" onkeydown="return false;" required/>
                               </div>
                             </div>
                           </div>
@@ -117,7 +166,7 @@ function krish()
                                 <label class="control-label">
                                   <small></small>
                                 </label>
-                                <input type="text" id="leaveTo" class="datepicker form-control" name="employee_dob" required/>
+                                <input type="text" id="leaveTo" class="datepicker form-control" name="employee_dob" onkeydown="return false;" required/>
                               </div>
                             </div>
                           </div>
@@ -226,3 +275,14 @@ $(document).ready(function() {
 
 </body>
 </html>
+<?php
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
+?>

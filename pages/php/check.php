@@ -21,9 +21,10 @@ or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : 
             $p3=$row['password'];
             $p4=$row['status'];
             $p5=$row['rights'];
-
+           
            if(strcmp($b,$p3)==0)
            {
+               $_SESSION['Rights']=$p5;
                 $counter=1;
                 if(strcmp($p5,'admin')==0)
                 {

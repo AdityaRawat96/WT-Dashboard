@@ -1,6 +1,7 @@
 <?php
 session_start();
-if($_SESSION['Username']=='')
+error_reporting(0);
+if($_SESSION['Username']==''||$_SESSION['Rights']!='admin')
 {
     session_unset();
     session_destroy();
@@ -34,11 +35,13 @@ else
 
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
     <script>
-     function genReport(){
+        function genReport(){
           var a1=$('#start_date').val();
           var a2=$('#end_date').val();
           var a3=$('#category').val();
-          $.ajax({
+        if(a1!=""&&a2!=""&&$('#category').val()!=null)
+            {
+                $.ajax({
                     type: 'POST',
                     url: '../php/reportByDepartmentDB.php',
                     data: { startdate:a1,enddate:a2,category:a3},
@@ -51,6 +54,12 @@ else
                             window.open('../php/departmentReport.php','_self');
                         }
                 });
+            }
+         else
+             {
+                 alert("please enter valid entries");
+             }
+          
       }
     </script>
   </head>
@@ -82,7 +91,7 @@ else
                                       <tr>
                                         <td>  <label>START DATE:</label></td>
                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <td>  <input type="text" class="form-control datepicker" name="start_date" id="start_date" /></td>
+                                        <td>  <input type="text" class="form-control datepicker" name="start_date" id="start_date" onkeydown="return false;" /></td>
                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         <td><h2>TO</h2></td>
@@ -90,7 +99,7 @@ else
                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         <td><label>END DATE:</label></td>
                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <td>  <input type="text" class="form-control datepicker" name="end_date" id="end_date" /></td>
+                                        <td>  <input type="text" class="form-control datepicker" name="end_date" id="end_date" onkeydown="return false;" /></td>
                                       </tr>
                                       <tr>
                                         <td>

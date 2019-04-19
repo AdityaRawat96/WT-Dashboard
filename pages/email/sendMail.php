@@ -1,10 +1,3 @@
-<?php session_start(); 
-error_reporting(0);
-if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
-{
-?>
-
-
 <!doctype html>
 <html lang="en">
 
@@ -54,56 +47,40 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="card">
-                          <form method="get" class="form-horizontal">
+                          <form class="form-horizontal">
                               <div class="card-header card-header-text">
-                                  <h4 class="card-title">ADD TASK:</h4>
+                                  <h4 class="card-title">SEND MAIL:</h4>
                               </div>
                               <div class="card-content">
 
-                                <div class="row">
-                                  <label class="col-sm-2 label-on-left" for="category">TASK CATEGORY:</label>
-                                    <div class="col-sm-3">
-                                        <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" data-size="7" id="task_category">
-                                            <option value='0' disabled selected >SELECT CATEGORY</option>
-                                            <option value="WEB DEVELOPMENT" >WEB DEVELOPMENT</option>
-                                            <option value="CONTENT WRITING" >CONTENT WRITING</option>
-                                            <option value="DIGITAL MARKETING" >DIGITAL MARKETING</option>
-                                            <option value="GRAPHIC DESIGNING" >GRAPHIC DESIGNING</option>
-                                            <option value="PUBLIC RELATIONS" >PUBLIC RELATIONS</option>
-                                            <option value="VIDEO EDITOR" >VIDEO EDITOR</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br><br>
-
-
                                   <div class="row">
-                                      <label class="col-sm-2 label-on-left">TASK NAME:</label>
+                                      <label class="col-sm-2 label-on-left">NAME:</label>
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
                                               <label class="control-label"></label>
-                                              <input type="text" class="form-control" placeholder="" name="task_name" id="task_name" maxlength="100" onkeyup="headingCount();">
-                                              <span class="help-block" id="headingSpan">Add a heading for your task (0/100).</span>
+                                              <input type="text" class="form-control" placeholder="" id="name">
+                                              <small id="nameError" class="error" style="color:red; visibility:hidden;">Name cannot be left empty!</small>
                                           </div>
                                       </div>
                                   </div>
 
                                   <div class="row">
-                                      <label class="col-sm-2 label-on-left">TASK DESCRIPTION:</label>
+                                      <label class="col-sm-2 label-on-left">PHONE:</label>
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
                                               <label class="control-label"></label>
-                                              <textarea rows="4" type="text" class="form-control" placeholder="" name="task_description" id="task_description" maxlength="300" onkeyup="descriptionCount();"></textarea>
-                                              <span class="help-block" id="descriptionSpan">Add a description for your task (0/300).</span>
+                                              <input type="text" class="form-control" placeholder="" id="phone">
+                                              <small id="phoneError" class="error" style="color:red; visibility:hidden;">Phone cannot be left empty!</small>
                                           </div>
                                       </div>
                                   </div>
 
                                   <div class="row">
-                                      <label class="col-sm-2 label-on-left">TASK DEADLINE:</label>
+                                      <label class="col-sm-2 label-on-left">EMAIL:</label>
                                       <div class="col-sm-10">
                                           <div class="form-group label-floating is-empty">
-                                            <input type="text" class="form-control datetimepicker" name="task_deadline" id="task_deadline" onkeydown="return false;" />
+                                            <input type="text" class="form-control datetimepicker" id="email" />
+                                            <small id="emailError" class="error" style="color:red; visibility:hidden;">Email cannot be left empty!</small>
                                           </div>
                                       </div>
                                   </div>
@@ -113,17 +90,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <div class="row">
                                     <div class="col-md-6 text-center">
                                       <button type="button" class="btn btn-info btn-round" onclick="clearFields();">RESET &nbsp;<i class="material-icons">close</i></button>
-
                                     </div>
                                     <div class="col-md-6 text-center">
-                                      <button type="button" class="btn btn-info btn-round" onclick="addTask();">SUBMIT &nbsp;<i class="material-icons">keyboard_arrow_right</i></button>
-
+                                      <button type="button" class="btn btn-info btn-round" onclick="sendMail();">SUBMIT &nbsp;<i class="material-icons">keyboard_arrow_right</i></button>
                                     </div>
-
                                   </div>
-
-
-
                               </div>
                           </form>
                       </div>
@@ -170,8 +141,6 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 <script src="../../assets/vendors/jquery-jvectormap.js"></script>
 <!-- Sliders Plugin -->
 <script src="../../assets/vendors/nouislider.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js"></script>
 <!-- Select Plugin -->
 <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
 <!--  DataTables.net Plugin    -->
@@ -194,70 +163,52 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
 <script>
     $(document).ready(function() {
-        demo.initFormExtendedDatetimepickers();
+      $("#name").on("keydown", function(){
+        $("#nameError").css("visibility","hidden");
+      });
+      $("#phone").on("keydown", function(){
+        $("#phoneError").css("visibility","hidden");
+      });
+      $("#email").on("keydown", function(){
+        $("#emailError").css("visibility","hidden");
+      });
     });
 
-</script>
-
-<script type="text/javascript">
-    
-    
-     function headingCount(){
-    var len1 = $('#task_name').val();
-    $('#headingSpan').html("Add Name for your Task  ("+(len1.length)+"/100).");
-  }
-
-  function descriptionCount(){
-    var len1 = $('#task_description').val();
-    $('#descriptionSpan').html("Add Description for your Task ("+(len1.length)+"/300).");
-  }
-
-  function addTask(){
+  function sendMail(){
     //alert($('#task_category').val());
 
-    if($('#task_category').val()==null)
+    if($('#name').val()=='')
     {
-      alert("Task category cannot be left empty!");
-      $('#task_category').focus();
+      $("#nameError").css("visibility","visible");
+      $('#name').focus();
       return false;
     }
-    else if($('#task_name').val()=='')
+    else if($('#phone').val()=='')
     {
-      alert("Task Name cannot be left empty!");
-      $('#task_name').focus();
+      $("#phoneError").css("visibility","visible");
+      $('#phone').focus();
       return false;
     }
-    else if($('#task_description').val()=='')
+    else if($('#email').val()=='')
     {
-      alert("Task description cannot be left empty!");
-      $('#task_description').focus();
-      return false;
-    }
-    else if($('#task_deadline').val()=='')
-    {
-      alert("Task deadline cannot be left empty!");
-      $('#task_deadline').focus();
+      $("#emailError").css("visibility","visible");
+      $('#email').focus();
       return false;
     }
     else
     {
       if(navigator.onLine)
       {
-        var taskId = ($('#task_category')).val();
-        var fname = taskId.substring(0,taskId.indexOf(" "));
-        var lname = taskId.substring(taskId.indexOf(" ")+1,taskId.length);
-        taskId=" ";
-        taskId = fname.substring(0,1)+lname.substring(0,1)+Math.floor(Date.now() /1000);
-
         $.ajax({
           type: 'POST',
-          url: '../php/addTaskDatabase.php',
-          data: { task_id: taskId, task_category: $('#task_category').val(), task_name: $('#task_name').val(), task_description: $('#task_description').val(), task_deadline: $('#task_deadline').val(), task_status: "PENDING"},
+          url: 'email.php',
+          data: { name: $('#name').val(), phone: $('#phone').val(), email: $('#email').val() },
           beforeSend: function() {
 
           },
           success: function(response) {
             showAlert();
+
           }
         });
       }
@@ -272,50 +223,15 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     swal({
           title: "Done!",
           timer: 5000,
-          text: "Task added successfully!",
+          text: "Email sent successfully!",
           buttonsStyling: false,
           confirmButtonClass: "btn btn-success",
           type: "success"
       });
-       $('#task_name').val('');
-   		            $('#task_description').val('');
-                    $('#task_deadline').val('');
-                    $('#task_category').val('0').change();
   }
 
-   function clearFields(){
-    swal({
-                  title: 'Are you sure?',
-                  text: 'You want to reset all fields!',
-                  type: 'warning',
-                  showCancelButton: true,
-                  confirmButtonText: 'Yes, reset it!',
-                  cancelButtonText: 'No, keep it',
-                  confirmButtonClass: "btn btn-success",
-                  cancelButtonClass: "btn btn-danger",
-                  buttonsStyling: false
-              }).then(function() {
-                    $('#task_name').val('');
-   		            $('#task_description').val('');
-                    $('#task_deadline').val('');
-                    $('#task_category').val('0').change();
-              }, function(dismiss) {
-              });
-  }
 </script>
 
 
 
 </html>
-
-<?php
-}
-else
-{
-    session_unset();
-    session_destroy();
-    ?>
-    <script>window.open('../index.html','_self')</script>
-    <?php
-}
-?>

@@ -30,6 +30,62 @@ $date=date("y-m-d");
 $status='Unconfirmed';
 $password=$result;
 
+
+require("../email/class.phpmailer.php");
+
+$mail = new PHPMailer();
+
+$mail->IsSMTP();
+$mail->Host = "wtsolutions.cc";
+
+$mail->SMTPAuth = true;
+//$mail->SMTPSecure = "ssl";
+$mail->Port = 587;
+$mail->Username = "example@wtsolutions.cc";
+$mail->Password = "Tiger@1995";    /*Password*/
+
+$mail->setFrom('example@wtsolutions.cc', 'Example');
+
+$mail->addAddress($email, $name);
+//$mail->addAddress('bhrohit009@gmail.com', 'rohit bhatt');
+$mail->addReplyTo('example@wtsolutions.cc', 'Example');
+//$mail->addCC('pledgerispan25@dipr-uk.com');
+//$mail->addBCC('pledgerispana25@dipr-uk.com');
+
+/*$mail->addAttachment('/var/tmp/file.tar.gz');   */      // Add attachments
+/*$mail->addAttachment('/tmp/image.jpg', 'new.jpg'); */   // Optional name
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = 'New Mayfair Business Centre Inquiry Recieved';
+$mail->Body    = '
+<html>
+<body>
+<center><img style="width: 100%; height: 90%;" src="https://cryptotrackerapp.000webhostapp.com/wtEmail.png"></center><br>
+	<h4>Hello Sir/Mam,<br><br>Dear,<span style="text-transform:capitalize;"> <B>'.$name.'</B></span>Congratulations! You have been successfully registered. Please use these credential to login to your account.<br><br><br>
+
+	Username<span style="color:red;text-transform:capitalize;">'.$username.'</span><br>
+    Password<span style="color:red;text-transform:capitalize;">'.$password.'</span><br>
+
+	</h4>
+	<br>
+	This is a system generated email so do not reply.
+</body>
+</html>';
+
+$mail->AltBody = 'Hi Thanks for contacting us we will reach out to you within 24 hours.';
+
+if(!$mail->send()) {
+echo "error";
+} 
+else {
+$generator = "9870634521";
+
+
+   $adder = "";
+
+   for ($i = 1; $i <= 3; $i++) {
+       $adder .= substr($generator, (rand()%(strlen($generator))), 1);
+   }
 if(is_array($_FILES)) {
 	//echo $fname.$lname.$category;
 if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
@@ -37,7 +93,7 @@ $sourcePath = $_FILES['userImage']['tmp_name'];
 $targetPath = "../images/".$_FILES['userImage']['name'];
 if(move_uploaded_file($sourcePath,$targetPath)) {
 
- rename($targetPath, '../images/'.$contact.'.jpg');
+ rename($targetPath, '../images/'.$contact.$adder.'.jpg');
 
 $d='../images/'.$contact.'.jpg';
 
@@ -50,5 +106,8 @@ $sql= mysqli_query($con,"insert into users(name,username,password,email,contact,
         or die("eror in sql");
 }
 }
+}
+    
+    
 }
 ?>

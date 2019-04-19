@@ -16,8 +16,15 @@ $(document).ready(function(){
                         },
                         success: function(response)
                         {
+							//alert(response);
+							if(response.match(/error/))
+							{
+								alert("Problem occured during Registration.Please try again later. Sorry for inconvenience");
+							}
+							else{
+							
                           showAlert();
-
+							}
                         }
                   });
   });

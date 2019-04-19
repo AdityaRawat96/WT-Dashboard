@@ -1,3 +1,9 @@
+<?php session_start(); 
+error_reporting(0);
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -117,7 +123,7 @@
                                                           <label class="control-label">Date of Birth
                                                             <small>(required)</small>
                                                           </label>
-                                                          <input type="text" id="edob" class="datepicker form-control" name="employee_dob" required onblur="$('#divdib').removeClass('is-empty');" />
+                                                          <input type="text" id="edob" class="datepicker form-control" onkeydown="return false;" name="employee_dob" required onblur="$('#divdib').removeClass('is-empty');" />
                                                       </div>
                                                   </div>
                                               </div>
@@ -470,3 +476,15 @@
 
 
 </html>
+
+<?php
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
+?>

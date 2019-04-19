@@ -1,4 +1,13 @@
 <?php
+session_start();
+if($_SESSION['Username']=='' || &&$_SESSION['Rights']!='admin')
+{
+    session_unset();
+    session_destroy();
+?> <script>window.open('../index.html','_self')</script> <?php
+}
+else
+{
 $noticeHead=$_POST['notice_head'];
 $noticeBody=$_POST['notice_body'];
 $noticeTarget=$_POST['notice_target'];
@@ -23,6 +32,7 @@ if(isset($_SESSION['Username']))
 else
 {
   echo "Failure";
+}
 }
 
  ?>

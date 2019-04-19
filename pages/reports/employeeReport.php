@@ -1,13 +1,18 @@
 <?php
 session_start();
-error_reporting(0);
-if($_SESSION['Username']=='' || $_SESSION['Rights']!='admin'){
+if($_SESSION['Username']=='' && $_SESSION['Rights']!='employee'){
     session_unset();
     session_destroy();
 ?> <script>window.open('../index.html','_self')</script> <?php
 }
 else
 {
+    include('../php/connection.php');
+    $uname=$_SESSION['Username'];
+    $result=mysqli_query($con,"select * from users where username='$uname'");
+    $row=mysqli_fetch_array($result);
+    $category=$row['category'];
+    $id=$row['id'];
 ?>
 
 <!DOCTYPE html>
@@ -36,24 +41,39 @@ else
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
 
    <script>
+         function myFunction()
+    {
+//        alert('HII');
+         $.ajax({
+                    type: 'POST',
+                    url: '../php/leaveStatus.php',
+                    data: {value:1},
+
+                        beforeSend: function() {
+                    },
+                success: function(response) {
+                 window.open('../leave/viewLeave.php','_self');  
+//                    alert(response);
+                }
+                });
+    }
 
        function genReport(){
           var a1=$('#start_date').val();
           var a2=$('#end_date').val();
-          var a3=$('#category').val();
-          var a4=$('#employeeDropdown').val();
-         if(a1!=""&&a2!=""&&$('#category').val()!=null&&$('#employeeDropdown').val()!="")
+         
+         if(a1!=""&&a2!="")
               {
                    $.ajax({
                     type: 'POST',
-                    url: '../php/reportByEmployeeDB.php',
-                    data: { startdate:a1,enddate:a2,category:a3,employee:a4},
+                    url: '../php/employeeReportDB.php',
+                    data: { startdate:a1,enddate:a2},
 
                         beforeSend: function() {
 
                     },
                 success: function(response) {
-                            window.open('../php/employeeReport.php','_self');
+                            window.open('../php/myReport.php','_self');
                         }
                 });
               }
@@ -63,25 +83,6 @@ else
               }
           
       }
-       function myChangeFunction()
-       {
-            $.ajax({
-                    type: 'POST',
-                    url: '../php/getData.php',
-                    data: { category:$('#category').val()},
-
-                        beforeSend: function() {
-
-                    },
-                success: function(response) {
-                  $("#employeeDropdown").removeAttr('disabled');
-                  $("#employeeDropdown").html(response);
-                  $("#employeeDropdown").selectpicker('refresh');
-
-                }
-                });
-       }
-
     </script>
   </head>
   <body>
@@ -89,12 +90,12 @@ else
         <div class="wrapper">
 
             <!--  Sidebar included     -->
-            <?php include('../pageElements/sidebar.php'); ?>
+            <?php include('../pageElements/sidebar_employee.php'); ?>
 
             <div class="main-panel">
 
               <!--  Navbar included     -->
-              <?php include('../pageElements/navbar.php'); ?>
+              <?php include('../pageElements/navbar_employee.php'); ?>
 
                 <div class="content">
                     <div class="container-fluid">
@@ -124,29 +125,7 @@ else
                                             </div>
                                         </div>
                                     </div><br>
-                                    <div class="row">
-                                      <label class="col-sm-2 label-on-left" for="department">SELECT DEPARTMENT:</label>
-                                        <div class="col-sm-3" style="position:relative;top:6px;">
-                                            <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" data-size="7" id="category" onchange='myChangeFunction();'>
-                                                <!-- <option value='0' disabled selected >SELECT DEPARTMENT</option> -->
-
-                                                <option value="1">WEB DEVELOPMENT</option>
-                                                <option value="2" >CONTENT WRITING</option>
-                                                <option value="3">DIGITAL MAKETTING</option>
-                                                <option value="4">GRAPHIC DESIGNING</option>
-                                                <option value="5">PUBLIC RELATIONS</option>
-                                                <option value="6">VIDEO EDITOR</option>
-
-                                            </select>
-                                        </div>
-                                    </div><br><br>
-                                    <div class="row" id="myEmployee">
-                                      <label class="col-sm-2 label-on-left" for="employee">SELECT EMPLOYEE:</label>
-                                        <div class="col-sm-3" style="position:relative;top:6px;">
-                                            <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" id="employeeDropdown" disabled>
-                                            </select>
-                                        </div>
-                                    </div><br><br>
+                                    <br>
                                       <div class="row" style="margin-left:25%;">
                                         <div class="col-md-6 text-center">
                                           <button type="button" class="btn btn-info btn-round" onclick="genReport();">Generate Report &nbsp;<i class="material-icons">keyboard_arrow_right</i></button>

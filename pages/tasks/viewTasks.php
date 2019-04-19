@@ -1,3 +1,10 @@
+<?php
+session_start();
+error_reporting(0);
+if($_SESSION['Username']!=""&&$_SESSION['Rights']=='admin')
+{
+    
+?>
 <!doctype html>
 <html lang="en">
 
@@ -885,3 +892,11 @@ $(document).ready(function() {
 </script>
 
 </html>
+<?php
+    
+    }
+else
+{
+    ?><script>window.open('../index.html','_self');</script><?php
+}
+?>

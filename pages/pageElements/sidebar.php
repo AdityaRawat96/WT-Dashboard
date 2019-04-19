@@ -84,10 +84,7 @@
               <a href="../notice/addNotice.php">Send Notice</a>
             </li>
             <li>
-              <a href="../notice/addNotice.php">View Notices</a>
-            </li>
-            <li>
-              <a href="../leave/viewLeave1.php">View Leaves</a>
+              <a href="../leave/viewLeave.php">View Leaves</a>
             </li>
             <li>
               <a href="../leave/leaveStatus.php">Leave History</a>

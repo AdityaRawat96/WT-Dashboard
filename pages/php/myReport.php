@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-if($_SESSION['Username']=='' || $_SESSION['Rights']!='admin')
+if($_SESSION['Username']=='' || $_SESSION['Rights']!='employee')
 {
     session_unset();
     session_destroy();
@@ -76,6 +76,23 @@ else
               unset($_SESSION['reportcontact']);
 
           }
+          
+            function myFunction()
+    {
+//        alert('HII');
+         $.ajax({
+                    type: 'POST',
+                    url: '../php/leaveStatus.php',
+                    data: {value:1},
+
+                        beforeSend: function() {
+                    },
+                success: function(response) {
+                 window.open('../leave/viewLeave.php','_self');  
+//                    alert(response);
+                }
+                });
+    }
     </script>
     <!-- Bootstrap core CSS     -->
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -115,12 +132,12 @@ $j=$_SESSION['reportcontact'];
         <div class="wrapper">
 
             <!--  Sidebar included     -->
-            <?php include('../pageElements/sidebar.php'); ?>
+            <?php include('../pageElements/sidebar_employee.php'); ?>
 
             <div class="main-panel">
 
               <!--  Navbar included     -->
-              <?php include('../pageElements/navbar.php'); ?>
+              <?php include('../pageElements/navbar_employee.php'); ?>
                 <div class="content">
                     <div class="container">
                       <div class="row">

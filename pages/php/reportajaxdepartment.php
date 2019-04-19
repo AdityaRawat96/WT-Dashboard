@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['Username']=='')
+if($_SESSION['Username']=='' || $_SESSION['Rights']!='admin')
 {
   session_unset();
   session_destroy();

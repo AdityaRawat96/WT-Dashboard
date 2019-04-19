@@ -1,3 +1,8 @@
+<?php session_start();
+error_reporting(0);
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
+?>
 <!doctype html>
 <html lang="en">
 
@@ -6,6 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
@@ -38,8 +44,8 @@
 
           <!--  Page content goes here!    -->
           <div class="row">
-            <div class="col-md-8">
-              <div class="card" style="height: 350px; overflow-y:scroll;">
+            <div class="col-md-8" >
+              <div class="card" style="height: 460px; overflow-y:scroll;">
                 <div class="card-header card-header-icon">
                   <i class="material-icons">timeline</i>
                 </div>
@@ -54,7 +60,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card" style="min-height: 350px">
+              <div class="card" style="height: 460px">
                 <div class="card-header">
                 </div>
                 <div class="card-content">
@@ -207,3 +213,14 @@ function showChart(){
 </script>
 
 </html>
+<?php
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
+?>

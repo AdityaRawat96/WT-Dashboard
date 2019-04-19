@@ -1,5 +1,6 @@
 <?php 
-
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
     $id=$_POST['id'];
     include('connection.php');
  $roh= mysqli_select_db($con,'wtintern_wt')
@@ -15,6 +16,14 @@
     { 
         echo "failure";   
     }
-
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
 
 ?>

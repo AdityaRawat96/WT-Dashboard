@@ -1,3 +1,9 @@
+<?php session_start(); 
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -21,19 +27,20 @@
   <link href="../../assets/vendors/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
 
   <script>
+
   function leave(a)
   {
     if ($('input[name=test1]:checked').length > 0) {
       $.ajax({
         url:"leave_Upload.php",
         type:"POST",
-        data: {leave_id:a,ar: $("input[name='test1']:checked").val()},
+        data: {leave_id:a,ar: $("input[name='test1']:checked").val(),reason: $('#reason').val()},
         beforeSend:function()
         {
         },
         success: function(response)
         {
-          alert(response);
+          location. reload(true);
         }
       });
     }
@@ -43,6 +50,35 @@
     }
 
   }
+      
+      
+      function headingCount()
+      {
+    var len1 = $('#reason').val();
+    $('#headingSpan').html("Add Reason for Rejection ("+(len1.length)+"/300).");
+      }
+      
+    function acceptFunction()
+      {
+         $('#reason').fadeOut(300);
+      }
+      
+    function rejectFunction()
+      {
+         $('#reason').fadeIn(300);
+      }
+      
+      function showSpan()
+      {
+          $('#headingSpan').css('visibility','visible');
+      }
+      
+      
+      function hideSpan()
+      {
+          $('#headingSpan').css('visibility','hidden');
+      }
+     
   </script>
 
 </head>
@@ -60,120 +96,156 @@
 
       <div class="content">
         <div class="container-fluid">
-
           <?php
           $dbvalue = 0;
           $email=0;
           $data = mysqli_query($con,"SELECT * FROM leave_employee where status=0");
           ?>
+          <div class="header text-center">
+            <h3 class="title">EMPLOYEE LEAVE REQUESTS:</h3>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <?php
 
-
-          <center><h2>List Of Employees on Leave</h2></center>
-          <br>
-
-          <div class="row" >
-            <?php
-
-            while($row = mysqli_fetch_assoc($data))
-            {
-              ?>
-              <div class="column" >
+              while($row = mysqli_fetch_assoc($data))
+              {
+                ?>
                 <div class="card">
-                  <div class="container" style="">
-                    <p><strong>Name:</strong><?php echo $row['name'];?></p>
-                    <p><strong>Email:</strong><?php echo $row['email'];?></p>
-                    <p><strong>Description:</strong><?php echo $row['message'];?></p>
-                    <p><strong>Subject:</strong><?php echo $row['subject']; ?></p>
-                    <p><strong>LeaveId:</strong><?php echo $row['leave_id']; ?></p>
-                    <p><strong>Id:</strong><?php echo $row['id']; ?></p>
-                    <input type="radio" name="test1"  id="tag_1" value="accept">
-                    Accept<br>
-                    <input type="radio" name="test1"  id="tag_2" value="reject" >
-                    Reject<br>
-                    <!-- <input type="text" id="idfield" name="idfield" value="<?; ?>"> -->
-
-                    <p><button   class="btn btn-primary " name="reg" onclick="leave(<?php echo $row['leave_id']; ?>);">Submit</button></p>
-
-
+                  <div class="card-content">
+                    <ul class="nav nav-pills nav-pills-default">
+                      <li class="active">
+                        <a href="#pill1<?php echo $row['leave_id']; ?>" data-toggle="tab">OVERVIEW</a>
+                      </li>
+                      <li>
+                        <a href="#pill2<?php echo $row['leave_id']; ?>" data-toggle="tab" >DESCRIPTION</a>
+                      </li>
+                      <li>
+                        <a href="#pill3<?php echo $row['leave_id']; ?>" data-toggle="tab">ACTIONS</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" style="height:150px;">
+                      <div class="tab-pane active" id="pill1<?php echo $row['leave_id']; ?>">
+                        <div class="col-md-12">
+                          <table>
+                            <tr>
+                              <td align="right"><strong>EMPLOYEE NAME:</strong></td>
+                              <td style="text-transform: uppercase;">&nbsp;&nbsp;<?php echo $row['name'];?></td>
+                            </tr>
+                            <tr>
+                              <td align="right"><strong>LEAVE CATEGORY:</strong></td>
+                              <td style="text-transform: uppercase;">&nbsp;&nbsp;<?php echo $row['subject']; ?></td>
+                            </tr>
+                            <tr>
+                              <td align="right"><strong>LEAVE FROM:</strong></td>
+                              <td>&nbsp;&nbsp;<?php echo $row['startdate']; ?></td>
+                            </tr>
+                            <tr>
+                              <td align="right"><strong>TO:</strong></td>
+                              <td>&nbsp;&nbsp;<?php echo $row['enddate']; ?></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="pill2<?php echo $row['leave_id']; ?>" style="height:150px;">
+                        <p style="padding:0px 10px;"><?php echo $row['message'];?></p>
+                      </div>
+                      <div class="tab-pane" id="pill3<?php echo $row['leave_id']; ?>" style="height:150px;">
+                        <div style="padding:0px 10px;">
+                          <input type="radio" name="test1"  id="tag_1" value="accept" onclick="acceptFunction();">
+                          ACCEPT<br>
+                          <input type="radio" name="test1"  id="tag_2" value="reject" onclick="rejectFunction();">
+                          REJECT<br>
+                            <textarea style="width:80%;box-sizing:border-box" id="reason<?php echo $row['leave_id']; ?>" placeholder="Reason" hidden onkeyup="headingCount();" onfocus="showSpan();" onfocusout="hideSpan();" maxlength="300"></textarea>
+                            <span class="help-block" id="headingSpan" style="visibility:hidden;height:auto;margin-bottom:-10px;">Add a Reason for leave rejection (0/300).</span>
+                          <span><button class="btn btn-primary " name="reg" onclick="leave(<?php echo $row['leave_id']; ?>);">Submit</button></span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <?php
-            }
-            ?>
+                <?php
+              }
+              ?>
 
+            </div>
           </div>
-
-
         </div>
+
+        <!--  Footer included     -->
+        <?php include('../pageElements/footer.php'); ?>
+
       </div>
 
-      <!--  Footer included     -->
-      <?php include('../pageElements/footer.php'); ?>
+      <!--  Theme changer included     -->
+      <!--  <?php include('../pageElements/themeChanger.php'); ?>     -->
 
     </div>
+  </body>
+  <!--   Core JS Files   -->
+  <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
+  <script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../../assets/vendors/material.min.js" type="text/javascript"></script>
+  <script src="../../assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+  <!-- Forms Validations Plugin -->
+  <script src="../../assets/vendors/jquery.validate.min.js"></script>
+  <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+  <script src="../../assets/vendors/moment.min.js"></script>
+  <!--  Charts Plugin -->
+  <script src="../../assets/vendors/charts/flot/jquery.flot.js"></script>
+  <script src="../../assets/vendors/charts/flot/jquery.flot.resize.js"></script>
+  <script src="../../assets/vendors/charts/flot/jquery.flot.pie.js"></script>
+  <script src="../../assets/vendors/charts/flot/jquery.flot.stack.js"></script>
+  <script src="../../assets/vendors/charts/flot/jquery.flot.categories.js"></script>
+  <script src="../../assets/vendors/charts/chartjs/Chart.min.js" type="text/javascript"></script>
 
-    <!--  Theme changer included     -->
-    <!--  <?php include('../pageElements/themeChanger.php'); ?>     -->
+  <!--  Plugin for the Wizard -->
+  <script src="../../assets/vendors/jquery.bootstrap-wizard.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../../assets/vendors/bootstrap-notify.js"></script>
+  <!-- DateTimePicker Plugin -->
+  <script src="../../assets/vendors/bootstrap-datetimepicker.js"></script>
+  <!-- Vector Map plugin -->
+  <script src="../../assets/vendors/jquery-jvectormap.js"></script>
+  <!-- Sliders Plugin -->
+  <script src="../../assets/vendors/nouislider.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
+  <!-- Select Plugin -->
+  <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+  <!--  DataTables.net Plugin    -->
+  <script src="../../assets/vendors/jquery.datatables.js"></script>
+  <!-- Sweet Alert 2 plugin -->
+  <script src="../../assets/vendors/sweetalert2.js"></script>
+  <!--    Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
+  <!--  Full Calendar Plugin    -->
+  <script src="../../assets/vendors/fullcalendar.min.js"></script>
+  <!-- TagsInput Plugin -->
+  <script src="../../assets/vendors/jquery.tagsinput.js"></script>
+  <!-- Material Dashboard javascript methods -->
+  <script src="../../assets/js/turbo.js"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../../assets/js/demo.js"></script>
 
-  </div>
-</body>
-<!--   Core JS Files   -->
-<script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/material.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-<!-- Forms Validations Plugin -->
-<script src="../../assets/vendors/jquery.validate.min.js"></script>
-<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-<script src="../../assets/vendors/moment.min.js"></script>
-<!--  Charts Plugin -->
-<script src="../../assets/vendors/charts/flot/jquery.flot.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.resize.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.pie.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.stack.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.categories.js"></script>
-<script src="../../assets/vendors/charts/chartjs/Chart.min.js" type="text/javascript"></script>
+  <script src="../../assets/js/charts/flot-charts.js"></script>
+  <script src="../../assets/js/charts/chartjs-charts.js"></script>
 
-<!--  Plugin for the Wizard -->
-<script src="../../assets/vendors/jquery.bootstrap-wizard.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../../assets/vendors/bootstrap-notify.js"></script>
-<!-- DateTimePicker Plugin -->
-<script src="../../assets/vendors/bootstrap-datetimepicker.js"></script>
-<!-- Vector Map plugin -->
-<script src="../../assets/vendors/jquery-jvectormap.js"></script>
-<!-- Sliders Plugin -->
-<script src="../../assets/vendors/nouislider.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
-<!-- Select Plugin -->
-<script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
-<!--  DataTables.net Plugin    -->
-<script src="../../assets/vendors/jquery.datatables.js"></script>
-<!-- Sweet Alert 2 plugin -->
-<script src="../../assets/vendors/sweetalert2.js"></script>
-<!--    Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-<script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
-<!--  Full Calendar Plugin    -->
-<script src="../../assets/vendors/fullcalendar.min.js"></script>
-<!-- TagsInput Plugin -->
-<script src="../../assets/vendors/jquery.tagsinput.js"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="../../assets/js/turbo.js"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../../assets/js/demo.js"></script>
-
-<script src="../../assets/js/charts/flot-charts.js"></script>
-<script src="../../assets/js/charts/chartjs-charts.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-
-  // Javascript method's body can be found in assets/js/demos.js
-  demo.initVectorMap();
-});
+  <script type="text/javascript">
+  $(document).ready(function() {
+  });
 </script>
 
 </html>
+<?php
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
+?>

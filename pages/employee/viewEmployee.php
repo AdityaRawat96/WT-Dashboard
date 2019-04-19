@@ -1,3 +1,8 @@
+<?php session_start(); 
+error_reporting(0);
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
+?>
 <!doctype html>
 <html lang="en">
 
@@ -24,7 +29,7 @@
 
 </head>
 
-<body>
+<body onload="load()">
     <div class="wrapper">
 
         <!--  Sidebar included     -->
@@ -321,8 +326,11 @@
           }
       });
 
-
-      $.ajax({
+    });
+    
+    function load()
+    {
+        $.ajax({
          type: 'POST',
          url: '../php/viewEmployeeData.php',
 
@@ -333,8 +341,7 @@
            addData();
          }
        });
-
-    });
+    }
 
 
      function addData(){
@@ -435,3 +442,15 @@
 
 
 </html>
+
+<?php
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
+?>

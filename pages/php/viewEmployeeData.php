@@ -1,11 +1,13 @@
 <?php
-
+session_start();
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
 include "connection.php";
 
 $roh= mysqli_select_db($con,'wtintern_wt')
    or die("Unable to connect to the database server! <br><hr width=800 style=height:1px;></hr><center><input type=button value=OK id=1 class=buttons onclick=cancelit();></center>");
 
-$result= mysqli_query($con,"select * from users")
+$result= mysqli_query($con,"select * from users where rights='employee'")
 or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : &nbsp;'. mysqli_error($con));
 
 while($row=mysqli_fetch_array($result))
@@ -110,5 +112,14 @@ while($row=mysqli_fetch_array($result))
 
       <?php
   }
+}
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
 }
 ?>

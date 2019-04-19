@@ -1,4 +1,7 @@
 <?php
+session_start(); 
+if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
+{
 $userId=$_POST['userId'];
 $taskId=$_POST['taskId'];
 $userIdName=$_POST['userIdName'];
@@ -23,5 +26,13 @@ if($sql)
 else {
   echo "Failure";
 }
-
+}
+else
+{
+    session_unset();
+    session_destroy();
+    ?>
+    <script>window.open('../index.html','_self')</script>
+    <?php
+}
  ?>
