@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php session_start();
 error_reporting(0);
 if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 {
@@ -49,12 +49,12 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Employees:</h4>
+                                <h4>EMPLOYEES:</h4>
                             </div>
 
                             <div class="card-content" style="padding:2%;">
                                 <div id="simple-accordion-colored" class="accordion">
-                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-edit"></i>&nbsp; &nbsp;&nbsp;Web Development</span></h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-edit"></i>&nbsp; &nbsp;&nbsp;WEB DEVELOPMENT</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -87,7 +87,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-pencil-ruler"></i>&nbsp;&nbsp;&nbsp;Graphic Designing</span></h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-pencil-ruler"></i>&nbsp;&nbsp;&nbsp;GRAPHIC DESIGNING</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -120,7 +120,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-edit"></i>&nbsp;&nbsp;&nbsp;Content Writing</span></h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-edit"></i>&nbsp;&nbsp;&nbsp;CONTENT WRITING</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -152,7 +152,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                           </div>
                                       </div>
                                     </div>
-                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-globe-asia"></i>&nbsp;&nbsp;&nbsp;Digital Marketing</span></h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-globe-asia"></i>&nbsp;&nbsp;&nbsp;DIGITAL MARKETING</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -185,7 +185,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-video"></i>&nbsp;&nbsp;&nbsp;Video Editing</span></h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-video"></i>&nbsp;&nbsp;&nbsp;VIDEO EDITING</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -218,7 +218,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                       </div>
                                     </div>
 
-                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Public Relations</span></h3>
+                                    <h3 class="accordion-header md-bg-blue-400"><span style="color:white;"><i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;PUBLIC RELATIONS</span></h3>
                                     <div class="accordion-content" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative;" aria-expanded="false">
                                       <div class="container-fluid">
                                           <div class="row">
@@ -327,7 +327,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
       });
 
     });
-    
+
     function load()
     {
         $.ajax({
@@ -368,8 +368,8 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
 
        var table = $('.datatables').DataTable();
-         
-         
+
+
         $(document).on('click', '.remove', function () {
             var table=$(this).closest('table').attr('id');
 //            alert(table);
@@ -386,7 +386,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                   cancelButtonClass: "btn btn-danger",
                   buttonsStyling: false
               }).then(function() {
-                
+
                 swal({
                   title: 'Deleted!',
                   text: 'Employee has been removed.',
@@ -394,7 +394,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                   confirmButtonClass: "btn btn-success",
                   buttonsStyling: false
                   }).then(function(){
-                    
+
                     $.ajax({
                     type: 'POST',
                     url: '../php/delete_employee.php',
@@ -410,11 +410,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                         }
                     else
                     {
-                        window.open('../php/error.php?myval=4');    
+                        window.open('../php/error.php?myval=4');
                     }
                 }
                 });
-                
+
                 });
               }, function(dismiss) {
                 if (dismiss === 'cancel') {

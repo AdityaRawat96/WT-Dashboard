@@ -13,7 +13,7 @@
         </thead>
         <tbody>
 
-       
+
 <?php
 include('connection.php');
 $result= mysqli_query($con,"select * from users")
@@ -40,6 +40,6 @@ while($row=mysqli_fetch_array($result))
 }
  ?>
  </tbody>
-    </table>    
+    </table>
 </body>
 </html>

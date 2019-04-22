@@ -9,257 +9,63 @@ $result = mysqli_query($con,$sql);
 while($row=mysqli_fetch_array($result))
 {
 
-$p0=$row["task_status"];
-$p1=$row["task_category"];
-$p2=$row["task_id"];
-$p3=$row["task_name"];
-$p4=$row["task_deadline"];
+  $p0=$row["task_status"];
+  $p1=$row["task_category"];
+  $p2=$row["task_id"];
+  $p3=$row["task_name"];
+  $p4=$row["task_deadline"];
+  $p5=$row["task_cpercentage"];
 
-if($p0 == 'PENDING'){
-
-  if($p1 == 'WEB DEVELOPMENT'){
+  if($p0 == 'PENDING'){
     ?>
-    <script type="text/javascript">
-    var date = '<?php echo $p4 ?>';
-    date = date.slice(0,date.indexOf(" "));
-    date = new Date(date);
-    var rid='<?php echo $p2 ?>';
-    var deadline = new Date();
-    if(deadline > date){
-      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon" onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    else{
-      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove" ><i class="material-icons">close</i></a></td></tr>';
-    }
-    loadTableData(data, "PWD");
-    </script>
+    <tr class="pending" id="<?php echo $p2; ?>">
+      <td><?php echo $p1; ?></td>
+      <td><?php echo $p2; ?></td>
+      <td><?php echo $p4; ?></td>
+      <td><?php echo $p3; ?></td>
+      <td class="text-right">
+        <a href="#" class="btn btn-simple btn-info btn-icon" onclick="assignTask('<?php echo $p2; ?>');"><i class="material-icons">add</i></a>
+        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+      </td>
+    </tr>
     <?php
   }
-  else if($p1 == 'CONTENT WRITING'){
+  else if($p0 == 'ONGOING'){
     ?>
-    <script type="text/javascript">
-    var date = '<?php echo $p4 ?>';
-    date = date.slice(0,date.indexOf(" "));
-    var rid='<?php echo $p2 ?>';
-    date = new Date(date);
-    var deadline = new Date();
-    if(deadline > date){
-      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');" ><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove" ><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    else{
-      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    loadTableData(data, "PCW");
-    </script>
+    <tr class="ongoing" id=<?php echo $p2 ?>>
+      <td><?php echo $p1 ?></td>
+      <td><?php echo $p2 ?></td>
+      <td><?php echo $p4 ?></td>
+      <td>
+        <?php echo $p5 ?>%
+        <div class="progress progress-line-info">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<?php echo $p5 ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $p5 ?>;">
+          </div>
+        </div>
+      </td>
+      <td><?php echo $p3; ?></td>
+      <td class="text-right">
+        <a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction('<?php echo $p2; ?>');"><i class="fa fa-info-circle"></i></a>
+        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+      </td>
+    </tr>
     <?php
   }
-  else if($p1 == 'DIGITAL MARKETING'){
+  else if($p0 == 'COMPLETED'){
     ?>
-    <script type="text/javascript">
-    var date = '<?php echo $p4 ?>';
-        var rid='<?php echo $p2 ?>';
-
-        date = date.slice(0,date.indexOf(" "));
-    date = new Date(date);
-    var deadline = new Date();
-    if(deadline > date){
-      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    else{
-      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\' <?php echo $p2; ?> \');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    loadTableData(data, "PDM");
-    </script>
+    <tr class="completed" id=<?php echo $p2 ?>>
+      <td><?php echo $p1 ?></td>
+      <td><?php echo $p2 ?></td>
+      <td><?php echo $p4 ?></td>
+      <td><?php echo $p5 ?>%</td>
+      <td><?php echo $p3; ?></td>
+      <td class="text-right">
+        <a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction('<?php echo $p2; ?>');"><i class="fa fa-info-circle"></i></a>
+        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
+      </td>
+    </tr>
     <?php
   }
-  else if($p1 == 'GRAPHIC DESIGNING'){
-    ?>
-    <script type="text/javascript">
-    var date = '<?php echo $p4 ?>';
-
-            var rid='<?php echo $p2 ?>';
-date = date.slice(0,date.indexOf(" "));
-    date = new Date(date);
-    var deadline = new Date();
-    if(deadline > date){
-      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    else{
-      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\' <?php echo $p2; ?> \');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    loadTableData(data, "PGD");
-    </script>
-    <?php
-  }
-  else if($p1 == 'PUBLIC RELATIONS'){
-    ?>
-    <script type="text/javascript">
-    var date = '<?php echo $p4 ?>';
-    var rid='<?php echo $p2 ?>';
-
-        date = date.slice(0,date.indexOf(" "));
-    date = new Date(date);
-    var deadline = new Date();
-    if(deadline > date){
-      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    else{
-      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    loadTableData(data, "PPR");
-    </script>
-    <?php
-  }
-  else if($p1 == 'VIDEO EDITOR'){
-    ?>
-    <script type="text/javascript">
-    var date = '<?php echo $p4 ?>';
-    var rid='<?php echo $p2 ?>';
-
-        date = date.slice(0,date.indexOf(" "));
-    date = new Date(date);
-    var deadline = new Date();
-    if(deadline > date){
-      var data = '<tr id=<?php echo $p2 ?> style="background-color: #ff9191 !important;"><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    else{
-      var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myLikeFunction(\'<?php echo $p2; ?>\');"><i class="material-icons">add</i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    }
-    loadTableData(data, "PVE");
-    </script>
-    <?php
-  }
-}
-else if($p0 == 'ONGOING'){
-  if($p1 == 'WEB DEVELOPMENT'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "OWD");
-    </script>
-    <?php
-  }
-  else if($p1 == 'CONTENT WRITING'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "OCW");
-    </script>
-    <?php
-  }
-  else if($p1 == 'DIGITAL MARKETING'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "ODM");
-    </script>
-    <?php
-  }
-  else if($p1 == 'GRAPHIC DESIGNING'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "OGD");
-    </script>
-    <?php
-  }
-  else if($p1 == 'PUBLIC RELATIONS'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "OPR");
-    </script>
-    <?php
-  }
-  else if($p1 == 'VIDEO EDITOR'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "OGD");
-    </script>
-    <?php
-  }
-
-}
-else if($p0 == 'COMPLETED'){
-  if($p1 == 'WEB DEVELOPMENT'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "CWD");
-    </script>
-    <?php
-  }
-  else if($p1 == 'CONTENT WRITING'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "CCW");
-    </script>
-    <?php
-  }
-  else if($p1 == 'DIGITAL MARKETING'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "CDM");
-    </script>
-    <?php
-  }
-  else if($p1 == 'GRAPHIC DESIGNING'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "CGD");
-    </script>
-    <?php
-  }
-  else if($p1 == 'PUBLIC RELATIONS'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "CPR");
-    </script>
-    <?php
-  }
-  else if($p1 == 'VIDEO EDITOR'){
-    ?>
-    <script type="text/javascript">
-            var rid='<?php echo $p2 ?>';
-
-    var data = '<tr id=<?php echo $p2 ?>><td>'+"<?php echo $p1 ?>"+'</td><td>'+"<?php echo $p2 ?>"+'</td><td>'+"<?php echo $p3 ?>"+'</td><td>'+"<?php echo $p4 ?>"+'</td><td class="text-right"><a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction(\'<?php echo $p2; ?>\');"><i class="fa fa-info-circle"></i></a><a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>  </td></tr>';
-    loadTableData(data, "CVE");
-    </script>
-    <?php
-  }
-
-}
-
-
-
-
 }
 
 ?>

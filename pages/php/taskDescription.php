@@ -45,11 +45,11 @@
                        <td>&nbsp;<?php echo $p8; ?></td>
                      </tr>
                      <tr>
-                       <td align="right"><strong>TASK NAME:</strong></td>
+                       <td align="right"><strong>TASK NAME:&nbsp;</strong></td>
                        <td>&nbsp;<?php echo $p1; ?></td>
                      </tr>
                      <tr>
-                       <td align="right"><strong>TASK DESCRIPTION:</strong></td>
+                       <td align="right"><strong>TASK DESCRIPTION:&nbsp;</strong></td>
                        <td>&nbsp;<?php echo $p2; ?></td>
                      </tr>
                    </table>
