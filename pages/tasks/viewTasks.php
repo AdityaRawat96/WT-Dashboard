@@ -196,7 +196,58 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                             <!-- end col-md-12 -->
                           </div>
                         </div>
+                        <label for="loadMore"></label>
+                        <button id="loadMore" class="btn btn-primary" onclick="loadAll();">Load All</button>
                       </div>
+                      <h3 class="accordion-header md-bg-green-400 call" style="padding:10px; visibility:hidden;"><span style="color:white; padding:10px;"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;<strong>COMPLETED ALL</strong></span></h3>
+                      <div class="accordion-content call" data-wrapper="true" style="padding: 0px;overflow:hidden;height:0;position:relative; visibility:hidden;" aria-expanded="false">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="card">
+                                <div class="card-content">
+                                  <div class="toolbar">
+                                    <select class="selectpicker" data-style="select-with-transition" title="FILTER" data-size="7" onchange="filterCompleted($(this).val());">
+                                      <option disabled> DEPARTMENTS:</option>
+                                      <option value="">ALL</option>
+                                      <option value="WEB DEVELOPMENT">WEB DEVELOPMENT</option>
+                                      <option value="GRAPHIC DESIGNING">GRAPHIC DESIGNING</option>
+                                      <option value="DIGITAL MARKETING">DIGITAL MARKETING</option>
+                                      <option value="PUBLIC RELATIONS">PUBLIC RELATIONS</option>
+                                      <option value="CONTENT WRITING">CONTENT WRITING</option>
+                                      <option value="VIDEO EDITING">VIDEO EDITING</option>
+                                    </select>
+                                  </div>
+                                  <div class="material-datatables">
+                                    <table class="datatables table table-striped table-no-bordered table-hover" id="completedAllTask" cellspacing="0" width="100%" style="width:100%">
+                                      <thead>
+                                        <tr>
+                                          <th>Category</th>
+                                          <th>Task ID</th>
+                                          <th>Deadline</th>
+                                          <th>Progress</th>
+                                          <th>Task Name</th>
+                                          <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                      </thead>
+
+                                      <tbody id="completedAllTable">
+
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                                <!-- end content-->
+                              </div>
+                              <!--  end card  -->
+                            </div>
+                            <!-- end col-md-12 -->
+                          </div>
+                        </div>
+                      </div>
+
+
+
                     </div>
                   </div>
                 </div>
@@ -355,6 +406,22 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
         addData();
       }
     });
+  }
+
+  function loadAll()
+  {
+    $.ajax({
+      type: 'POST',
+      url: '../php/enterDataViewAllTasks.php',
+
+      beforeSend: function(){
+      },
+      success: function(response) {
+        $('#main').html(response);
+        $("#completedAllTable").append($('.completedAll'));
+      }
+    });
+    $('.call').css('visibility','visible');
   }
 
 

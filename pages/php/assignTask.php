@@ -50,7 +50,7 @@ $p8=$row['task_deadline'];
             <td>
               <select class="select" data-style="select-with-transition"  id="users">
                 <?php
-                $sql="select * from users where category='$p3'";
+                $sql="select * from users where category='$p3' and rights='employee'";
                 $rslt=mysqli_query($con,$sql) or die(mysqli_error($con));
                 if(mysqli_num_rows($rslt)>0)
                 {

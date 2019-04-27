@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 error_reporting(0);
 if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
@@ -37,7 +37,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
     <div class="main-panel">
 
       <!--  Navbar included     -->
-      <?php include('../pageElements/navbar_employee.php'); ?>
+      <?php include('../pageElements/navbar.php'); ?>
 
       <div class="content">
         <div class="container-fluid">
@@ -58,7 +58,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
                   <!-- Notice Accordians -->
                 </div>
               </div>
-            </div>    
+            </div>
         </div>
       </div>
 
@@ -129,8 +129,8 @@ $(document).ready(function() {
 
 });
 
-    
-    
+
+
 function getNotice(){
   $.ajax({
     type: 'POST',
@@ -196,8 +196,8 @@ function showChart(){
     var myDoughnutChart = new Chart(doughnutChartCanvas, config);
   }
 }
-    
-    
+
+
     function myFunction()
     {
 //        alert('HII');
@@ -209,7 +209,7 @@ function showChart(){
                         beforeSend: function() {
                     },
                 success: function(response) {
-                 window.open('../leave/viewLeave.php','_self');  
+                 window.open('../leave/viewLeave.php','_self');
 //                    alert(response);
                 }
                 });

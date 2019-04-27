@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php session_start();
 error_reporting(0);
 if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 {
@@ -13,6 +13,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
@@ -179,6 +180,8 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
 <script type="text/javascript">
 
+  var target = '';
+
   function headingCount(){
     var len1 = $('#headingInput').val();
     $('#headingSpan').html("Add heading for your notice ("+(len1.length)+"/100).");
@@ -190,7 +193,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   }
 
   function addNotice(){
-    var target = '';
+
     if($('#noticeTarget').val()==null){
       target = "ALL";
     }
@@ -224,6 +227,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
           },
           success: function(response) {
             showAlert();
+            sendNotification();
           }
         });
       }
@@ -245,6 +249,28 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
       });
    	 $('#headingInput').val('');
      $('#descriptionInput').val('');
+  }
+
+  function sendNotification(){
+    $.ajax({
+      type: 'POST',
+      url: '../php/sendNotification.php',
+      data: {  category: "notice", name: "Admin", description: "sent a new notice.", target: target, link: "../notice/viewNotice.php" },
+
+      success: function(response) {
+        sendAlert();
+      }
+    });
+  }
+  function sendAlert(){
+    var data = {
+      startNow : "YES"
+    };
+    $.ajax({
+      type: 'POST',
+      url: '../../pusher.php',
+      data: { data: data},
+    });
   }
 
 </script>

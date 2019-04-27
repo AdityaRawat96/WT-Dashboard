@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 {
     $id=$_POST['id'];
@@ -10,11 +11,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
     if(mysqli_affected_rows($con)>0)
     {
-       echo "success"; 
+       echo "success";
     }
     else
-    { 
-        echo "failure";   
+    {
+        echo "failure";
     }
 }
 else
