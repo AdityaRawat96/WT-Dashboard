@@ -12,6 +12,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
@@ -43,9 +44,9 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
         <div class="container-fluid">
 
           <!--  Page content goes here!    -->
-        <div class="row">
-            <div class="col-md-8">
-              <div class="card" style="height: 350px; overflow-y:scroll;">
+          <div class="row">
+            <div class="col-md-8" >
+              <div class="card" style="height: 460px; overflow-y:scroll;">
                 <div class="card-header card-header-icon">
                   <i class="material-icons">timeline</i>
                 </div>
@@ -59,6 +60,22 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
                 </div>
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="card" style="height: 460px">
+                <div class="card-header">
+                </div>
+                <div class="card-content">
+                  <h4 class="card-title">TASK STATUS:
+                  </h4>
+                  <!-- Some stuff goes here -->
+                  <div id="dash1-sales-chart" class="chart">
+                    <canvas id="myDoughnutChart" height="400" width="498" style="display: block; width: 498px; height: 400px;"></canvas>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -126,10 +143,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
 var cno=0,pno=0,ono=0;
 $(document).ready(function() {
   getNotice();
-
 });
-
-
 
 function getNotice(){
   $.ajax({
@@ -144,8 +158,7 @@ function getNotice(){
       var accordionData=response.substring(0,response.indexOf('myvarcompleted'));
       response=response.substring(response.indexOf('myvarcompleted'));
       cno=response.substring(14,response.indexOf('myvarongoing'));
-      ono=response.substring(response.indexOf('myvarongoing')+12,response.indexOf('myvarpending'));
-      pno=response.substring(response.indexOf('myvarpending')+12);
+      ono=response.substring(response.indexOf('myvarongoing')+12);
       $(".accordion").html(accordionData);
       $("#simple-accordion-colored").accordion({
         collapsible: true,
@@ -166,12 +179,10 @@ function showChart(){
       data: {
         datasets: [{
           data: [
-            pno,
             cno,
             ono
           ],
           backgroundColor: [
-            "#FF6384",
             "#4BC0C0",
             "#36A2EB"
           ],
@@ -180,7 +191,6 @@ function showChart(){
 
         }],
         labels: [
-          "PENDING",
           "COMPLETED",
           "ONGOING"
         ]
@@ -196,24 +206,6 @@ function showChart(){
     var myDoughnutChart = new Chart(doughnutChartCanvas, config);
   }
 }
-
-
-    function myFunction()
-    {
-//        alert('HII');
-         $.ajax({
-                    type: 'POST',
-                    url: '../php/leaveStatus.php',
-                    data: {value:1},
-
-                        beforeSend: function() {
-                    },
-                success: function(response) {
-                 window.open('../leave/viewLeave.php','_self');
-//                    alert(response);
-                }
-                });
-    }
 </script>
 
 </html>
@@ -224,7 +216,7 @@ else
     session_unset();
     session_destroy();
     ?>
-    <script>window.open('../index.html','_self')</script>
+    <script>window.open('../../index.html','_self')</script>
     <?php
 }
 ?>

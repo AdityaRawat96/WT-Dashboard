@@ -33,9 +33,9 @@ session_start();
         </button>
         <a class="navbar-brand" href="#"> Dashboard </a>
       </div>
-      <div class="collapse navbar-collapse" onclick="updateNotifications();">
+      <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
+          <li class="dropdown" onclick="updateNotifications();">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="material-icons">notifications</i>
               <span class="notification" id="notificationCounter" style="visibility:hidden;"></span>
