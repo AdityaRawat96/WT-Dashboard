@@ -1,6 +1,6 @@
 <?php
 session_start();
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -8,6 +8,11 @@ session_start();
 
   <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <script type="text/javascript" src='../../assets/js/bootstrap-notify.js'></script>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
 
 </head>
 <body>
@@ -69,23 +74,35 @@ session_start();
 </body>
 <script type="text/javascript">
 var checkCounter;
+
 $(document).ready(function(){
 
-   checkCounter = <?php echo $_SESSION['checkCounter']?>;
-   
-   if(checkCounter == 0){
-     getNotifications();
-   }
-   else{
-       var notifications = "<?php
-        $name = $_SESSION['Username'];
-        $filename = $name.'.txt';
-        $myfile = fopen('../../assets/userData/'.$filename, 'r') or die('Unable to open file!');
-        echo fread($myfile,filesize('../../assets/userData/'.$filename));
-        fclose($myfile);
-        ?>";
-        checkNotifications(notifications);
-   }
+  checkCounter = <?php echo $_SESSION['checkCounter']?>;
+  if(checkCounter == 0){
+    getNotifications();
+  }
+  else if(checkCounter == 1){
+    var notifications = "<?php
+    $name = $_SESSION['Username'];
+    $filename = $name.'.txt';
+    $myfile = fopen('../../assets/userData/'.$filename, 'r');
+    echo fread($myfile,filesize('../../assets/userData/'.$filename));
+    fclose($myfile);
+    ?>";
+    checkNotifications(notifications);
+  }
+
+
+  $(".notificationList").on("click", function(){
+    $(this).css("font-weight","lighter");
+    alert("STOP");
+    $.ajax({
+      type: 'POST',
+      url: '../php/updateUserData.php',
+      data: {  data: $("#notificationTab").html() },
+    });
+  });
+
 });
 
 function getNotifications(){
@@ -99,23 +116,32 @@ function getNotifications(){
   });
 }
 function checkNotifications(response){
-      <?php $_SESSION['checkCounter'] = 1; ?>
-      $("#notificationTab").html(response);
-      var ncount = $("#list9").val();
-      if(ncount > 0){
-        $("#notificationCounter").html(ncount);
-        $("#notificationCounter").css("visibility", "visible");
-      }
+  <?php $_SESSION['checkCounter'] = 1; ?>
+  $("#notificationTab").html(response);
+  var ncount = $("#list9").val();
+  if(ncount > 0){
+    $("#notificationCounter").html(ncount);
+    $("#notificationCounter").css("visibility", "visible");
+  }
 }
 function updateNotifications(){
   <?php $_SESSION['checkCounter']=0; ?>
   $.ajax({
     url: '../php/updateNotificationCount.php',
     success: function(response) {
-      <?php $_SESSION['checkCounter']=1; ?>
-      <?php $_SESSION['notificationDifference']=0; ?>
-      $("#notificationCounter").html('0');
-      $("#notificationCounter").css("visibility", "hidden");
+      $(".notificationList").val("0");
+      var listData = $("#notificationTab").html();
+      listData = listData.replace(/"/g, "'");
+      $.ajax({
+        type: 'POST',
+        url: '../php/updateUserData.php',
+        data: {  data: listData },
+        success: function(response) {
+          <?php $_SESSION['checkCounter']=1; ?>
+          $("#notificationCounter").html('0');
+          $("#notificationCounter").css("visibility", "hidden");
+        }
+      });
     }
   });
 }
@@ -127,8 +153,82 @@ var pusher = new Pusher('1f80074228f1ab8196f3', {
 
 var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
-  getNotifications();
+  var target = data.target;
+  var id = "<?php echo $_SESSION['id'] ?>";
+  var department = "<?php echo $_SESSION['department'] ?>";
+  target = target.toUpperCase();
+  id = id.toUpperCase();
+  department = department.toUpperCase();
+
+  if(target == "ALL" || target == id || target == department){
+    getNotifications();
+    playSound();
+    showNotification(data.name, data.description, data.link);
+    showAndroidToast(data.name, data.description, data.link);
+  }
 });
+
+function showAndroidToast(name, description, link) {
+  if (typeof Android === "undefined") {
+    console.log("Not on Android");
+  } else {
+    Android.showToast(name, description, link);
+  }
+
+}
+
+function playSound(){
+  var audio = new Audio('../../assets/audio/notification.mp3');
+  audio.play();
+}
+
+function showNotification(name, description, link){
+  $.notify({
+    // options
+    title: 'New notification!',
+    message: name + " " + description,
+    url: link,
+    target: '_self'
+  },{
+    // settings
+    element: 'body',
+    position: null,
+    type: 'pastel-info',
+    allow_dismiss: true,
+    newest_on_top: false,
+    showProgressbar: true,
+    placement: {
+      from: "bottom",
+      align: "right"
+    },
+    offset: 20,
+    spacing: 10,
+    z_index: 1031,
+    delay: 5000,
+    timer: 70,
+    url_target: '_self',
+    mouse_over: 'pause',
+    animate: {
+      enter: 'animated fadeInDown',
+      exit: 'animated fadeOutUp'
+    },
+    onShow: null,
+    onShown: null,
+    onClose: null,
+    onClosed: null,
+    icon_type: 'class',
+    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+    '<span data-notify="title"><strong> &nbsp; {1}</strong></span>' +
+    '<span data-notify="message"> &nbsp; {2}</span>' +
+    '<div class="progress" data-notify="progressbar">' +
+    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+    '</div>' +
+    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+    '</div>'
+  });
+
+}
 
 </script>
 </html>

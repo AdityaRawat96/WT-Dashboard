@@ -264,7 +264,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   }
   function sendAlert(){
     var data = {
-      startNow : "YES"
+      category: "notice",
+      name: "Admin",
+      description: "sent a new notice.",
+      target: target,
+      link: "../notice/viewNotice.php"
     };
     $.ajax({
       type: 'POST',

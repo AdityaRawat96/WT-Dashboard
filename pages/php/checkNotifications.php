@@ -26,13 +26,13 @@ if($resultant > 0)
     if(strcasecmp($p3, "all") == 0 || strcasecmp($p3, $_SESSION['department']) == 0 || strcasecmp($p3, $_SESSION['id']) == 0){
       if($p0 > $currentCount && $counter < 10){
         $difference++;
-        echo "<li id='list$counter' value='$difference' ><a href='$p4'><strong>$p1 $p2</strong></a></li>";
-        fwrite($file, "<li id='list$counter' value='$difference' ><a href='$p4'><strong>$p1 $p2</strong></a></li>");
+        echo "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>";
+        fwrite($file, "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>");
         $counter++;
       }
       else if($p0 <= $currentCount && $counter < 10){
-        echo "<li id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>";
-        fwrite($file, "<li id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>");
+        echo "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>";
+        fwrite($file, "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>");
         $counter++;
       }
       else{
