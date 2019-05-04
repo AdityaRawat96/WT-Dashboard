@@ -1,3 +1,7 @@
+<?php
+if(!isset($_COOKIE["wtsolutionusername"])||!isset($_COOKIE["wtsolutionrights"]))
+{
+?>
 <!doctype html>
 <html lang="en">
 
@@ -14,13 +18,13 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
-    <link href="assets/css/turbo.css" rel="stylesheet" />
+    <link type="text/css" href="assets/css/turbo.css" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link type="text/css" href="assets/css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link href="assets/vendors/maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" href="assets/vendors/maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     <style>
         #forgot_password_link
@@ -229,3 +233,46 @@ $(document).ready(function(){
 </script>
 
 </html>
+<?php
+
+}
+
+else
+{
+	$_SESSION['checkCounter']=0;
+	include('pages/php/connection.php');
+	session_start();
+	$_SESSION["Username"]= $_COOKIE["wtsolutionusername"];
+	$_SESSION["Rights"]=$_COOKIE["wtsolutionrights"];
+	$a=$_SESSION["Username"];
+	$result= mysqli_query($con,"select * from users where USERNAME='$a'")
+		or die('Uppss.. an Error accured...(unable to process this request)<br>Reason : &nbsp;'. mysqli_error($con));
+	$row=mysqli_fetch_array($result);
+	$p0=$row['id'];
+    $p1=$row['name'];
+    $p2=$row['username'];
+    $p3=$row['password'];
+    $p4=$row['status'];
+    $p5=$row['rights'];
+    $p6=$row['category'];
+    $p7=$row['notification_count'];
+
+	$_SESSION['id']=$p0;
+    $_SESSION['Rights']=$p5;
+    $_SESSION['name']=$p1;
+    $_SESSION['department']=$p6;
+    $_SESSION['notificationCount']=$p7;
+    if($_SESSION["Rights"]=='employee')
+    {
+    ?>
+<script>window.open('pages/dashboard/employee_dashboard.php','_self')</script>
+<?php
+    }
+    else
+    {
+       ?>
+<script>window.open('pages/dashboard/dashboard.php','_self')</script>
+<?php
+    }
+}
+?> 

@@ -29,6 +29,10 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
     <!--    JQuery UI     -->
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/nouislider.min.css">
+    <script type="text/javascript" src="../../assets/js/wNumb.js">
+
+    </script>
 
   </head>
 
@@ -220,7 +224,7 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
   <!-- Vector Map plugin -->
   <script src="../../assets/vendors/jquery-jvectormap.js"></script>
   <!-- Sliders Plugin -->
-  <script src="../../assets/vendors/nouislider.min.js"></script>
+  <script src="../../assets/js/nouislider.min.js"></script>
   <!-- Select Plugin -->
   <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
   <!--  DataTables.net Plugin    -->
@@ -308,12 +312,12 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
 
     });
   }
-  function assignTask(rid)
+  function updateProgress(rid)
   {
     var rowId=rid;
     $.ajax({
       type: 'post',
-      url: '../php/assignTask.php',
+      url: '../php/updateTask.php',
       data: {
         rowId: rowId
       },
@@ -323,40 +327,44 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
       }
     });
   }
-  function assignEmployee(){
-    if($('#users').val()==null)
-    {
-      alert('Please Select any employee');
-      return false;
-    }
-
-    $myVar=$('#users').val();
-    // console.log($myVar);
-    $index=$myVar.indexOf('/');
-    $myvar1=$myVar.substring(0,$index);
-    $myvar2=$myVar.substring($index+1);
-
+  function updateTaskProgres(id, value){
+    var progress = parseInt(value);
     $.ajax({
       type: 'POST',
-      url: '../php/assigntaskdb.php',
-      data: {taskId:$('#taskidfield').val(),userId:$myvar2,userIdName:$myvar1},
+      url: '../php/updateProgress.php',
+      data: {taskId: id, progress: progress},
 
       beforeSend: function() {
 
       },
       success: function(response) {
         if(response.match(/Success/)){
-          swal({
-            title: 'Task Assigned!',
-            text: "Successfully Assigned",
-            type: 'success',
-            showCancelButton: false,
-            confirmButtonClass: 'btn btn-success',
-            confirmButtonText: 'OK',
-            buttonsStyling: false
-          }).then(function() {
-            window.open('viewTasks.php','_self');
-          });
+          if(progress == 100){
+            swal({
+              title: 'Task Completed!',
+              text: "Successfully changed the progress.",
+              type: 'success',
+              showCancelButton: false,
+              confirmButtonClass: 'btn btn-success',
+              confirmButtonText: 'OK',
+              buttonsStyling: false
+            }).then(function() {
+              location.reload();
+            });
+          }
+          else{
+            swal({
+              title: 'Task Updated!',
+              text: "Successfully changed the progress.",
+              type: 'success',
+              showCancelButton: false,
+              confirmButtonClass: 'btn btn-success',
+              confirmButtonText: 'OK',
+              buttonsStyling: false
+            }).then(function() {
+              location.reload();
+            });
+          }
         }
         else{
           swal({
@@ -370,7 +378,9 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
         }
       }
     });
+
   }
+
   function myInfoFunction(rid)
   {
     var rowId=rid;
@@ -399,7 +409,7 @@ else
   session_unset();
   session_destroy();
   ?>
-  <script>window.open('../../index.html','_self')</script>
+  <script>window.open('../index.html','_self')</script>
   <?php
 }
 ?>

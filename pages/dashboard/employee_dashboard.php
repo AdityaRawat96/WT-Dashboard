@@ -27,6 +27,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
   <!--    JQuery UI     -->
   <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/js/nouislider.min.js">
 </head>
 
 <body>
@@ -116,7 +117,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
 <!-- Vector Map plugin -->
 <script src="../../assets/vendors/jquery-jvectormap.js"></script>
 <!-- Sliders Plugin -->
-<script src="../../assets/vendors/nouislider.min.js"></script>
+<script src="../../assets/js/nouislider.min.js"></script>
 <!--  Google Maps Plugin    -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
 <!-- Select Plugin -->

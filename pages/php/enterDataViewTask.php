@@ -38,8 +38,8 @@ while($row=mysqli_fetch_array($result))
       <td><?php echo $p4 ?></td>
       <td>
         <?php echo $p5 ?>%
-        <div class="progress progress-line-info">
-          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<?php echo $p5 ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $p5 ?>;">
+        <div class="progress progress-line-primary">
+          <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $p5 ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $p5.'%' ?>;">
           </div>
         </div>
       </td>

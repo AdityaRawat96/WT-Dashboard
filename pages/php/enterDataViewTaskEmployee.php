@@ -24,15 +24,15 @@ while($row=mysqli_fetch_array($result))
       <td><?php echo $p4 ?></td>
       <td>
         <?php echo $p5 ?>%
-        <div class="progress progress-line-info">
-          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<?php echo $p5 ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $p5 ?>;">
+        <div class="progress progress-line-primary">
+          <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $p5 ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $p5.'%' ?>;">
           </div>
         </div>
       </td>
       <td><?php echo $p3; ?></td>
       <td class="text-right">
+        <a href="#" class="btn btn-simple btn-success btn-icon" onclick="updateProgress('<?php echo $p2; ?>');"><i class="material-icons">add</i></a>
         <a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction('<?php echo $p2; ?>');"><i class="fa fa-info-circle"></i></a>
-        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
       </td>
     </tr>
     <?php
@@ -47,7 +47,6 @@ while($row=mysqli_fetch_array($result))
       <td><?php echo $p3; ?></td>
       <td class="text-right">
         <a href="#" class="btn btn-simple btn-info btn-icon " onclick="myInfoFunction('<?php echo $p2; ?>');"><i class="fa fa-info-circle"></i></a>
-        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="material-icons">close</i></a>
       </td>
     </tr>
     <?php
