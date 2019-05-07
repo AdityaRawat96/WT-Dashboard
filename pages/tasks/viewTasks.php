@@ -306,6 +306,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
 
   <script>
+  var userId;
   $(document).ready(function() {
     $("#simple-accordion").accordion({
       collapsible: true,
@@ -471,6 +472,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     $index=$myVar.indexOf('/');
     $myvar1=$myVar.substring(0,$index);
     $myvar2=$myVar.substring($index+1);
+    userId = $myVar.substring($index+1);
 
     $.ajax({
       type: 'POST',
@@ -482,17 +484,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
       },
       success: function(response) {
         if(response.match(/Success/)){
-          swal({
-            title: 'Task Assigned!',
-            text: "Successfully Assigned",
-            type: 'success',
-            showCancelButton: false,
-            confirmButtonClass: 'btn btn-success',
-            confirmButtonText: 'OK',
-            buttonsStyling: false
-          }).then(function() {
-            window.open('viewTasks.php','_self');
-          });
+          sendNotification();
         }
         else{
           swal({
@@ -533,6 +525,46 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   function filterCompleted(filterVal){
     var table = $('#completedTask').DataTable();
     table.search(filterVal).draw();
+  }
+
+  function sendNotification(){
+    $.ajax({
+      type: 'POST',
+      url: '../php/sendNotification.php',
+      data: {  category: "task", name: "You", description: "are assigned a new task.", target: userId, link: "../tasks/viewTasksEmployee.php" },
+
+      success: function(response) {
+        sendAlert();
+      }
+    });
+  }
+  function sendAlert(){
+    var data = {
+      category: "task",
+      name: "You",
+      description: "are assigned a new task.",
+      target: userId,
+      link: "../tasks/viewTasksEmployee.php"
+    };
+    $.ajax({
+      type: 'POST',
+      url: '../../pusher.php',
+      data: { data: data},
+
+      success : function(response){
+        swal({
+          title: 'Task Assigned!',
+          text: "Successfully Assigned",
+          type: 'success',
+          showCancelButton: false,
+          confirmButtonClass: 'btn btn-success',
+          confirmButtonText: 'OK',
+          buttonsStyling: false
+        }).then(function() {
+          window.open('viewTasks.php','_self');
+        });
+      }
+    });
   }
 
 

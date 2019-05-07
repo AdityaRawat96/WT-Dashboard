@@ -274,16 +274,16 @@ $().ready(function() {
         if($attempt>2)
         {
           swal({
-                  title: 'Too may wrong attempts!',
-                  text: "Try again later",
-                  type: 'warning',
-                  showCancelButton: false,
-                  confirmButtonClass: 'btn btn-success',
-                  confirmButtonText: 'OK',
-                  buttonsStyling: false
-              }).then(function() {
-                window.open('../../index.html','_self');
-              });
+            title: 'Too may wrong attempts!',
+            text: "Try again later",
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonClass: 'btn btn-success',
+            confirmButtonText: 'OK',
+            buttonsStyling: false
+          }).then(function() {
+            window.open('../../index.html','_self');
+          });
         }
         else
         {
@@ -316,7 +316,6 @@ $().ready(function() {
           beforeSend: function() {
           },
           success: function(response) {
-            //                    alert(response);
             if(response.match(/failure/))
             {
               alert("Problem occured during your request.Please try again later");
@@ -324,16 +323,16 @@ $().ready(function() {
             else
             {
               swal({
-                      title: 'Password successfully changed!',
-                      text: "Please login again.",
-                      type: 'success',
-                      showCancelButton: false,
-                      confirmButtonClass: 'btn btn-success',
-                      confirmButtonText: 'OK',
-                      buttonsStyling: false
-                  }).then(function() {
-                    window.open('../../index.html','_self');
-                  });
+                title: 'Password successfully changed!',
+                text: "Please login again.",
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonClass: 'btn btn-success',
+                confirmButtonText: 'OK',
+                buttonsStyling: false
+              }).then(function() {
+                window.open('../../index.html','_self');
+              });
             }
           }
         });

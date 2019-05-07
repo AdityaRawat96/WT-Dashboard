@@ -94,6 +94,7 @@ slider.noUiSlider.on('update', function( values, handle ) {
 });
 
 function getValues(){
+  $("#updateButton").append('&nbsp;<i class="fas fa-spinner-third"></i>');
   var values = slider.noUiSlider.get();
   var id = '<?php echo $tid; ?>';
   updateTaskProgres(id,values[1]);

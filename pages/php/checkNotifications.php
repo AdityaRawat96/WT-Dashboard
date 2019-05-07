@@ -16,30 +16,60 @@ $resultant = mysqli_num_rows($result);
 $_SESSION['newNotificationCount'] = $resultant;
 if($resultant > 0)
 {
-  while($row=mysqli_fetch_array($result))
-  {
-    $p0=$row['id'];
-    $p1=$row['name'];
-    $p2=$row['description'];
-    $p3=$row['target'];
-    $p4=$row['link'];
-    if(strcasecmp($p3, "all") == 0 || strcasecmp($p3, $_SESSION['department']) == 0 || strcasecmp($p3, $_SESSION['id']) == 0){
-      if($p0 > $currentCount && $counter < 10){
-        $difference++;
-        echo "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>";
-        fwrite($file, "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>");
-        $counter++;
-      }
-      else if($p0 <= $currentCount && $counter < 10){
-        echo "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>";
-        fwrite($file, "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>");
-        $counter++;
-      }
-      else{
-        fclose($file);
-        break;
+  if($_SESSION['Rights']=='admin'){
+    while($row=mysqli_fetch_array($result))
+    {
+      $p0=$row['id'];
+      $p1=$row['name'];
+      $p2=$row['description'];
+      $p3=$row['target'];
+      $p4=$row['link'];
+      if(strcasecmp($p3, "admin") == 0){
+        if($p0 > $currentCount && $counter < 10){
+          $difference++;
+          echo "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>";
+          fwrite($file, "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>");
+          $counter++;
+        }
+        else if($p0 <= $currentCount && $counter < 10){
+          echo "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>";
+          fwrite($file, "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>");
+          $counter++;
+        }
+        else{
+          fclose($file);
+          break;
+        }
       }
     }
   }
+  else{
+    while($row=mysqli_fetch_array($result))
+    {
+      $p0=$row['id'];
+      $p1=$row['name'];
+      $p2=$row['description'];
+      $p3=$row['target'];
+      $p4=$row['link'];
+      if(strcasecmp($p3, "all") == 0 || strcasecmp($p3, $_SESSION['department']) == 0 || strcasecmp($p3, $_SESSION['id']) == 0){
+        if($p0 > $currentCount && $counter < 10){
+          $difference++;
+          echo "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>";
+          fwrite($file, "<li class='notificationList' id='list$counter' value='$difference'><a href='$p4' style='font-weight:bold;'>$p1 $p2</a></li>");
+          $counter++;
+        }
+        else if($p0 <= $currentCount && $counter < 10){
+          echo "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>";
+          fwrite($file, "<li class='notificationList' id='list$counter' value='$difference' ><a href='$p4'>$p1 $p2</a></li>");
+          $counter++;
+        }
+        else{
+          fclose($file);
+          break;
+        }
+      }
+    }
+  }
+
 }
 ?>

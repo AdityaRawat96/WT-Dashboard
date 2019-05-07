@@ -52,7 +52,7 @@ else
                         beforeSend: function() {
                     },
                 success: function(response) {
-                 window.open('../leave/viewLeave.php','_self');  
+                 window.open('../leave/viewLeave.php','_self');
 //                    alert(response);
                 }
                 });
@@ -61,7 +61,7 @@ else
        function genReport(){
           var a1=$('#start_date').val();
           var a2=$('#end_date').val();
-         
+
          if(a1!=""&&a2!="")
               {
                    $.ajax({
@@ -81,7 +81,7 @@ else
               {
                   alert("Please enter valid entries");
               }
-          
+
       }
     </script>
   </head>
@@ -95,7 +95,7 @@ else
             <div class="main-panel">
 
               <!--  Navbar included     -->
-              <?php include('../pageElements/navbar_employee.php'); ?>
+              <?php include('../pageElements/navbar.php'); ?>
 
                 <div class="content">
                     <div class="container-fluid">

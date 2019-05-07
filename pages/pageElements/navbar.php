@@ -50,20 +50,14 @@ session_start();
           </li>
           <li>
             <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="material-icons">apps</i>
-              <p class="hidden-lg hidden-md">Apps</p>
-            </a>
-          </li>
-          <li>
-            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
             </a>
           </li>
-          <li>
+          <li onclick="logout();">
             <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="material-icons">settings</i>
-              <p class="hidden-lg hidden-md">Settings</p>
+              <i class="fas fa-power-off fa-2x"></i>
+              <p class="hidden-lg hidden-md">Log Out</p>
             </a>
           </li>
           <li class="separator hidden-lg hidden-md"></li>
@@ -118,7 +112,9 @@ function getNotifications(){
 function checkNotifications(response){
   <?php $_SESSION['checkCounter'] = 1; ?>
   $("#notificationTab").html(response);
-  var ncount = $("#list9").val();
+
+  var count = (response.match(/notificationList/g) || []).length -1;
+  var ncount = $("#list"+count).val();
   if(ncount > 0){
     $("#notificationCounter").html(ncount);
     $("#notificationCounter").css("visibility", "visible");
@@ -156,15 +152,26 @@ channel.bind('my-event', function(data) {
   var target = data.target;
   var id = "<?php echo $_SESSION['id'] ?>";
   var department = "<?php echo $_SESSION['department'] ?>";
+  var rights = "<?php echo $_SESSION['Rights'] ?>";;
   target = target.toUpperCase();
   id = id.toUpperCase();
   department = department.toUpperCase();
 
-  if(target == "ALL" || target == id || target == department){
-    getNotifications();
-    playSound();
-    showNotification(data.name, data.description, data.link);
-    showAndroidToast(data.name, data.description, data.link);
+  if(rights == 'admin'){
+    if(target == "ADMIN"){
+      getNotifications();
+      playSound();
+      showNotification(data.name, data.description, data.link);
+      showAndroidToast(data.name, data.description, data.link);
+    }
+  }
+  else{
+    if(target == "ALL" || target == id || target == department){
+      getNotifications();
+      playSound();
+      showNotification(data.name, data.description, data.link);
+      showAndroidToast(data.name, data.description, data.link);
+    }
   }
 });
 
@@ -228,6 +235,39 @@ function showNotification(name, description, link){
     '</div>'
   });
 
+}
+
+function logout(){
+
+
+  swal({
+    title: 'Are you sure?',
+    text: 'You want to logout!',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'No',
+    confirmButtonClass: "btn btn-success",
+    cancelButtonClass: "btn btn-danger",
+    buttonsStyling: false
+  }).then(function() {
+    $.ajax({
+      url: '../php/logout.php',
+      success: function(response) {
+        window.open("../../index.php", "_self");
+      }
+    });
+  }, function(dismiss) {
+    if (dismiss === 'cancel') {
+      swal({
+        title: 'Cancelled',
+        text: 'You are still signed in :)',
+        type: 'error',
+        confirmButtonClass: "btn btn-info",
+        buttonsStyling: false
+      })
+    }
+  });
 }
 
 </script>

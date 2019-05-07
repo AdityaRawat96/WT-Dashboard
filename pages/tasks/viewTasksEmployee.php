@@ -340,17 +340,8 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
       success: function(response) {
         if(response.match(/Success/)){
           if(progress == 100){
-            swal({
-              title: 'Task Completed!',
-              text: "Successfully changed the progress.",
-              type: 'success',
-              showCancelButton: false,
-              confirmButtonClass: 'btn btn-success',
-              confirmButtonText: 'OK',
-              buttonsStyling: false
-            }).then(function() {
-              location.reload();
-            });
+            sendNotification();
+
           }
           else{
             swal({
@@ -374,7 +365,7 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
             buttonsStyling: false,
             confirmButtonClass: "btn btn-success",
             type: "warning"
-          })
+          });
         }
       }
     });
@@ -393,6 +384,48 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
       success: function( data ) {
         $("#dataContainer").html(data);
         $("#myButton").trigger( "click" );
+      }
+    });
+  }
+
+  //Sending Notification
+  var name = '<?php echo $_SESSION['name'] ?>';
+  function sendNotification(){
+    $.ajax({
+      type: 'POST',
+      url: '../php/sendNotification.php',
+      data: {  category: "task", name: name, description: "completed a task.", target: "admin", link: "../tasks/viewTasks.php" },
+
+      success: function(response) {
+        sendAlert();
+      }
+    });
+  }
+  function sendAlert(){
+    var data = {
+      category: "task",
+      name: name,
+      description: "completed a task.",
+      target: "admin",
+      link: "../tasks/viewTasks.php"
+    };
+    $.ajax({
+      type: 'POST',
+      url: '../../pusher.php',
+      data: { data: data},
+
+      success : function(response){
+        swal({
+          title: 'Task Completed!',
+          text: "Successfully changed the progress.",
+          type: 'success',
+          showCancelButton: false,
+          confirmButtonClass: 'btn btn-success',
+          confirmButtonText: 'OK',
+          buttonsStyling: false
+        }).then(function() {
+          location.reload();
+        });
       }
     });
   }
