@@ -43,6 +43,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
         circle: false
       }).then(function (resp) {
         $('#wizardPicturePreview').attr('src', resp).fadeIn('slow');
+        $('#imagebase64').val(resp);
         $("#closeModal").trigger('click');
       });
 
@@ -125,6 +126,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 <div class="picture">
                                   <img src="../../assets/img/faces/avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
                                   <input name="userImage" type="file" id="wizard-picture" required onclick="$('#picError').fadeOut();">
+                                  <input type="hidden" id="imagebase64" name="imagebase64">
                                 </div>
                                 <h6>Choose Picture</h6>
                                 <small id="picError" style="display:none; color:red;">Please select a profile picture!</small>

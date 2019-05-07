@@ -75,18 +75,15 @@ else {
   for ($i = 1; $i <= 3; $i++) {
     $adder .= substr($generator, (rand()%(strlen($generator))), 1);
   }
-  if(is_array($_FILES)) {
-    //echo $fname.$lname.$category;
-    if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
-      $sourcePath = $_FILES['userImage']['tmp_name'];
-      $targetPath = "../images/".$_FILES['userImage']['name'];
-      if(move_uploaded_file($sourcePath,$targetPath)) {
-        rename($targetPath, '../images/'.$contact.$adder.'.jpg');
-        $d='../images/'.$contact.'.jpg';
-        $sql= mysqli_query($con,"insert into users(name,username,password,email,contact,dob,category,status,date,time,permanent_address,temprory_address,img_path,rights) values ('$name','$username','$password','$email','$contact','$newformat','$category','$status','$date','$time','$address1','$address2','$d','employee')")
+  if(isset($_POST['imagebase64'])){
+        $data = $_POST['imagebase64'];
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+        $data = base64_decode($data);
+        $path='../../assets/userImages/'.$contact.$adder.'.png';
+        file_put_contents($path, $data);
+        $sql= mysqli_query($con,"insert into users(name,username,password,email,contact,dob,category,status,date,time,permanent_address,temprory_address,img_path,rights) values ('$name','$username','$password','$email','$contact','$newformat','$category','$status','$date','$time','$address1','$address2','$path','employee')")
         or die("eror in sql");
-      }
     }
-  }
 }
 ?>
