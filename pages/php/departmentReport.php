@@ -5,7 +5,7 @@ if($_SESSION['Username']=='' || $_SESSION['Rights']!='admin')
 {
   session_unset();
   session_destroy();
-  ?> <script>window.open('../index.html','_self')</script>
+  ?> <script>window.open('../php/cookiesunset.php','_self')</script>
   <?php
 }
 else
@@ -260,8 +260,10 @@ else
                     <div class="table-responsive">
                       <table class="table table-hover" id="tableEmployee">
                         <thead class="text-success">
-                          <th>ID</th>
+                          <th>Username</th>
                           <th>Name</th>
+                          <th>Contact</th>
+                          <th>Email</th>
                         </thead>
                         <tbody id="employeelist">
 
@@ -286,7 +288,7 @@ else
                             <thead class="text-primary">
                               <th>TASK ID</th>
                               <th>TASK NAME</th>
-                              <th>TASK CATEGORY</th>
+                              <th>ASSIGNED TO</th>
                               <th>TASK DEADLINE</th>
                             </thead>
                             <tbody id="ongoingtable">
@@ -300,8 +302,8 @@ else
                             <thead class="text-primary">
                               <th>TASK ID</th>
                               <th>TASK NAME</th>
-                              <th>TASK CATEGORY</th>
-                              <th>TASK DEADLINE</th>
+                              <th>ASSIGNED TO</th>
+                              <th>COMPLETED DATE</th>
                             </thead>
                             <tbody id="completedtable">
 

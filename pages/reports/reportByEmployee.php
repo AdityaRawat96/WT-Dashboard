@@ -42,26 +42,54 @@ else
       var a2=$('#end_date').val();
       var a3=$('#category').val();
       var a4=$('#employeeDropdown').val();
-      if(a1!=""&&a2!=""&&$('#category').val()!=null&&$('#employeeDropdown').val()!="")
+
+        
+        if(a1!="")
       {
-        $.ajax({
-          type: 'POST',
-          url: '../php/reportByEmployeeDB.php',
-          data: { startdate:a1,enddate:a2,category:a3,employee:a4},
+          if(a2!="")
+              {
+                 if($('#category').val()!="")
+                     {
+                          if($('#employeeDropdown').val()!="")
+                            {
+                                $.ajax({
+                                  type: 'POST',
+                                  url: '../php/reportByDepartmentDB.php',
+                                  data: { startdate:a1,enddate:a2,category:a3,employee:a4},
 
-          beforeSend: function() {
+                                  beforeSend: function() {
 
-          },
-          success: function(response) {
-            window.open('../php/employeeReport.php','_self');
-          }
-        });
+                                  },
+                                  success: function(response) {
+                                    window.open('../php/employeeReport.php','_self');
+                                  }
+                                });
+                            }
+                         else
+                             {
+                                $('#select1Error').css('display','block');
+                             }
+                     }
+                  else
+                    {      
+                        $('#selectError').css('display','block');
+
+                    }
+              }
+          else
+            {
+               $('#edateError').css('display','block');
+               $('#selectError').css('display','block');
+            }
       }
-      else
-      {
-        alert("Please enter valid entries");
-      }
+      else{
+       $('#sdateError').css('display','block');
+       $('#edateError').css('display','block');
+       $('#selectError').css('display','block');
 
+      }
+        
+        
     }
     function myChangeFunction()
     {
@@ -81,6 +109,44 @@ else
         }
       });
     }
+        
+         jQuery(function($) { // DOM ready and $ alias secured
+
+          $('#start_date').on('click', function(e){
+               $('#sdateError').css('display','none');
+               $('#edateError').css('display','none');
+               $('#selectError').css('display','none');
+               $('#select1Error').css('display','none');
+
+            return false;
+          });
+          $('#end_date').on('click', function(e){
+               $('#sdateError').css('display','none');
+               $('#edateError').css('display','none');
+               $('#selectError').css('display','none');
+               $('#select1Error').css('display','none');
+
+            return false;
+          });
+          $('#category').on('change', function(e){
+               $('#sdateError').css('display','none');
+               $('#edateError').css('display','none');
+               $('#selectError').css('display','none');
+               $('#select1Error').css('display','none');
+
+            return false;
+          });
+             
+        $('#employeeDropdown').on('change', function(e){
+               $('#sdateError').css('display','none');
+               $('#edateError').css('display','none');
+               $('#selectError').css('display','none');
+               $('#select1Error').css('display','none');
+            return false;
+          });
+
+
+});
 
     </script>
   </head>
@@ -113,7 +179,8 @@ else
                           <div class="col-sm-3">
                             <div class="form-group label-floating is-empty">
                               <input type="text" class="form-control datepicker" name="start_date" id="start_date" onkeydown="return false;"  style="position:relative;top:-4px;">
-                            </div>
+                            </div>                             
+                              <small id="sdateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
@@ -121,7 +188,8 @@ else
                           <div class="col-sm-3">
                             <div class="form-group label-floating is-empty">
                               <input type="text" class="form-control datepicker" name="end_date" id="end_date" onkeydown="return false;" style="position:relative;top:-4px;">
-                            </div>
+                            </div>                               
+                              <small id="edateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
@@ -138,13 +206,16 @@ else
                               <option value="6">VIDEO EDITOR</option>
 
                             </select>
+                              <small id="selectError" style="display:none; color:red;">Please select any value</small>
                           </div>
                         </div><br><br>
                         <div class="row" id="myEmployee">
                           <label class="col-sm-2 label-on-left" for="employee">SELECT EMPLOYEE:</label>
                           <div class="col-sm-3" style="position:relative;top:6px;">
                             <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" id="employeeDropdown" disabled>
-                            </select>
+                            </select>                              
+                              <small id="select1Error" style="display:none; color:red;">Please select any value</small>
+
                           </div>
                         </div><br><br>
                         <div class="row" style="margin-left:25%;">

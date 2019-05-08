@@ -176,8 +176,8 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                         <tr>
                                           <th>Category</th>
                                           <th>Task ID</th>
-                                          <th>Deadline</th>
-                                          <th>Progress</th>
+                                          <th>Completion date</th>
+                                          <th>Assigned Employee</th>
                                           <th>Task Name</th>
                                           <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
@@ -224,8 +224,8 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                         <tr>
                                           <th>Category</th>
                                           <th>Task ID</th>
-                                          <th>Deadline</th>
-                                          <th>Progress</th>
+                                          <th>Completion date</th>
+                                          <th>Assigned Employee</th>
                                           <th>Task Name</th>
                                           <th class="disabled-sorting text-right">Actions</th>
                                         </tr>

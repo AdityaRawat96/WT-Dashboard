@@ -39,24 +39,68 @@ else
       var a1=$('#start_date').val();
       var a2=$('#end_date').val();
       var a3=$('#category').val();
-      if(a1!=""&&a2!=""&&$('#category').val()!=null){
-        $.ajax({
-          type: 'POST',
-          url: '../php/reportByDepartmentDB.php',
-          data: { startdate:a1,enddate:a2,category:a3},
+      if(a1!="")
+      {
+          if(a2!="")
+              {
+                 if($('#category').val()!="")
+                     {
+                        $.ajax({
+                          type: 'POST',
+                          url: '../php/reportByDepartmentDB.php',
+                          data: { startdate:a1,enddate:a2,category:a3},
 
-          beforeSend: function() {
+                          beforeSend: function() {
 
-          },
-          success: function(response) {
-            window.open('../php/departmentReport.php','_self');
-          }
-        });
+                          },
+                          success: function(response) {
+                            window.open('../php/departmentReport.php','_self');
+                          }
+                        }); 
+                     }
+                  else
+                    {      
+                        $('#selectError').css('display','block');
+
+                    }
+              }
+          else
+            {
+               $('#edateError').css('display','block');
+               $('#selectError').css('display','block');
+            }
       }
       else{
-        alert("please enter valid entries");
+       $('#sdateError').css('display','block');
+       $('#edateError').css('display','block');
+       $('#selectError').css('display','block');
+
       }
     }
+        
+      jQuery(function($) { // DOM ready and $ alias secured
+
+          $('#start_date').on('click', function(e){
+               $('#sdateError').css('display','none');
+               $('#edateError').css('display','none');
+               $('#selectError').css('display','none');
+            return false;
+          });
+          $('#end_date').on('click', function(e){
+               $('#sdateError').css('display','none');
+               $('#edateError').css('display','none');
+               $('#selectError').css('display','none');
+            return false;
+          });
+          $('#category').on('change', function(e){
+               $('#sdateError').css('display','none');
+               $('#edateError').css('display','none');
+               $('#selectError').css('display','none');
+            return false;
+          });
+
+
+});
     </script>
   </head>
   <body>
@@ -87,16 +131,18 @@ else
                           <label class="col-sm-2 label-on-left">START DATE:</label>
                           <div class="col-sm-3">
                             <div class="form-group label-floating is-empty">
-                              <input type="text" class="form-control datepicker" name="start_date" id="start_date" onkeydown="return false;"  style="position:relative;top:-4px;">
+                              <input type="text" class="form-control datepicker" name="start_date" id="start_date" style="position:relative;top:-4px;">
                             </div>
+                               <small id="sdateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
                           <label class="col-sm-2 label-on-left">END DATE:</label>
                           <div class="col-sm-3">
                             <div class="form-group label-floating is-empty">
-                              <input type="text" class="form-control datepicker" name="end_date" id="end_date" onkeydown="return false;" style="position:relative;top:-4px;">
-                            </div>
+                              <input type="text" class="form-control datepicker" name="end_date" id="end_date" style="position:relative;top:-4px;">
+                            </div>                              
+                              <small id="edateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
@@ -113,7 +159,9 @@ else
                               <option value="6">VIDEO EDITOR</option>
 
                             </select>
+                              <small id="selectError" style="display:none; color:red;">Please select any value</small>
                           </div>
+
                         </div><br><br>
                         <div class="row" style="margin-left:25%;">
                           <div class="col-md-6 text-center">

@@ -4,7 +4,7 @@ if($_SESSION['Username']=='' || $_SESSION['Rights']!='admin')
 {
   session_unset();
   session_destroy();
-  ?> <script>window.open('../index.html','_self')</script> <?php
+  ?> <script>window.open('../php/cookiesunset.php','_self')</script> <?php
 }
 else
 {
@@ -18,17 +18,17 @@ else
   $roh= mysqli_select_db($con,'wtintern_wt')
   or die("Unable to connect to the database server! <br><hr width=800 style=height:1px;></hr><center><input type=button value=OK id=1 class=buttons onclick=cancelit();></center>");
 
-  $result= mysqli_query($con,"select * from tasks where assigned_date>='$d' and assigned_date<='$e' and task_category='$f'")
-  or die(mysqli_error($con));
+  $result= mysqli_query($con,"select * from tasks where (assigned_date>='$d' and assigned_date<='$e' and task_category='$f') or (assigned_date is null  and task_category='$f')") or die(mysqli_error($con));
   if(mysqli_num_rows($result)>0)
   {
     while($row=mysqli_fetch_array($result))
     {
       $p1=$row['task_id'];
       $p2=$row['task_name'];
-      $p3=$row['task_category'];
+      $p3=$row['assigned_employee'];
       $p4=$row['task_deadline'];
       $p5=$row['task_status'];
+      $p6=$row['completed_on'];
       if($p5=="ONGOING")
       {
         $var++;
@@ -40,7 +40,7 @@ else
       {
         $var1++;
         ?>
-        <tr class="completed"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td><td><?php echo $p3; ?></td><td><?php echo $p4; ?></td></tr>
+        <tr class="completed"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td><td><?php echo $p3; ?></td><td><?php echo $p6; ?></td></tr>
         <?php
       }
       else
@@ -55,10 +55,12 @@ else
     {
       while($row=mysqli_fetch_array($result1))
       {
-        $p1=$row['id'];
+        $p1=$row['username'];
         $p2=$row['name'];
+        $p3=$row['contact'];
+        $p4=$row['email'];
         ?>
-        <tr class="list"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td></tr>
+        <tr class="list"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td><td><?php echo $p3; ?></td><td><?php echo $p4; ?></td></tr>
         <?php
       }
 

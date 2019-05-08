@@ -5,7 +5,7 @@ if($_SESSION['Username']=='' || $_SESSION['Rights']!='admin')
 {
     session_unset();
     session_destroy();
-?> <script>window.open('../index.html','_self')</script> <?php
+?> <script>window.open('../php/cookiesunset.php','_self')</script> <?php
 }
 else
 {
@@ -124,6 +124,21 @@ $j=$_SESSION['reportcontact'];
                 <div class="content">
                     <div class="container">
                       <div class="row">
+                          <div class="col-md-4">
+                            <div class="card" style="height: 300px;">
+                              <div class="card-content">
+                                <h4 class="card-title" style="text-align:center; font-weight:bold;" id="employeeImage">
+                                </h4>
+                                <div class="card-profile">
+                                  <div class="card-avatar" style="height:500px;">
+                                    <a href="#pablo">
+                                      <img class="img" id="logoImage" src="<?php echo $h; ?>" style="background-size:cover;"/>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                       <div class="col-md-8">
                           <div class="card" style="min-height: 300px">
                               <div class="card-header card-header-icon">
@@ -180,25 +195,6 @@ $j=$_SESSION['reportcontact'];
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-4">
-                          <div class="card" style="height: 300px;">
-                              <div class="card-header">
-                              </div>
-                              <div class="card-content">
-                                  <h4 class="card-title">Profile Photo
-                                  </h4>
-
-                                    <div class="card-profile">
-                                      <div class="card-avatar" style="height:500px;">
-                                                    <a href="#pablo">
-                                                        <img class="img" src="<?php echo $h; ?>" style="background-size:cover;"/>
-                                                    </a>
-                                                </div>
-                                    </div>
-
-                              </div>
-                          </div>
-                      </div>
                   </div>
 
                   <div class="row">
@@ -235,9 +231,14 @@ $j=$_SESSION['reportcontact'];
                     </table>
                 </div>
             </div>
+<!--
             <div style="text-align:center;padding-bottom:10px;">
                 <button type="button" class='btn btn-primary' id="linkbutton" onclick="window.open('../reports/reportByEmployee.php');" style="visibility:hidden;">Return Back</button>
             </div>
+-->
+             <div style="text-align:center;padding-bottom:10px;">
+                        <button type="button" class='btn btn-primary' id="printButton">PRINT REPORT</button>
+                      </div>
         </div>
     </div>
 </div>
@@ -249,6 +250,7 @@ $j=$_SESSION['reportcontact'];
 
             </div>
 
+                        
 
 
         </div>
@@ -326,7 +328,33 @@ $j=$_SESSION['reportcontact'];
           });
       });
   </script>
+ <script type="text/javascript">
+        $("#printButton").on("click", function () {
+          $("#tableEmployee1").html($('#tableEmployee').html());
+          $('<iframe>', {
+            name: 'myiframe',
+            class: 'printFrame'
+          })
+          .appendTo('body')
+          .contents().find('body')
+          .append($("#printContainer"));
 
+          window.frames['myiframe'].focus();
+          window.frames['myiframe'].print();
+
+          setTimeout(() => { $(".printFrame").remove(); }, 1000);
+        });
+        </script>
+
+        <style media="screen">
+        @media screen {
+          #printContainer {display:none;}
+        }
+
+        @media print {
+          #printContainer {display:block;}
+        }
+        </style>
 
 </html>
 <?php
