@@ -40,17 +40,10 @@ $(document).ready(function(){
 
 function loginFunction(e)
 {
-    var rem="";
-     if($('#remember').is(":checked")){
-               rem="1";
-            }
-            else{
-                rem="0";
-            }
   $.ajax({
     type: 'POST',
     url: 'pages/php/check.php',
-    data: { Username:$('#username').val(),Password:$('#pwd').val(),Remember:rem },
+    data: { Username:$('#username').val(),Password:$('#pwd').val()},
 
     beforeSend: function() {
 

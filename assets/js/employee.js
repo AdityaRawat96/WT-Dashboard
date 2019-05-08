@@ -21,7 +21,6 @@ $(document).ready(function(){
           alert("Problem occured during Registration.Please try again later. Sorry for inconvenience");
         }
         else{
-
           showAlert();
         }
       }

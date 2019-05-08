@@ -431,8 +431,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
        //Like record
        table.on('click', '.view', function() {
-             var tr = $(this).closest('tr').attr('id');
-                window.open('../employee/userInfo.php?myval='+tr);
+           alert('You clicked on Like button');
        });
 
        $('.card .material-datatables label').addClass('form-group');
@@ -451,7 +450,7 @@ else
     session_unset();
     session_destroy();
     ?>
-    <script>window.open('../php/cookiesunset.php','_self')</script>
+    <script>window.open('../index.html','_self')</script>
     <?php
 }
 ?>

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(session_id()=='')
+{
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -49,7 +52,7 @@ session_start();
             </ul>
           </li>
           <li>
-            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown" onclick="window.open('../employee/Info.php','_self')">
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
             </a>
@@ -251,21 +254,10 @@ function logout(){
     cancelButtonClass: "btn btn-danger",
     buttonsStyling: false
   }).then(function() {
-    $.ajax({
-      url: '../php/logout.php',
-      success: function(response) {
-        window.open("../../index.php", "_self");
-      }
-    });
+    window.open("../php/cookiesunset.php", "_self");
   }, function(dismiss) {
     if (dismiss === 'cancel') {
-      swal({
-        title: 'Cancelled',
-        text: 'You are still signed in :)',
-        type: 'error',
-        confirmButtonClass: "btn btn-info",
-        buttonsStyling: false
-      })
+
     }
   });
 }

@@ -109,9 +109,6 @@ if(!isset($_COOKIE["wtsolutionusername"])||!isset($_COOKIE["wtsolutionrights"]))
                                     <div class="text-center">
                                         <button type="button" class="btn btn-wd btn-lg btn-primary" onclick="loginFunction();" id="login_btn">Sign In</button><br>
                                     </div>
-                                    <div class="text-center">
-                                        <input type="checkbox" id="remember">Remember my account<br>
-                                    </div>
                                 </div>
                             </form>
                         </div>

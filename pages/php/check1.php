@@ -6,7 +6,6 @@ session_start();
 
 $a=$_POST['Username'];
 $b=$_POST['Password'];
-$c=$_POST['Remember'];
 
 $_SESSION["Username"] = "";
 $_SESSION['checkCounter']=0;
@@ -34,12 +33,6 @@ if(mysqli_num_rows($result)>0)
 
     if(strcmp($b,$p3)==0)
     {
-        if($c=='1')
-        {
-            $exp=time()+31536000;
-            setcookie("wtsolutionusername",$p2,$exp,'/');
-            setcookie("wtsolutionrights",$p5,$exp,'/');   
-        }
       $_SESSION['id']=$p0;
       $_SESSION['Rights']=$p5;
       $_SESSION['name']=$p1;

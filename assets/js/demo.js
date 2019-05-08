@@ -300,14 +300,32 @@ var demo = {
           required: true,
           minlength: 3
         },
+        phone: {
+          required: true,
+          minlength: 10
+        },
         email: {
           required: true,
-          minlength: 3,
+          minlength: 3
+        },
+        userImage:{
+          required: true
+        },
+        jobb:{
+          required:true
         }
       },
 
       errorPlacement: function(error, element) {
-        $(element).parent('div').addClass('has-error');
+        if($(element).attr('name')=="userImage"){
+          $('#picError').css('display','inline-block');
+        }
+        else if($(element).attr('name')=="jobb"){
+          $('#skillError').css('display','inline-block');
+        }
+        else{
+          $(element).parent('div').addClass('has-error');
+        }
       }
     });
 
@@ -335,7 +353,7 @@ var demo = {
         var $display_width = $(document).width();
 
         if($display_width < 600 && $total > 3){
-          $width = 50;
+          $width = 100/$total;
         }
 
         navigation.find('li').css('width',$width + '%');
@@ -364,6 +382,7 @@ var demo = {
 
         // If it's the last tab then hide the last button and show the finish instead
         if($current >= $total) {
+          confirmResult();
           $($wizard).find('.btn-next').hide();
           $($wizard).find('.btn-finish').show();
         } else {
@@ -411,13 +430,20 @@ var demo = {
     });
 
     $('[data-toggle="wizard-checkbox"]').on('click',function(){
-      if( $(this).hasClass('active')){
-        $(this).removeClass('active');
-        $(this).find('[type="checkbox"]').removeAttr('checked');
-      } else {
-        $(this).addClass('active');
-        $(this).find('[type="checkbox"]').attr('checked','true');
-      }
+      $('#checkboxGD').removeAttr("checked");
+      $('#checkboxCW').removeAttr("checked");
+      $('#checkboxWD').removeAttr("checked");
+      $('#checkboxDM').removeAttr("checked");
+      $('#checkboxVE').removeAttr("checked");
+      $('#checkboxPR').removeAttr("checked");
+      $('#checkboxDivGD').removeClass("active");
+      $('#checkboxDivCW').removeClass("active");
+      $('#checkboxDivWD').removeClass("active");
+      $('#checkboxDivDM').removeClass("active");
+      $('#checkboxDivVE').removeClass("active");
+      $('#checkboxDivPR').removeClass("active");
+      $(this).addClass('active');
+      $(this).find('[type="checkbox"]').attr('checked','true');
     });
 
     $('.set-full-height').css('height', 'auto');
@@ -449,18 +475,6 @@ var demo = {
       }
       reader.readAsDataURL(input.files[0]);
     }
-
-    $(window).resize(function(){
-      $('.wizard-card').each(function(){
-        $wizard = $(this);
-        index = $wizard.bootstrapWizard('currentIndex');
-        refreshAnimation($wizard, index);
-
-        $('.moving-tab').css({
-          'transition': 'transform 0s'
-        });
-      });
-    });
 
     function refreshAnimation($wizard, index){
       var total_steps = $wizard.find('li').length;

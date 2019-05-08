@@ -27,6 +27,28 @@ else
     <script>
     function myajaxfunction()
     {
+      var departmentCategory = '<?php echo $_SESSION['reportcategory']; ?>';
+      departmentCategory = departmentCategory.toUpperCase();
+      $("#departmentLogo").html(departmentCategory);
+      if(departmentCategory == "WEB DEVELOPMENT"){
+        $("#logoImage").attr("src","../../assets/img/webdevelopment.png")
+      }
+      else if(departmentCategory == "CONTENT WRITNG"){
+        $("#logoImage").attr("src","../../assets/img/contentwriting.png")
+      }
+      else if(departmentCategory == "GRAPHIC DESIGNING"){
+        $("#logoImage").attr("src","../../assets/img/graphicdesigning.png")
+      }
+      else if(departmentCategory == "DIGITAL MARKETING"){
+        $("#logoImage").attr("src","../../assets/img/digitalmarketing.png")
+      }
+      else if(departmentCategory == "PUBLIC RELATIONS"){
+        $("#logoImage").attr("src","../../assets/img/publicrelations.png")
+      }
+      else if(departmentCategory == "VIDEO EDITING"){
+        $("#logoImage").attr("src","../../assets/img/videoediting.png")
+      }
+
       $('body').css('opacity','0.5');
       $('body').css('pointer-events','none');
 
@@ -155,74 +177,88 @@ else
         <!--  Navbar included     -->
         <?php include('../pageElements/navbar.php'); ?>
         <div class="content">
-          <div class="container">
+          <div class="container-fluid">
             <div class="row">
-              <div class="col-md-8">
-                <div class="card" style="min-height: 300px">
-                  <div class="card-header card-header-icon">
-                    <i class="material-icons">user</i>
-                  </div>
+              <div class="col-md-4">
+                <div class="card" style="height: 300px;">
                   <div class="card-content">
-                    <h4 class="card-title">Basic Information
+                    <h4 class="card-title" style="text-align:center; font-weight:bold;" id="departmentLogo">
                     </h4>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Total Employee:</strong> </label></span>
+                    <div class="card-profile">
+                      <div class="card-avatar" style="height:500px;">
+                        <a href="#pablo">
+                          <img class="img" id="logoImage" src="" style="background-size:cover;"/>
+                        </a>
                       </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="temployee" value="<?php echo $a; ?>" id="temployee" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Total Tasks:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="ttasks" id="ttasks" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Pending Tasks:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="ptasks" id="ptasks" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Ongoing Tasks:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="otasks" id="otasks" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Completed Tasks:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="ctasks" id="ctasks" readonly style="border:none;"> </span>
-                      </div>
-
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="card" style="height:378px;overflow-y:scroll;">
+              <div class="col-md-8">
+                <div class="card" style="height: 300px">
+                  <div class="card-header card-header-icon" style="position:relative; top:-5px">
+                    <i class="fas fa-info-circle fa-2x"></i>
+                  </div>
+                  <div class="card-content">
+                    <h4 class="card-title">BASIC INFORMATION:
+                    </h4>
+                    <div class="row">
+                      <table class="table table-borderless">
+                        <tr>
+                          <td>
+                            <span><label for="name"> <strong>TOTAL EMPLOYEES:</strong> </label></span>
+                          </td>
+                          <td>
+                            <span> <input type="text" name="temployee" value="<?php echo $a; ?>" id="temployee" readonly style="border:none;"> </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span><label for="name"><strong>TOTAL TASKS:</strong> </label></span>
+                          </td>
+                          <td>
+                            <span> <input type="text" name="ttasks" id="ttasks" readonly style="border:none;"> </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span><label for="name"> <strong>PENDING TASKS:</strong> </label></span>
+                          </td>
+                          <td>
+                            <span> <input type="text" name="ptasks" id="ptasks" readonly style="border:none;"> </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span><label for="name"> <strong>ONGOING TASKS:</strong> </label></span>
+                          </td>
+                          <td>
+                            <span> <input type="text" name="otasks" id="otasks" readonly style="border:none;"> </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span><label for="name"> <strong>COMPLETED TASKS:</strong> </label></span>
+                          </td>
+                          <td>
+                            <span> <input type="text" name="ctasks" id="ctasks" readonly style="border:none;"> </span>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="card">
                   <div class="card-header">
                   </div>
-                  <div class="card-content" id="noemployeefound">
-                    <h4 class="card-title" style="text-align:center;">Employee List
+                  <div class="card-content" id="noemployeefound" style="padding:4%;">
+                    <h4 class="card-title" style="text-align:center;"><strong>EMPLOYEES LIST:</strong>
                     </h4>
                     <br>
-                    <div class="table-responsive" style="width:70%;margin-left:15%;">
-                      <table class="table table-hover">
+                    <div class="table-responsive">
+                      <table class="table table-hover" id="tableEmployee">
                         <thead class="text-success">
                           <th>ID</th>
                           <th>Name</th>
@@ -243,8 +279,8 @@ else
                 <div class="row">
                   <div class="col-md-12">
                     <div class="card">
-                      <div class="card-content" id="nodatafound">
-                        <h4 class="card-title">ONGOING TASKS</h4>
+                      <div class="card-content" id="nodatafound" style="padding:4%;">
+                        <h4 class="card-title"><strong>ONGOING TASKS:</strong></h4><br>
                         <div class="table-responsive">
                           <table class="table table-hover">
                             <thead class="text-primary">
@@ -257,14 +293,15 @@ else
 
                             </tbody>
                           </table>
-                        </div>
-                        <h4 class="card-title">COMPLETED TASKS</h4>
+                        </div><br><br>
+                        <h4 class="card-title"><strong>COMPLETED TASKS:</strong></h4><br>
                         <div class="table-responsive">
                           <table class="table table-hover">
                             <thead class="text-primary">
                               <th>TASK ID</th>
                               <th>TASK NAME</th>
                               <th>TASK CATEGORY</th>
+                              <th>TASK DEADLINE</th>
                             </thead>
                             <tbody id="completedtable">
 
@@ -273,7 +310,7 @@ else
                         </div>
                       </div>
                       <div style="text-align:center;padding-bottom:10px;">
-                        <button type="button" class='btn btn-primary' id="linkbutton" onclick="window.open('../reports/reportByDepartment.php');" style="visibility:hidden;">Return Back</button>
+                        <button type="button" class='btn btn-primary' id="printButton">PRINT REPORT</button>
                       </div>
                     </div>
                   </div>
@@ -287,6 +324,25 @@ else
             </div>
 
 
+
+          </div>
+
+          <div class="container fluid" id="printContainer" style=" font-family: helvetica;">
+            <div class="row">
+              <center>
+                <h3>WEB DEVELOPMENT:</h3>
+              </center>
+
+            </div>
+            <div class="row">
+              <h5>EMPLOYEE LIST:</h5>
+              <center>
+              <table class="table" id="tableEmployee1" cellpadding='5'>
+
+              </table>
+            </center>
+
+            </div>
 
           </div>
 
@@ -331,39 +387,36 @@ else
         <script src="../../assets/js/demo.js"></script>
 
         <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
+
         <script type="text/javascript">
-        $(document).ready(function() {
-          $("#simple-accordion").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
+        $("#printButton").on("click", function () {
+          $("#tableEmployee1").html($('#tableEmployee').html());
+          $('<iframe>', {
+            name: 'myiframe',
+            class: 'printFrame'
+          })
+          .appendTo('body')
+          .contents().find('body')
+          .append($("#printContainer"));
 
-          $("#simple-accordion-colored").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
+          window.frames['myiframe'].focus();
+          window.frames['myiframe'].print();
 
-          $("#simple-accordion-alt").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
-
-          $("#simple-accordion-alt-2, #simple-accordion-alt-3").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
-
-          $('body').on('click', '#btn-color-targets > .btn', function() {
-            var color = $(this).data('target-color');
-            $('#modalColor').attr('data-modal-color', color);
-          });
+          setTimeout(() => { $(".printFrame").remove(); }, 1000);
         });
         </script>
 
+        <style media="screen">
+        @media screen {
+          #printContainer {display:none;}
+        }
+
+        @media print {
+          #printContainer {display:block;}
+        }
+        </style>
 
         </html>
-      <?php } ?>
+        <?php
+      }
+      ?>

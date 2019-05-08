@@ -93,7 +93,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="wizard-container">
                   <div class="card wizard-card" data-color="rose" id="wizardProfile">
-                    <form action="#" method="POST" id="uploadForm">
+                    <form action="#" method="POST" id="uploadForm" autocomplete="off">
                       <div class="wizard-header">
                         <h3 class="wizard-title">
                           Register an Employee
@@ -103,16 +103,16 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                       <div class="wizard-navigation">
                         <ul class="trackPage">
                           <li>
-                            <a href="#about" data-toggle="tab">About</a>
+                            <a href="#about" data-toggle="tab" onclick="changePageNo(1);">About</a>
                           </li>
                           <li>
-                            <a href="#skills" data-toggle="tab">Skills</a>
+                            <a href="#skills" data-toggle="tab" onclick="checkPicture(); changePageNo(2);">Skills</a>
                           </li>
                           <li>
-                            <a href="#address" data-toggle="tab">Address</a>
+                            <a href="#address" data-toggle="tab" onclick="changePageNo(3);">Address</a>
                           </li>
                           <li>
-                            <a href="#confirm" data-toggle="tab">Confirm</a>
+                            <a href="#confirm" data-toggle="tab" onclick="changePageNo(4); confirmResult();">Confirm</a>
                           </li>
                         </ul>
                       </div>
@@ -158,8 +158,8 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 <span class="input-group-addon">&nbsp;
                                   <i class="fas fa-calendar-alt"></i>
                                 </span>
-                                <div class="form-group label-floating" id='divdib' onclick="$('#dateError').css('color','black')">
-                                  <label class="control-label" id="dateError">Date of Birth
+                                <div class="form-group label-floating" id='divdib'>
+                                  <label class="control-label">Date of Birth
                                     <small>(required)</small>
                                   </label>
                                   <input type="text" id="edob" class="datepicker form-control" onkeydown="return false;" name="employee_dob" required onblur="$('#divdib').removeClass('is-empty');" />
@@ -201,7 +201,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                           <div class="row">
                             <div class="col-lg-10">
                               <div class="col-sm-4">
-                                <div class="choice" id="checkboxDivGD" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
+                                <div class="choice" id="checkboxDivGD" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivGD','checkboxGD');">
                                   <input type="checkbox" name="jobb" value="Graphic Designing" id="checkboxGD" required>
                                   <div class="icon">
                                     <i class="fas fa-pencil-ruler"></i>
@@ -210,7 +210,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 </div>
                               </div>
                               <div class="col-sm-4">
-                                <div class="choice" id="checkboxDivWD" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
+                                <div class="choice" id="checkboxDivWD" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivWD','checkboxWD');">
                                   <input type="checkbox" name="jobb" value="Web Development" id="checkboxWD" required>
                                   <div class="icon">
                                     <i class="fa fa-terminal"></i>
@@ -219,7 +219,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 </div>
                               </div>
                               <div class="col-sm-4">
-                                <div class="choice" id="checkboxDivCW" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
+                                <div class="choice" id="checkboxDivCW" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivCW','checkboxCW');">
                                   <input type="checkbox" name="jobb" value="Content Writing" id="checkboxCW" required>
                                   <div class="icon">
                                     <i class="fas fa-edit"></i>
@@ -228,7 +228,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 </div>
                               </div>
                               <div class="col-sm-4">
-                                <div class="choice" id="checkboxDivDM" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
+                                <div class="choice" id="checkboxDivDM" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivDM','checkboxDM');">
                                   <input type="checkbox" name="jobb" value="Digital Marketing" id="checkboxDM" required>
                                   <div class="icon">
                                     <i class="fas fa-globe-asia"></i>
@@ -237,7 +237,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 </div>
                               </div>
                               <div class="col-sm-4">
-                                <div class="choice" id="checkboxDivVE" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
+                                <div class="choice" id="checkboxDivVE" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivVE','checkboxVE');">
                                   <input type="checkbox" name="jobb" value="Video Editing" id="checkboxVE" required>
                                   <div class="icon">
                                     <i class="fas fa-video"></i>
@@ -246,7 +246,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 </div>
                               </div>
                               <div class="col-sm-4">
-                                <div class="choice" id="checkboxDivPR" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
+                                <div class="choice" id="checkboxDivPR" data-toggle="wizard-checkbox" onclick="checkboxValidation('checkboxDivPR','checkboxPR');">
                                   <input type="checkbox" name="jobb" value="Public Relations" id="checkboxPR" required>
                                   <div class="icon">
                                     <i class="fas fa-users"></i>
@@ -265,7 +265,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                             <div class="col-sm-7 col-sm-offset-1">
                               <div class="form-group label-floating">
                                 <label class="control-label">Current Address</label>
-                                <input type="text" class="form-control" name="currentAddress" id="currentAddress" required>
+                                <input type="text" class="form-control" name="currentAddress" id="currentAddress" required onclick="console.log(pageNo);">
                               </div>
                             </div>
                             <div class="col-sm-7 col-sm-offset-1">
@@ -287,7 +287,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                 <table style="width:90%;">
                                   <tr>
                                     <td style="width:20%"><label>First Name:</label></td>
-                                    <td style="width:50%"><input id="confirmfname" type="text" name="confirmfname" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td style="width:50%"><input id="confirmfname" type="text" name="confirmfname" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                     <td rowspan="3" style="width:30%">
                                       <div class="picture">
                                         <img src="../../assets/img/faces/avatar.png" class="picture-src" id="confirmwizardPicturePreview" title="" />
@@ -296,31 +296,31 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   </tr>
                                   <tr>
                                     <td style="width:20%"><label>Last Name:</label></td>
-                                    <td style="width:50%"><input id="confirmlname" type="text" name="confirmlname" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td style="width:50%"><input id="confirmlname" type="text" name="confirmlname" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                   </tr>
                                   <tr>
                                     <td style="width:20%"><label>Date of Birth:</label></td>
-                                    <td style="width:50%"><input id="confirmdob" type="text" name="confirmdob" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td style="width:50%"><input id="confirmdob" type="text" name="confirmdob" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                   </tr>
                                   <tr>
                                     <td style="width:20%"><label>Phone:</label></td>
-                                    <td colspan="2"><input id="confirmphone" type="text" name="confirmphone" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td colspan="2"><input id="confirmphone" type="text" name="confirmphone" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                   </tr>
                                   <tr>
                                     <td style="width:20%"><label>e-mail:</label></td>
-                                    <td colspan="2"><input id="confirmemail" type="text" name="confirmemail" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td colspan="2"><input id="confirmemail" type="text" name="confirmemail" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                   </tr>
                                   <tr>
                                     <td style="width:20%"><label>Skill:</label></td>
-                                    <td colspan="2"><input id="confirmskill" type="text" name="confirmskill" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td colspan="2"><input id="confirmskill" type="text" name="confirmskill" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                   </tr>
                                   <tr>
                                     <td style="width:20%"><label>Current Address:</label></td>
-                                    <td colspan="2"><input id="confirmcaddress" type="text" name="confirmcaddress" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td colspan="2"><input id="confirmcaddress" type="text" name="confirmcaddress" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                   </tr>
                                   <tr>
                                     <td style="width:20%"><label>Permanent Address:</label></td>
-                                    <td colspan="2"><input id="confirmpaddress" type="text" name="confirmpaddress" value="" class="form-control" onkeydown='return(false);' style="margin-bottom:20px;"></td>
+                                    <td colspan="2"><input id="confirmpaddress" type="text" name="confirmpaddress" value="" class="form-control" disabled  style="margin-bottom:20px;"></td>
                                   </tr>
                                 </table>
                               </center>
@@ -411,10 +411,36 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
 
   <script>
+  var pageNo = 1;
+  var checkCounter = 0;
+
   $(document).ready(function() {
+
 
     demo.initFormExtendedDatetimepickers();
     demo.initMaterialWizard();
+
+    $("#nextButton").on('click', function(e){
+      console.log($('.trackPage > .active >a').text());
+      if(pageNo == 1){
+        if(checkPicture() && ($('.trackPage > .active >a').text()=="Skills")){
+          pageNo++;
+        }
+      }
+      else if(pageNo == 2){
+        if(checkSkills()){
+          pageNo++;
+        }
+      }
+      else if(pageNo == 3){
+        confirmResult();
+        pageNo++;
+      }
+      // pageNo++;
+    });
+    $("#prevButton").on('click', function(e){
+      pageNo--;
+    });
 
     $('#ephone').keypress(function(key) {
       if(key.charCode < 48 || key.charCode > 57) return false;
@@ -425,9 +451,44 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     });
   });
 
-  function checkboxValidation(){
-    $('#skillError').fadeOut();
+  function changePageNo(n){
+    pageNo = n;
   }
+
+  function checkPicture(){
+    if($("#wizard-picture").val()==''){
+      $("#picError").fadeIn();
+      return false;
+    }
+    return true;
+  }
+
+  function checkboxValidation(r,s){
+    checkCounter = 1;
+    $('#skillError').fadeOut();
+    $('#checkboxGD').removeAttr("checked");
+    $('#checkboxCW').removeAttr("checked");
+    $('#checkboxWD').removeAttr("checked");
+    $('#checkboxDM').removeAttr("checked");
+    $('#checkboxVE').removeAttr("checked");
+    $('#checkboxPR').removeAttr("checked");
+    $('#checkboxDivGD').removeClass("active");
+    $('#checkboxDivCW').removeClass("active");
+    $('#checkboxDivWD').removeClass("active");
+    $('#checkboxDivDM').removeClass("active");
+    $('#checkboxDivVE').removeClass("active");
+    $('#checkboxDivPR').removeClass("active");
+
+    $('#'+s).attr("checked","checked");
+  }
+  function checkSkills(){
+    if(checkCounter == 0){
+      $('#skillError').fadeIn();
+      return false;
+    }
+    return true;
+  }
+
   function copyAddress(checkbox){
     if(checkbox.checked == true){
       $("#permanentAddress").val($("#currentAddress").val());
@@ -436,6 +497,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
       $("#permanentAddress").val('');
     }
   }
+
   function confirmResult(){
     $("#confirmwizardPicturePreview").attr("src",$('#wizardPicturePreview').attr("src"));
 
@@ -448,6 +510,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     $("#confirmpaddress").val($("#permanentAddress").val());
     $("#confirmcaddress").val($("#currentAddress").val());
   }
+
 
 </script>
 
