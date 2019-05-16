@@ -29,7 +29,18 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+    <style media="screen">
 
+    /* Hide HTML5 Up and Down arrows. */
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    </style>
 
     <script type="text/javascript">
 
@@ -53,7 +64,12 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
   </head>
 
-  <body>
+  <body onload="$('.loader').fadeOut();">
+    <div class="loader" style="z-index:300; position:fixed; height:100%; width:100%; background-color:black; opacity: 0.8; padding-top:35vh;">
+      <center>
+        <img src="../../assets/img/loader.svg" style="position:relative; height:200px; width:200px;">
+      </center>
+    </div>
     <div class="wrapper">
 
       <!--  Sidebar included     -->
@@ -140,7 +156,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">First Name
                                     <small>(required)</small>
                                   </label>
-                                  <input name="firstname" type="text" class="form-control" id="efname">
+                                  <input name="firstname" type="text" class="form-control" id="efname" maxlength="20">
                                 </div>
                               </div>
                               <div class="input-group">
@@ -151,7 +167,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">Last Name
                                     <small>(required)</small>
                                   </label>
-                                  <input name="lastname" type="text" class="form-control" id="elname">
+                                  <input name="lastname" type="text" class="form-control" id="elname" maxlength="20">
                                 </div>
                               </div>
                               <div class="input-group">
@@ -162,7 +178,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label" id="dateError">Date of Birth
                                     <small>(required)</small>
                                   </label>
-                                  <input type="text" id="edob" class="datepicker form-control" onkeydown="return false;" name="employee_dob" required onblur="$('#divdib').removeClass('is-empty');" />
+                                  <input type="text" maxlength="10" id="edob" class="datepicker form-control" onkeydown="return false;" name="employee_dob" required onblur="$('#divdib').removeClass('is-empty');" />
                                 </div>
                               </div>
                             </div>
@@ -175,7 +191,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">Phone
                                     <small>(required)</small>
                                   </label>
-                                  <input name="phone" type="number" class="form-control" required id="ephone">
+                                  <input name="phone" type="number" class="form-control" required id="ephone" maxlength="10">
                                 </div>
                               </div>
                               <div class="input-group">
@@ -186,7 +202,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">Email
                                     <small>(required)</small>
                                   </label>
-                                  <input name="email" type="email" class="form-control" id="eemail">
+                                  <input name="email" type="email" class="form-control" id="eemail"  maxlength="40">
                                 </div>
                               </div>
                             </div>
@@ -332,7 +348,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                       <div class="wizard-footer">
                         <div class="pull-right">
                           <input type='button' id="nextButton" class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Next' />
-                          <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
+                          <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' onclick="$('.loader').fadeIn();"/>
                         </div>
                         <div class="pull-left">
                           <input type='button' id="prevButton" class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />

@@ -31,6 +31,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
 </head>
 
 <body>
+  <div class="loader" style="z-index:300; position:fixed; height:100%; width:100%; background-color:black; opacity: 0.8; padding-top:35vh;">
+    <center>
+      <img src="../../assets/img/loader.svg" style="position:relative; height:200px; width:200px;">
+    </center>
+  </div>
   <div class="wrapper">
 
     <!--  Sidebar included     -->
@@ -144,6 +149,9 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
 var cno=0,pno=0,ono=0;
 $(document).ready(function() {
   getNotice();
+  $(document).ajaxComplete(function () {
+        $('.loader').fadeOut();
+   });
 });
 
 function getNotice(){

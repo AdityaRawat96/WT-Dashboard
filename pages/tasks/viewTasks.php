@@ -31,6 +31,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   </head>
 
   <body onload="load()">
+    <div class="loader" style="z-index:300; position:fixed; height:100%; width:100%; background-color:black; opacity: 0.8; padding-top:35vh;">
+      <center>
+        <img src="../../assets/img/loader.svg" style="position:relative; height:200px; width:200px;">
+      </center>
+    </div>
     <div class="wrapper">
 
       <!--  Sidebar included     -->
@@ -308,6 +313,9 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   <script>
   var userId;
   $(document).ready(function() {
+    $(document).ajaxComplete(function () {
+          $('.loader').fadeOut();
+     });
     $("#simple-accordion").accordion({
       collapsible: true,
       animate: 200,

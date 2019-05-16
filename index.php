@@ -48,6 +48,12 @@ if(!isset($_COOKIE["wtsolutionusername"])||!isset($_COOKIE["wtsolutionrights"]))
 </head>
 
 <body style="background-image: linear-gradient(#5785B0, #00B4B4) !important;">
+  <div class="loader" style="display: none; z-index:300; position:fixed; height:100%; width:100%; background-color:black; opacity: 0.8; padding-top:35vh;">
+    <center>
+      <img src="assets/img/loader.svg" style="position:relative; height:200px; width:200px;">
+    </center>
+  </div>
+
   <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
       <div class="container">
           <div class="navbar-header">
@@ -278,4 +284,4 @@ else
 <?php
     }
 }
-?> 
+?>

@@ -53,7 +53,7 @@ function loginFunction(e)
     data: { Username:$('#username').val(),Password:$('#pwd').val(),Remember:rem },
 
     beforeSend: function() {
-
+      $('.loader').fadeIn();
     },
     success: function(response) {
       if ( response.match(/aConfirmed/) )
@@ -74,11 +74,13 @@ function loginFunction(e)
       }
       else if ( response.match(/username_problem/) )
       {
+        $('.loader').fadeOut();
         $('#pwd').focus();
         $('#incorrectCredentials').css('visibility','visible');
       }
       else if ( response.match(/password_problem/) )
       {
+        $('.loader').fadeOut();
         $('#pwd').focus();
         $('#incorrectCredentials').css('visibility','visible');
       }

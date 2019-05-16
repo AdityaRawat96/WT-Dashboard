@@ -18,9 +18,11 @@ $(document).ready(function(){
       {
         if(response.match(/error/))
         {
+          $('.loader').fadeOut();
           alert("Problem occured during Registration.Please try again later. Sorry for inconvenience");
         }
         else{
+          $('.loader').fadeOut();
           showAlert();
         }
       }
