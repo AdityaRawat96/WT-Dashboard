@@ -12,6 +12,8 @@
       <th>Email</th>
       <th>Department</th>
       <th>notificationCount</th>
+      <th>Image Path</th>
+
     </thead>
     <tbody>
 
@@ -29,7 +31,8 @@
         $rights=$row['rights'];
         $email=$row['email'];
         $department=$row['category'];
-        $notification=$row['notification_count'];
+        $notification=$row['notification_count'];      
+        $img=$row['img_path'];
 
         ?>
         <tr>
@@ -41,6 +44,7 @@
           <td><?php echo $email; ?></td>
           <td><?php echo $department; ?></td>
           <td><?php echo $notification; ?></td>
+          <td><?php echo $img; ?></td>
         </tr>
         <?php
       }

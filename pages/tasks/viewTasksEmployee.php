@@ -13,8 +13,8 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
     <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -250,6 +250,13 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
 
   <script>
   $(document).ready(function() {
+    $('.navbar-brand').html('View Tasks');
+    $('.activeTabsSidebar').removeClass('active');
+    $('#activeTabsSidebarTask').addClass('active');
+    $('#activeTabsSidebarViewTask').addClass('active');
+    $('#tasks').addClass('in');
+    $('#tasks').css('height','');
+
     $(document).ajaxComplete(function () {
           $('.loader').fadeOut();
      });
@@ -280,6 +287,7 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
       },
       success: function(response) {
         $('#main').html(response);
+           $('.loader').fadeOut();
         addData();
       }
     });
@@ -322,6 +330,7 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
   }
   function updateProgress(rid)
   {
+       $('.loader').fadeIn();
     var rowId=rid;
     $.ajax({
       type: 'post',
@@ -330,6 +339,7 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
         rowId: rowId
       },
       success: function( data ) {
+           $('.loader').fadeOut();
         $("#dataContainer").html(data);
         $("#myButton").trigger( "click" );
       }
@@ -382,6 +392,7 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
 
   function myInfoFunction(rid)
   {
+       $('.loader').fadeIn();
     var rowId=rid;
     $.ajax({
       type: 'post',
@@ -390,6 +401,7 @@ if($_SESSION['Username']!=""&&$_SESSION['Rights']=='employee')
         rowId: rowId
       },
       success: function( data ) {
+           $('.loader').fadeOut();
         $("#dataContainer").html(data);
         $("#myButton").trigger( "click" );
       }

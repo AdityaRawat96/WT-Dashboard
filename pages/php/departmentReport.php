@@ -21,7 +21,7 @@ else
     <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <script>
@@ -176,7 +176,7 @@ else
 
         <!--  Navbar included     -->
         <?php include('../pageElements/navbar.php'); ?>
-        <div class="content">
+        <div class="content" style="overflow:hidden;">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-4">
@@ -391,6 +391,10 @@ else
         <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
 
         <script type="text/javascript">
+        $(document).ready(function(){
+          $(".table-responsive").perfectScrollbar();
+        });
+
         $("#printButton").on("click", function () {
           $("#tableEmployee1").html($('#tableEmployee').html());
           $('<iframe>', {

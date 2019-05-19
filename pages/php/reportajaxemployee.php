@@ -13,7 +13,7 @@ else
   $f=$_SESSION['reportcategory'];
   $g=$_SESSION['reporteid'];
 
-
+ echo $d." ".$e." ".$f." ".$g;
   include('connection.php');
   $roh= mysqli_select_db($con,'wtintern_wt')
   or die("Unable to connect to the database server! <br><hr width=800 style=height:1px;></hr><center><input type=button value=OK id=1 class=buttons onclick=cancelit();></center>");
@@ -33,12 +33,12 @@ else
       if($p5=="ONGOING")
       {
         ?>
-        <tr class="ongoing"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td><td><?php echo $p3; ?></td><td><?php echo $p4; ?></td></tr>
+        <tr class="ongoing"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td><td><?php echo $f; ?></td><td><?php echo $p4; ?></td></tr>
         <?php
       }
       else if($p5=="COMPLETED")
       {?>
-        <tr class="completed"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td><td><?php echo $p3; ?></td><td><?php echo $p6; ?></td></tr>
+        <tr class="completed"><td><?php echo $p1; ?></td><td><?php echo $p2; ?></td><td><?php echo $p4; ?></td><td><?php echo $p6; ?></td></tr>
         <?php
       }
     }
@@ -52,7 +52,6 @@ else
     unset($_SESSION['reporteid']);
     echo 'failure';
     ?>
-    <!-- <script>window.open('error.php?val=2','_self');</script> -->
     <?php
   }
 

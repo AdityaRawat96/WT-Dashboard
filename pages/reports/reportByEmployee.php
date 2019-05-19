@@ -19,7 +19,7 @@ else
     <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -43,53 +43,53 @@ else
       var a3=$('#category').val();
       var a4=$('#employeeDropdown').val();
 
-        
-        if(a1!="")
+
+      if(a1!="")
       {
-          if(a2!="")
-              {
-                 if($('#category').val()!="")
-                     {
-                          if($('#employeeDropdown').val()!="")
-                            {
-                                $.ajax({
-                                  type: 'POST',
-                                  url: '../php/reportByDepartmentDB.php',
-                                  data: { startdate:a1,enddate:a2,category:a3,employee:a4},
-
-                                  beforeSend: function() {
-
-                                  },
-                                  success: function(response) {
-                                    window.open('../php/employeeReport.php','_self');
-                                  }
-                                });
-                            }
-                         else
-                             {
-                                $('#select1Error').css('display','block');
-                             }
-                     }
-                  else
-                    {      
-                        $('#selectError').css('display','block');
-
-                    }
-              }
-          else
+        if(a2!="")
+        {
+          if($('#category').val()!="")
+          {
+            if($('#employeeDropdown').val()!="")
             {
-               $('#edateError').css('display','block');
-               $('#selectError').css('display','block');
+              $.ajax({
+                type: 'POST',
+                url: '../php/reportByEmployeeDB.php',
+                data: { startdate:a1,enddate:a2,category:a3,employee:a4},
+
+                beforeSend: function() {
+
+                },
+                success: function(response) {
+                  window.open('../php/employeeReport.php','_self');
+                }
+              });
             }
+            else
+            {
+              $('#select1Error').css('display','block');
+            }
+          }
+          else
+          {
+            $('#selectError').css('display','block');
+
+          }
+        }
+        else
+        {
+          $('#edateError').css('display','block');
+          $('#selectError').css('display','block');
+        }
       }
       else{
-       $('#sdateError').css('display','block');
-       $('#edateError').css('display','block');
-       $('#selectError').css('display','block');
+        $('#sdateError').css('display','block');
+        $('#edateError').css('display','block');
+        $('#selectError').css('display','block');
 
       }
-        
-        
+
+
     }
     function myChangeFunction()
     {
@@ -109,44 +109,44 @@ else
         }
       });
     }
-        
-         jQuery(function($) { // DOM ready and $ alias secured
 
-          $('#start_date').on('click', function(e){
-               $('#sdateError').css('display','none');
-               $('#edateError').css('display','none');
-               $('#selectError').css('display','none');
-               $('#select1Error').css('display','none');
+    jQuery(function($) { // DOM ready and $ alias secured
 
-            return false;
-          });
-          $('#end_date').on('click', function(e){
-               $('#sdateError').css('display','none');
-               $('#edateError').css('display','none');
-               $('#selectError').css('display','none');
-               $('#select1Error').css('display','none');
+      $('#start_date').on('click', function(e){
+        $('#sdateError').css('display','none');
+        $('#edateError').css('display','none');
+        $('#selectError').css('display','none');
+        $('#select1Error').css('display','none');
 
-            return false;
-          });
-          $('#category').on('change', function(e){
-               $('#sdateError').css('display','none');
-               $('#edateError').css('display','none');
-               $('#selectError').css('display','none');
-               $('#select1Error').css('display','none');
+        return false;
+      });
+      $('#end_date').on('click', function(e){
+        $('#sdateError').css('display','none');
+        $('#edateError').css('display','none');
+        $('#selectError').css('display','none');
+        $('#select1Error').css('display','none');
 
-            return false;
-          });
-             
-        $('#employeeDropdown').on('change', function(e){
-               $('#sdateError').css('display','none');
-               $('#edateError').css('display','none');
-               $('#selectError').css('display','none');
-               $('#select1Error').css('display','none');
-            return false;
-          });
+        return false;
+      });
+      $('#category').on('change', function(e){
+        $('#sdateError').css('display','none');
+        $('#edateError').css('display','none');
+        $('#selectError').css('display','none');
+        $('#select1Error').css('display','none');
+
+        return false;
+      });
+
+      $('#employeeDropdown').on('change', function(e){
+        $('#sdateError').css('display','none');
+        $('#edateError').css('display','none');
+        $('#selectError').css('display','none');
+        $('#select1Error').css('display','none');
+        return false;
+      });
 
 
-});
+    });
 
     </script>
   </head>
@@ -179,8 +179,8 @@ else
                           <div class="col-sm-3">
                             <div class="form-group label-floating is-empty">
                               <input type="text" class="form-control datepicker" name="start_date" id="start_date" onkeydown="return false;"  style="position:relative;top:-4px;">
-                            </div>                             
-                              <small id="sdateError" style="display:none; color:red;">Please fill this field</small>
+                            </div>
+                            <small id="sdateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
@@ -188,8 +188,8 @@ else
                           <div class="col-sm-3">
                             <div class="form-group label-floating is-empty">
                               <input type="text" class="form-control datepicker" name="end_date" id="end_date" onkeydown="return false;" style="position:relative;top:-4px;">
-                            </div>                               
-                              <small id="edateError" style="display:none; color:red;">Please fill this field</small>
+                            </div>
+                            <small id="edateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
@@ -206,15 +206,15 @@ else
                               <option value="6">VIDEO EDITOR</option>
 
                             </select>
-                              <small id="selectError" style="display:none; color:red;">Please select any value</small>
+                            <small id="selectError" style="display:none; color:red;">Please select any value</small>
                           </div>
                         </div><br><br>
                         <div class="row" id="myEmployee">
                           <label class="col-sm-2 label-on-left" for="employee">SELECT EMPLOYEE:</label>
                           <div class="col-sm-3" style="position:relative;top:6px;">
                             <select class="selectpicker" data-style="btn btn-info btn-round" title="Single Select" id="employeeDropdown" disabled>
-                            </select>                              
-                              <small id="select1Error" style="display:none; color:red;">Please select any value</small>
+                            </select>
+                            <small id="select1Error" style="display:none; color:red;">Please select any value</small>
 
                           </div>
                         </div><br><br>
@@ -286,6 +286,12 @@ else
       <script>
       $(document).ready(function() {
         demo.initFormExtendedDatetimepickers();
+        $('.navbar-brand').html('Employee Report');
+        $('.activeTabsSidebar').removeClass('active');
+        $('#activeTabsSidebarReport').addClass('active');
+        $('#activeTabsSidebarEmployeeReport').addClass('active');
+        $('#reports').addClass('in');
+        $('#reports').css('height','');
       });
 
       </script>

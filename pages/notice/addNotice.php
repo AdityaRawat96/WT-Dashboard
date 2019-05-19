@@ -13,8 +13,8 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+  
+  <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
   <!-- Bootstrap core CSS     -->
@@ -174,6 +174,12 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 <script>
     $(document).ready(function() {
         demo.initFormExtendedDatetimepickers();
+        $('.navbar-brand').html('Send Notice');
+        $('.activeTabsSidebar').removeClass('active');
+        $('#activeTabsSidebarActions').addClass('active');
+        $('#activeTabsSidebarSendNotice').addClass('active');
+        $('#actions').addClass('in');
+        $('#actions').css('height','');
     });
 
 </script>
@@ -291,7 +297,7 @@ else
     session_unset();
     session_destroy();
     ?>
-    <script>window.open('../index.html','_self')</script>
+    <script>window.open('../php/cookiesunset.php','_self')</script>
     <?php
 }
 ?>

@@ -27,7 +27,7 @@ if(isset($_SESSION['Username']))
    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -45,7 +45,12 @@ if(isset($_SESSION['Username']))
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
-<body>
+<body onload="$('.loader').fadeOut();">
+    <div class="loader" style="z-index:300; position:fixed; height:100%; width:100%; background-color:black; opacity: 0.8; padding-top:35vh;">
+      <center>
+        <img src="../../assets/img/loader.svg" style="position:relative; height:200px; width:200px;">
+      </center>
+    </div>
     <div class="wrapper">
 
         <!--  Sidebar included     -->
@@ -59,6 +64,27 @@ if(isset($_SESSION['Username']))
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
+                         
+                        
+                        <div class="col-md-4">
+                            <div class="card" style="min-height: 338px;">
+                              <div class="card-content">
+                                <h4 class="card-title" style="text-align:center; font-weight:bold;" id="employeeImage">
+                                </h4>
+                                <div class="card-profile">
+                                  <div class="card-avatar" style="height:500px;">
+                                    <a href="#pablo">
+                                      <img class="img" id="logoImage" src="<?php echo $img; ?>" style="background-size:cover;"/>
+                                    </a>
+                                     
+                                  </div>
+                                     <h6 class="category text-gray" style="color:black;"><strong><?php echo $rights;?></strong></h6>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                        
                         <div class="col-md-8">
                             <div class="card" id="profile-main">
 
@@ -184,21 +210,7 @@ if(isset($_SESSION['Username']))
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card card-profile">
-                                <div class="card-avatar">
-                                    <a href="#pablo">
-                                        <img class="img" src="<?php echo $img; ?>" />
-                                    </a>
-                                </div>
-                                <div class="card-content">
-                                    <h6 class="category text-gray"><?php echo $rights;?></h6>
-                                    <h4 class="card-title"><?php echo $aname;?></h4>
-                                    
-                                    <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

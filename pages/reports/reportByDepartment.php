@@ -19,7 +19,7 @@ else
     <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -41,66 +41,66 @@ else
       var a3=$('#category').val();
       if(a1!="")
       {
-          if(a2!="")
-              {
-                 if($('#category').val()!="")
-                     {
-                        $.ajax({
-                          type: 'POST',
-                          url: '../php/reportByDepartmentDB.php',
-                          data: { startdate:a1,enddate:a2,category:a3},
+        if(a2!="")
+        {
+          if($('#category').val()!="")
+          {
+            $.ajax({
+              type: 'POST',
+              url: '../php/reportByDepartmentDB.php',
+              data: { startdate:a1,enddate:a2,category:a3},
 
-                          beforeSend: function() {
+              beforeSend: function() {
 
-                          },
-                          success: function(response) {
-                            window.open('../php/departmentReport.php','_self');
-                          }
-                        }); 
-                     }
-                  else
-                    {      
-                        $('#selectError').css('display','block');
-
-                    }
+              },
+              success: function(response) {
+                window.open('../php/departmentReport.php','_self');
               }
+            });
+          }
           else
-            {
-               $('#edateError').css('display','block');
-               $('#selectError').css('display','block');
-            }
+          {
+            $('#selectError').css('display','block');
+
+          }
+        }
+        else
+        {
+          $('#edateError').css('display','block');
+          $('#selectError').css('display','block');
+        }
       }
       else{
-       $('#sdateError').css('display','block');
-       $('#edateError').css('display','block');
-       $('#selectError').css('display','block');
+        $('#sdateError').css('display','block');
+        $('#edateError').css('display','block');
+        $('#selectError').css('display','block');
 
       }
     }
-        
-      jQuery(function($) { // DOM ready and $ alias secured
 
-          $('#start_date').on('click', function(e){
-               $('#sdateError').css('display','none');
-               $('#edateError').css('display','none');
-               $('#selectError').css('display','none');
-            return false;
-          });
-          $('#end_date').on('click', function(e){
-               $('#sdateError').css('display','none');
-               $('#edateError').css('display','none');
-               $('#selectError').css('display','none');
-            return false;
-          });
-          $('#category').on('change', function(e){
-               $('#sdateError').css('display','none');
-               $('#edateError').css('display','none');
-               $('#selectError').css('display','none');
-            return false;
-          });
+    jQuery(function($) { // DOM ready and $ alias secured
+
+      $('#start_date').on('click', function(e){
+        $('#sdateError').css('display','none');
+        $('#edateError').css('display','none');
+        $('#selectError').css('display','none');
+        return false;
+      });
+      $('#end_date').on('click', function(e){
+        $('#sdateError').css('display','none');
+        $('#edateError').css('display','none');
+        $('#selectError').css('display','none');
+        return false;
+      });
+      $('#category').on('change', function(e){
+        $('#sdateError').css('display','none');
+        $('#edateError').css('display','none');
+        $('#selectError').css('display','none');
+        return false;
+      });
 
 
-});
+    });
     </script>
   </head>
   <body>
@@ -133,7 +133,7 @@ else
                             <div class="form-group label-floating is-empty">
                               <input type="text" class="form-control datepicker" name="start_date" id="start_date" style="position:relative;top:-4px;">
                             </div>
-                               <small id="sdateError" style="display:none; color:red;">Please fill this field</small>
+                            <small id="sdateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
@@ -141,8 +141,8 @@ else
                           <div class="col-sm-3">
                             <div class="form-group label-floating is-empty">
                               <input type="text" class="form-control datepicker" name="end_date" id="end_date" style="position:relative;top:-4px;">
-                            </div>                              
-                              <small id="edateError" style="display:none; color:red;">Please fill this field</small>
+                            </div>
+                            <small id="edateError" style="display:none; color:red;">Please fill this field</small>
                           </div>
                         </div><br>
                         <div class="row">
@@ -159,7 +159,7 @@ else
                               <option value="6">VIDEO EDITOR</option>
 
                             </select>
-                              <small id="selectError" style="display:none; color:red;">Please select any value</small>
+                            <small id="selectError" style="display:none; color:red;">Please select any value</small>
                           </div>
 
                         </div><br><br>
@@ -226,6 +226,12 @@ else
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script>
     $(document).ready(function() {
+      $('.navbar-brand').html('Department Report');
+      $('.activeTabsSidebar').removeClass('active');
+      $('#activeTabsSidebarReport').addClass('active');
+      $('#activeTabsSidebarDepartmentReport').addClass('active');
+      $('#reports').addClass('in');
+      $('#reports').css('height','');
       demo.initFormExtendedDatetimepickers();
     });
 

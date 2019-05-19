@@ -34,11 +34,11 @@ if(session_id()=='')
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"> Dashboard </a>
+        <a class="navbar-brand" href="#"></a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown" onclick="updateNotifications();">
+          <li class="dropdown" onclick="updateNotifications();" title="Notifications">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="material-icons">notifications</i>
               <span class="notification" id="notificationCounter" style="visibility:hidden;"></span>
@@ -51,13 +51,13 @@ if(session_id()=='')
 
             </ul>
           </li>
-          <li>
+          <li title="Personal Info">
             <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown" onclick="window.open('../employee/Info.php','_self')">
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
             </a>
           </li>
-          <li onclick="logout();">
+          <li onclick="logout();" title="Logout">
             <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fas fa-power-off fa-2x"></i>
               <p class="hidden-lg hidden-md">Log Out</p>
@@ -92,7 +92,6 @@ $(document).ready(function(){
 
   $(".notificationList").on("click", function(){
     $(this).css("font-weight","lighter");
-    alert("STOP");
     $.ajax({
       type: 'POST',
       url: '../php/updateUserData.php',
@@ -145,7 +144,7 @@ function updateNotifications(){
   });
 }
 
-var pusher = new Pusher('1f80074228f1ab8196f3', {
+var pusher = new Pusher('27e871ff188efd5a73db', {
   cluster: 'ap2',
   forceTLS: true
 });

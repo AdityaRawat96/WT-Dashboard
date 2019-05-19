@@ -12,7 +12,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
     <link rel="apple-touch-icon" sizes="76x76" href="http://www.urbanui.com/" />
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -28,7 +28,12 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
 
   </head>
 
-  <body>
+  <body onload="$('.loader').fadeOut();">
+    <div class="loader" style="z-index:300; position:fixed; height:100%; width:100%; background-color:black; opacity: 0.8; padding-top:35vh;">
+      <center>
+        <img src="../../assets/img/loader.svg" style="position:relative; height:200px; width:200px;">
+      </center>
+    </div>
     <div class="wrapper">
 
       <!--  Sidebar included     -->
@@ -117,12 +122,9 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
                           </div>
                           <div class="row">
                             <div class="col-sm-9">
-                              <center><button type="button" class="btn btn-primary" onclick="krish();" >Submit</button></center>
+                              <center><button type="button" class="btn btn-primary" onclick="sendLeave();" >Submit</button></center>
                             </div>
                           </div>
-
-
-
                         </div>
                       </div>
                     </form>
@@ -131,171 +133,178 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
               </div>
             </div>
           </div>
+
+
+          <!--  Footer included     -->
+          <?php include('../pageElements/footer.php'); ?>
+
         </div>
+
+        <!--  Theme changer included     -->
+        <!--  <?php include('../pageElements/themeChanger.php'); ?>     -->
+
       </div>
+    </body>
+    <!--   Core JS Files   -->
+    <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../assets/vendors/material.min.js" type="text/javascript"></script>
+    <script src="../../assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="../../assets/vendors/jquery.validate.min.js"></script>
+    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+    <script src="../../assets/vendors/moment.min.js"></script>
+    <!--  Charts Plugin -->
+    <script src="../../assets/vendors/charts/flot/jquery.flot.js"></script>
+    <script src="../../assets/vendors/charts/flot/jquery.flot.resize.js"></script>
+    <script src="../../assets/vendors/charts/flot/jquery.flot.pie.js"></script>
+    <script src="../../assets/vendors/charts/flot/jquery.flot.stack.js"></script>
+    <script src="../../assets/vendors/charts/flot/jquery.flot.categories.js"></script>
+    <script src="../../assets/vendors/charts/chartjs/Chart.min.js" type="text/javascript"></script>
 
-      <!--  Footer included     -->
-      <?php include('../pageElements/footer.php'); ?>
+    <!--  Plugin for the Wizard -->
+    <script src="../../assets/vendors/jquery.bootstrap-wizard.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../../assets/vendors/bootstrap-notify.js"></script>
+    <!-- DateTimePicker Plugin -->
+    <script src="../../assets/vendors/bootstrap-datetimepicker.js"></script>
+    <!-- Vector Map plugin -->
+    <script src="../../assets/vendors/jquery-jvectormap.js"></script>
+    <!-- Sliders Plugin -->
+    <script src="../../assets/vendors/nouislider.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
+    <!-- Select Plugin -->
+    <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+    <!--  DataTables.net Plugin    -->
+    <script src="../../assets/vendors/jquery.datatables.js"></script>
+    <!-- Sweet Alert 2 plugin -->
+    <script src="../../assets/vendors/sweetalert2.js"></script>
+    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
+    <!--  Full Calendar Plugin    -->
+    <script src="../../assets/vendors/fullcalendar.min.js"></script>
+    <!-- TagsInput Plugin -->
+    <script src="../../assets/vendors/jquery.tagsinput.js"></script>
+    <!-- Material Dashboard javascript methods -->
+    <script src="../../assets/js/turbo.js"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../../assets/js/demo.js"></script>
 
-    </div>
+    <script src="../../assets/js/charts/flot-charts.js"></script>
+    <script src="../../assets/js/charts/chartjs-charts.js"></script>
 
-    <!--  Theme changer included     -->
-    <!--  <?php include('../pageElements/themeChanger.php'); ?>     -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+      demo.initFormExtendedDatetimepickers();
+      $('.navbar-brand').html('Apply Leave');
+      $('.activeTabsSidebar').removeClass('active');
+      $('#activeTabsSidebarActions').addClass('active');
+      $('#activeTabsSidebarApplyLeave').addClass('active');
+      $('#actions').addClass('in');
+      $('#actions').css('height','');
+    });
+  </script>
+  <script>
 
-  </div>
-</body>
-<!--   Core JS Files   -->
-<script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/material.min.js" type="text/javascript"></script>
-<script src="../../assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-<!-- Forms Validations Plugin -->
-<script src="../../assets/vendors/jquery.validate.min.js"></script>
-<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-<script src="../../assets/vendors/moment.min.js"></script>
-<!--  Charts Plugin -->
-<script src="../../assets/vendors/charts/flot/jquery.flot.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.resize.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.pie.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.stack.js"></script>
-<script src="../../assets/vendors/charts/flot/jquery.flot.categories.js"></script>
-<script src="../../assets/vendors/charts/chartjs/Chart.min.js" type="text/javascript"></script>
-
-<!--  Plugin for the Wizard -->
-<script src="../../assets/vendors/jquery.bootstrap-wizard.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../../assets/vendors/bootstrap-notify.js"></script>
-<!-- DateTimePicker Plugin -->
-<script src="../../assets/vendors/bootstrap-datetimepicker.js"></script>
-<!-- Vector Map plugin -->
-<script src="../../assets/vendors/jquery-jvectormap.js"></script>
-<!-- Sliders Plugin -->
-<script src="../../assets/vendors/nouislider.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
-<!-- Select Plugin -->
-<script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
-<!--  DataTables.net Plugin    -->
-<script src="../../assets/vendors/jquery.datatables.js"></script>
-<!-- Sweet Alert 2 plugin -->
-<script src="../../assets/vendors/sweetalert2.js"></script>
-<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-<script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
-<!--  Full Calendar Plugin    -->
-<script src="../../assets/vendors/fullcalendar.min.js"></script>
-<!-- TagsInput Plugin -->
-<script src="../../assets/vendors/jquery.tagsinput.js"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="../../assets/js/turbo.js"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../../assets/js/demo.js"></script>
-
-<script src="../../assets/js/charts/flot-charts.js"></script>
-<script src="../../assets/js/charts/chartjs-charts.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  demo.initFormExtendedDatetimepickers();
-});
-</script>
-<script>
-
-function myFunction()
-{
-  $.ajax({
-    type: 'POST',
-    url: '../php/leaveStatus.php',
-    data: {value:1},
-
-    beforeSend: function() {
-    },
-    success: function(response) {
-      window.open('../leave/viewLeave.php','_self');
-    }
-  });
-}
-
-function krish()
-{
-  if($('#sel1').val()==null || $('#leaveFrom').val()=="" || $('#leaveTo').val()=="" || $('#message').val()=='')
-  {
-    alert('Please enter valid entries');
-  }
-  else
+  function myFunction()
   {
     $.ajax({
+      type: 'POST',
+      url: '../php/leaveStatus.php',
+      data: {value:1},
 
-      url:"leave.php",
-      type:"POST",
-      data: {subject:$('#sel1').val(),message:$("#message").val(),leaveFrom:$("#leaveFrom").val(),leaveTo:$("#leaveTo").val()},
-
-      beforeSend:function()
-      {
+      beforeSend: function() {
       },
-      success: function(response)
-      {
-        if(response.match(/success/)){
-          sendNotification()
-        }
-        else{
-          swal({
-            title: "Error occured!",
-            timer: 5000,
-            text: "Please try again",
-            buttonsStyling: false,
-            confirmButtonClass: "btn btn-success",
-            type: "warning"
-          });
-        }
+      success: function(response) {
+        window.open('../leave/viewLeave.php','_self');
       }
     });
   }
-}
 
-//Sending Notification
-var name = '<?php echo $_SESSION['name'] ?>';
-function sendNotification(){
-  $.ajax({
-    type: 'POST',
-    url: '../php/sendNotification.php',
-    data: {  category: "leave", name: name, description: "applied for a leave.", target: "admin", link: "../leave/viewLeave.php" },
-
-    success: function(response) {
-      sendAlert();
+  function sendLeave()
+  {
+    if($('#sel1').val()==null || $('#leaveFrom').val()=="" || $('#leaveTo').val()=="" || $('#message').val()=='')
+    {
+      alert('Please enter valid entries');
     }
-  });
-}
-function sendAlert(){
-  var data = {
-    category: "leave",
-    name: name,
-    description: "applied for a leave.",
-    target: "admin",
-    link: "../leave/viewLeave.php"
-  };
-  $.ajax({
-    type: 'POST',
-    url: '../../pusher.php',
-    data: { data: data},
+    else
+    {
+      $('.loader').fadeIn();
+      $.ajax({
 
-    success : function(response){
-      swal({
-        title: "Done!",
-        timer: 5000,
-        text: "Leave placed successfully!",
-        buttonsStyling: false,
-        confirmButtonClass: "btn btn-success",
-        type: "success"
-      }).then(function(){
-        $('#message').val("");
-        $('#leaveFrom').val("");
-        $('#leaveTo').val("");
-        $('#sel1').val("null");
+        url:"leave.php",
+        type:"POST",
+        data: {subject:$('#sel1').val(),message:$("#message").val(),leaveFrom:$("#leaveFrom").val(),leaveTo:$("#leaveTo").val()},
+
+        beforeSend:function()
+        {
+        },
+        success: function(response)
+        {
+          $('.loader').fadeOut();
+          if(response.match(/success/)){
+            sendNotification()
+          }
+          else{
+            swal({
+              title: "Error occured!",
+              timer: 5000,
+              text: "Please try again",
+              buttonsStyling: false,
+              confirmButtonClass: "btn btn-success",
+              type: "warning"
+            });
+          }
+        }
       });
     }
-  });
-}
+  }
+
+  //Sending Notification
+  var name = '<?php echo $_SESSION['name'] ?>';
+  function sendNotification(){
+    $.ajax({
+      type: 'POST',
+      url: '../php/sendNotification.php',
+      data: {  category: "leave", name: name, description: "applied for a leave.", target: "admin", link: "../leave/viewLeave.php" },
+
+      success: function(response) {
+        sendAlert();
+      }
+    });
+  }
+  function sendAlert(){
+    var data = {
+      category: "leave",
+      name: name,
+      description: "applied for a leave.",
+      target: "admin",
+      link: "../leave/viewLeave.php"
+    };
+    $.ajax({
+      type: 'POST',
+      url: '../../pusher.php',
+      data: { data: data},
+
+      success : function(response){
+        swal({
+          title: "Done!",
+          timer: 5000,
+          text: "Leave placed successfully!",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          type: "success"
+        }).then(function(){
+          $('#message').val("");
+          $('#leaveFrom').val("");
+          $('#leaveTo').val("");
+          $('#sel1').val("null");
+        });
+      }
+    });
+  }
 
 </script>
 

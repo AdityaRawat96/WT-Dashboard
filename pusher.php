@@ -7,9 +7,9 @@
     'useTLS' => true
   );
   $pusher = new Pusher\Pusher(
-    '1f80074228f1ab8196f3',
-    'c31a838000d78bdbb657',
-    '769765',
+    '27e871ff188efd5a73db',
+    '7612eaa70836d4dd75ba',
+    '784377',
     $options
   );
 

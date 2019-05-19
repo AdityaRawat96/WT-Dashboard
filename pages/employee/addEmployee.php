@@ -12,7 +12,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -140,7 +140,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                               <div class="picture-container">
                                 <div class="picture">
                                   <img src="../../assets/img/faces/avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                  <input name="userImage" type="file" id="wizard-picture" required onclick="$('#picError').fadeOut();">
+                                  <input name="userImage" type="file" accept="image/*" id="wizard-picture" required onclick="$('#picError').fadeOut();">
                                   <input type="hidden" id="imagebase64" name="imagebase64">
                                 </div>
                                 <h6>Choose Picture</h6>
@@ -156,7 +156,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">First Name
                                     <small>(required)</small>
                                   </label>
-                                  <input name="firstname" type="text" class="form-control" id="efname" maxlength="20">
+                                  <input name="firstname" type="text" class="form-control" id="efname" maxlength="20" autocomplete="nope">
                                 </div>
                               </div>
                               <div class="input-group">
@@ -167,7 +167,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">Last Name
                                     <small>(required)</small>
                                   </label>
-                                  <input name="lastname" type="text" class="form-control" id="elname" maxlength="20">
+                                  <input name="lastname" type="text" class="form-control" id="elname" maxlength="20" autocomplete="nope">
                                 </div>
                               </div>
                               <div class="input-group">
@@ -178,7 +178,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label" id="dateError">Date of Birth
                                     <small>(required)</small>
                                   </label>
-                                  <input type="text" maxlength="10" id="edob" class="datepicker form-control" onkeydown="return false;" name="employee_dob" required onblur="$('#divdib').removeClass('is-empty');" />
+                                  <input type="text" maxlength="10" id="edob" class="datepicker form-control" onkeydown="return false;" name="employee_dob" required onblur="$('#divdib').removeClass('is-empty');" autocomplete="nope" />
                                 </div>
                               </div>
                             </div>
@@ -191,7 +191,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">Phone
                                     <small>(required)</small>
                                   </label>
-                                  <input name="phone" type="number" class="form-control" required id="ephone" maxlength="10">
+                                  <input name="phone" type="number" class="form-control" required id="ephone" maxlength="10" autocomplete="nope">
                                 </div>
                               </div>
                               <div class="input-group">
@@ -202,7 +202,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                                   <label class="control-label">Email
                                     <small>(required)</small>
                                   </label>
-                                  <input name="email" type="email" class="form-control" id="eemail"  maxlength="40">
+                                  <input name="email" type="email" class="form-control" id="eemail"  maxlength="40" autocomplete="nope">
                                 </div>
                               </div>
                             </div>
@@ -218,7 +218,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                             <div class="col-lg-10">
                               <div class="col-sm-4">
                                 <div class="choice" id="checkboxDivGD" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
-                                  <input type="checkbox" name="jobb" value="Graphic Designing" id="checkboxGD" required>
+                                  <input type="checkbox" name="jobb" value="Graphic Designing" id="checkboxGD" autocomplete="nope" required>
                                   <div class="icon">
                                     <i class="fas fa-pencil-ruler"></i>
                                   </div>
@@ -227,7 +227,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                               </div>
                               <div class="col-sm-4">
                                 <div class="choice" id="checkboxDivWD" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
-                                  <input type="checkbox" name="jobb" value="Web Development" id="checkboxWD" required>
+                                  <input type="checkbox" name="jobb" value="Web Development" id="checkboxWD" autocomplete="nope" required>
                                   <div class="icon">
                                     <i class="fa fa-terminal"></i>
                                   </div>
@@ -236,7 +236,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                               </div>
                               <div class="col-sm-4">
                                 <div class="choice" id="checkboxDivCW" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
-                                  <input type="checkbox" name="jobb" value="Content Writing" id="checkboxCW" required>
+                                  <input type="checkbox" name="jobb" value="Content Writing" id="checkboxCW" autocomplete="nope" required>
                                   <div class="icon">
                                     <i class="fas fa-edit"></i>
                                   </div>
@@ -245,7 +245,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                               </div>
                               <div class="col-sm-4">
                                 <div class="choice" id="checkboxDivDM" data-toggle="wizard-checkbox" onclick="checkboxValidation();">
-                                  <input type="checkbox" name="jobb" value="Digital Marketing" id="checkboxDM" required>
+                                  <input type="checkbox" name="jobb" value="Digital Marketing" id="checkboxDM" autocomplete="nope" required>
                                   <div class="icon">
                                     <i class="fas fa-globe-asia"></i>
                                   </div>
@@ -281,13 +281,13 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                             <div class="col-sm-7 col-sm-offset-1">
                               <div class="form-group label-floating">
                                 <label class="control-label">Current Address</label>
-                                <input type="text" class="form-control" name="currentAddress" id="currentAddress" required>
+                                <input type="text" class="form-control" name="currentAddress" id="currentAddress" autocomplete="nope" required>
                               </div>
                             </div>
                             <div class="col-sm-7 col-sm-offset-1">
                               <div class="form-group label-floating">
                                 <label class="control-label">Permanent Address</label>
-                                <input type="text" class="form-control" name="permanentAddress" id="permanentAddress" required>
+                                <input type="text" class="form-control" name="permanentAddress" id="permanentAddress" autocomplete="nope" required>
                                 <input type="checkbox" id="checkboxAddress"  onchange='copyAddress(this);'><small>&nbsp; Same as current address.</small>
                               </div>
                             </div>
@@ -429,6 +429,13 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   <script>
   $(document).ready(function() {
 
+    $('.navbar-brand').html('Add Employee');
+    $('.activeTabsSidebar').removeClass('active');
+    $('#activeTabsSidebarEmployee').addClass('active');
+    $('#activeTabsSidebarAddEmployee').addClass('active');
+    $('#employee').addClass('in');
+    $('#employee').css('height','');
+
     demo.initFormExtendedDatetimepickers();
     demo.initMaterialWizard();
 
@@ -477,7 +484,7 @@ else
   session_unset();
   session_destroy();
   ?>
-  <script>window.open('../index.html','_self')</script>
+  <script>window.open('../php/cookiesunset.php','_self')</script>
   <?php
 }
 ?>

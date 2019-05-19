@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+  <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
   <!-- Bootstrap core CSS     -->

@@ -11,8 +11,8 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+    
+    <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -313,6 +313,13 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   <script>
   var userId;
   $(document).ready(function() {
+    $('.navbar-brand').html('View Tasks');
+    $('.activeTabsSidebar').removeClass('active');
+    $('#activeTabsSidebarTask').addClass('active');
+    $('#activeTabsSidebarViewTask').addClass('active');
+    $('#tasks').addClass('in');
+    $('#tasks').css('height','');
+
     $(document).ajaxComplete(function () {
           $('.loader').fadeOut();
      });
@@ -404,7 +411,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 
   function load()
   {
-    $.ajax({
+      $.ajax({
       type: 'POST',
       url: '../php/enterDataViewTask.php',
 
@@ -455,6 +462,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   }
   function assignTask(rid)
   {
+      $('.loader').fadeIn();
     var rowId=rid;
     $.ajax({
       type: 'post',
@@ -465,6 +473,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
       success: function( data ) {
         $("#dataContainer").html(data);
         $("#myButton").trigger( "click" );
+          $('.loader').fadeOut();
       }
     });
   }
@@ -488,13 +497,14 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
       data: {taskId:$('#taskidfield').val(),userId:$myvar2,userIdName:$myvar1},
 
       beforeSend: function() {
-
+          $('.loader').fadeIn();
       },
       success: function(response) {
         if(response.match(/Success/)){
           sendNotification();
         }
         else{
+            $('.loader').fadeOut();
           swal({
             title: "Error occured!",
             timer: 5000,
@@ -509,6 +519,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   }
   function myInfoFunction(rid)
   {
+      $('.loader').fadeIn();
     var rowId=rid;
     $.ajax({
       type: 'post',
@@ -517,6 +528,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
         rowId: rowId
       },
       success: function( data ) {
+          $('.loader').fadeOut();
         $("#dataContainer").html(data);
         $("#myButton").trigger( "click" );
       }
@@ -588,7 +600,7 @@ else
   session_unset();
   session_destroy();
   ?>
-  <script>window.open('../index.html','_self')</script>
+  <script>window.open('../php/cookiesunset.php','_self')</script>
   <?php
 }
 ?>

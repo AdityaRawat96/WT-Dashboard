@@ -11,7 +11,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Turbo - Bootstrap Material Admin Dashboard Template</title>
+  <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
   <!-- Bootstrap core CSS     -->
@@ -315,6 +315,13 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 <script>
 
     $(document).ready(function() {
+      $('.navbar-brand').html('View Employees');
+      $('.activeTabsSidebar').removeClass('active');
+      $('#activeTabsSidebarEmployee').addClass('active');
+      $('#activeTabsSidebarViewEmployee').addClass('active');
+      $('#employee').addClass('in');
+      $('#employee').css('height','');
+
       $(document).ajaxComplete(function () {
             $('.loader').fadeOut();
        });
