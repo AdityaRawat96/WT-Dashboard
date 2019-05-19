@@ -186,7 +186,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     var $selectedRadioInTime = $('#'+id).closest('tr').find('#intime');
     var $selectedRadioOutTime = $('#'+id).closest('tr').find('#outtime');
     var namevar="presentabsent"+id;
-    var radioValue = $("input[name="+namevar+"]:checked"). val();
+    var radioValue = $("input[name="+namevar+"]:checked").val();
 
     if(radioValue=='absent')
     {
@@ -246,11 +246,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
           //alert('Attendance Updated');
           if(seti==1)
           {
-            $selectedRadioInTime.val('10:00:00');
+            $selectedRadioInTime.val('');
           }
           if(seto==1)
           {
-            $selectedRadioOutTime.val('17:30:00');
+            $selectedRadioOutTime.val('');
           }
           if(seti==-1)
           {

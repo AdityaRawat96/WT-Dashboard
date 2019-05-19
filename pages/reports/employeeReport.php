@@ -18,7 +18,6 @@ else
   <!DOCTYPE html>
   <html lang="en" dir="ltr">
   <head>
-    <title></title>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
     <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
