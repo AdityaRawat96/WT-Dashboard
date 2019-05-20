@@ -43,23 +43,28 @@ $mail->Port = 587;
 $mail->Username = "example@wtsolutions.cc";
 $mail->Password = "Tiger@1995";
 
-$mail->setFrom('example@wtsolutions.cc', 'Example');
+$mail->setFrom('example@wtsolutions.cc', 'WT IT Solutions');
 
 $mail->addAddress($email, $name);
-$mail->addReplyTo('example@wtsolutions.cc', 'Example');
+$mail->addReplyTo('example@wtsolutions.cc', 'WT IT Solutions');
 $mail->isHTML(true);
 
-$mail->Subject = 'New Mayfair Business Centre Inquiry Recieved';
+$mail->Subject = 'Welcome to WT Family ';
 $mail->Body    = '
 <html>
 <body>
 <center><img style="width: 100%; height: 90%;" src="https://cryptotrackerapp.000webhostapp.com/wtEmail.png"></center><br>
-<h4>Hello Sir/Mam,<br><br>Dear,<span style="text-transform:capitalize;"> <B>'.$name.'</B></span>Congratulations! You have been successfully registered. Please use these credential to login to your account.<br><br><br>
+<h4>Dear,<span style="text-transform:capitalize;"> <B>'.$name.'</B></span><br>&nbsp;&nbsp;Congratulations! You have been successfully registered on WT-Handler. Please use these credential to login to your account.<br><br><br>
 
-Username<span style="color:red;text-transform:capitalize;">'.$username.'</span><br>
-Password<span style="color:red;text-transform:capitalize;">'.$password.'</span><br>
+Username<span style="color:red;text-transform:capitalize;">&nbsp;&nbsp;'.$username.'</span><br>
+Password<span style="color:red;text-transform:capitalize;">&nbsp;&nbsp;'.$password.'</span><br>
 
 </h4>
+<br>
+<h3>Welcome to WT Family.<br>
+Regards, <br>
+Ankit Sharma <br>Director<br>WT IT Solutions Pvt. LTD.
+</h3>
 <br>
 This is a system generated email so do not reply.
 </body>

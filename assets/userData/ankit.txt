@@ -1,0 +1,1 @@
+<li class='notificationList' id='list0' value='0'><a href='../leave/viewLeave.php' style='font-weight:bold;'>Rohit  Bhatt applied for a leave.</a></li>

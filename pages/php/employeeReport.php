@@ -136,13 +136,13 @@ else
 
                     <div class="row">
                       <div class="table-responsive">
-                        <table class="table table-borderless">
+                        <table class="table table-borderless" id="basicInfoTable">
                           <tr>
                             <td>
                               <span><label for="name"> <strong>Name:</strong> </label></span>
                             </td>
                             <td>
-                              <span> <input type="text" name="name" value="<?php echo $a; ?>" id="name" readonly style="border:none;"> </span>
+                              <span><?php echo $a; ?></span>
                             </td>
                           </tr>
                           <tr>
@@ -150,7 +150,7 @@ else
                               <span><label for="name"><strong>Username:</strong>  </label></span>
                             </td>
                             <td>
-                              <span> <input type="text" name="username" value="<?php echo $b; ?>" id="username" readonly style="border:none;"> </span>
+                              <span><?php echo $b; ?></span>
                             </td>
                           </tr>
                           <tr>
@@ -158,7 +158,7 @@ else
                               <span><label for="name"> <strong>Email:</strong> </label></span>
                             </td>
                             <td>
-                              <span> <input type="text" name="email" value="<?php echo $i; ?>" id="email" readonly style="border:none;"> </span>
+                              <span><?php echo $i; ?></span>
                             </td>
                           </tr>
                           <tr>
@@ -166,7 +166,7 @@ else
                               <span><label for="name"><strong>Contact:</strong></label></span>
                             </td>
                             <td>
-                              <span> <input type="text" name="contact" value="<?php echo $j; ?>" id="contact" readonly style="border:none;"> </span>
+                              <span><?php echo $j; ?></span>
                             </td>
                           </tr>
                           <tr>
@@ -174,7 +174,7 @@ else
                               <span><label for="name"><strong>Date of Birth:</strong> </label></span>
                             </td>
                             <td>
-                              <span> <input type="text" name="category" value="<?php echo $c; ?>" id="category" readonly style="border:none;"> </span>
+                              <span><?php echo $c; ?></span>
                             </td>
                           </tr>
                         </table>
@@ -186,166 +186,138 @@ else
             </div>
 
             <div class="row">
-              <div class="col-lg-12">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="card">
-                      <div class="card-content" id='nodatafound'>
-                        <h4 class="card-title">ONGOING TASKS</h4>
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead class="text-primary">
-                              <th>TASK ID</th>
-                              <th>TASK NAME</th>
-                              <th>TASK CATEGORY</th>
-                              <th>TASK DEADLINE</th>
-                            </thead>
-                            <tbody id="ongoingtable">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-content" id='nodatafound'>
+                    <h4 class="card-title">ONGOING TASKS</h4>
+                    <div class="table-responsive">
+                      <table class="table table-hover" id="tableOngoing">
+                        <thead class="text-primary">
+                          <th>TASK ID</th>
+                          <th>TASK NAME</th>
+                          <th>TASK CATEGORY</th>
+                          <th>TASK DEADLINE</th>
+                        </thead>
+                        <tbody id="ongoingtable">
 
-                            </tbody>
-                          </table>
-                        </div>
-                        <br>
-                        <br>
-                        <h4 class="card-title">COMPLETED TASKS</h4>
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead class="text-primary">
-                              <th>TASK ID</th>
-                              <th>TASK NAME</th>
-                              <th>TASK DEADLINE</th>
-                              <th>COMPLETED ON</th>
-                            </thead>
-                            <tbody id="completedtable">
+                        </tbody>
+                      </table>
+                    </div>
+                    <br>
+                    <br>
+                    <h4 class="card-title">COMPLETED TASKS</h4>
+                    <div class="table-responsive">
+                      <table class="table table-hover" id="tableCompleted">
+                        <thead class="text-primary">
+                          <th>TASK ID</th>
+                          <th>TASK NAME</th>
+                          <th>TASK DEADLINE</th>
+                          <th>COMPLETED ON</th>
+                        </thead>
+                        <tbody id="completedtable">
 
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <div style="text-align:center;padding-bottom:10px;">
-                        <button type="button" class='btn btn-primary' id="printButton">PRINT REPORT</button>
-                      </div>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
+
+                  <div style="text-align:center;padding-bottom:10px;">
+                    <button type="button" class='btn btn-primary' id="printButton">PRINT REPORT</button>
+                  </div>
                 </div>
-
               </div>
-
-              <!--  Footer included     -->
-              <?php include('../pageElements/footer.php'); ?>
-
             </div>
 
-
-
-
           </div>
+        </div>
 
-        </body>
-        <script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
-        <script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../assets/vendors/material.min.js" type="text/javascript"></script>
-        <script src="../../assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-        <!-- Forms Validations Plugin -->
-        <script src="../../assets/vendors/jquery.validate.min.js"></script>
-        <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-        <script src="../../assets/vendors/moment.min.js"></script>
-        <!--  Charts Plugin -->
-        <script src="../../assets/vendors/chartist.min.js"></script>
-        <!--  Plugin for the Wizard -->
-        <script src="../../assets/vendors/jquery.bootstrap-wizard.js"></script>
-        <!--  Notifications Plugin    -->
-        <script src="../../assets/vendors/bootstrap-notify.js"></script>
-        <!-- DateTimePicker Plugin -->
-        <script src="../../assets/vendors/bootstrap-datetimepicker.js"></script>
-        <!-- Vector Map plugin -->
-        <script src="../../assets/vendors/jquery-jvectormap.js"></script>
-        <!-- Sliders Plugin -->
-        <script src="../../assets/vendors/nouislider.min.js"></script>
-        <!--  Google Maps Plugin    -->
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-        <!-- Select Plugin -->
-        <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
-        <!--  DataTables.net Plugin    -->
-        <script src="../../assets/vendors/jquery.datatables.js"></script>
-        <!-- Sweet Alert 2 plugin -->
-        <script src="../../assets/vendors/sweetalert2.js"></script>
-        <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-        <script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
-        <!--  Full Calendar Plugin    -->
-        <script src="../../assets/vendors/fullcalendar.min.js"></script>
-        <!-- TagsInput Plugin -->
-        <script src="../../assets/vendors/jquery.tagsinput.js"></script>
-        <!-- Material Dashboard javascript methods -->
-        <script src="../../assets/js/turbo.js"></script>
-        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-        <script src="../../assets/js/demo.js"></script>
+        <!--  Footer included     -->
+        <?php include('../pageElements/footer.php'); ?>
 
-        <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-          $(".table-responsive").perfectScrollbar();
-          $("#simple-accordion").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
+      </div>
+    </div>
 
-          $("#simple-accordion-colored").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
+    <div class="container fluid" id="printContainer" style=" font-family: helvetica;">
+      <?php include('employeeReportPrint.php'); ?>
+    </div>
 
-          $("#simple-accordion-alt").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
+  </body>
+  <script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../../assets/vendors/material.min.js" type="text/javascript"></script>
+  <script src="../../assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+  <!-- Forms Validations Plugin -->
+  <script src="../../assets/vendors/jquery.validate.min.js"></script>
+  <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+  <script src="../../assets/vendors/moment.min.js"></script>
+  <!--  Charts Plugin -->
+  <script src="../../assets/vendors/chartist.min.js"></script>
+  <!--  Plugin for the Wizard -->
+  <script src="../../assets/vendors/jquery.bootstrap-wizard.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../../assets/vendors/bootstrap-notify.js"></script>
+  <!-- DateTimePicker Plugin -->
+  <script src="../../assets/vendors/bootstrap-datetimepicker.js"></script>
+  <!-- Vector Map plugin -->
+  <script src="../../assets/vendors/jquery-jvectormap.js"></script>
+  <!-- Sliders Plugin -->
+  <script src="../../assets/vendors/nouislider.min.js"></script>
+  <!--  Google Maps Plugin    -->
 
-          $("#simple-accordion-alt-2, #simple-accordion-alt-3").accordion({
-            collapsible: true,
-            active: false,
-            animate: 200
-          });
+  <!-- Select Plugin -->
+  <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+  <!--  DataTables.net Plugin    -->
+  <script src="../../assets/vendors/jquery.datatables.js"></script>
+  <!-- Sweet Alert 2 plugin -->
+  <script src="../../assets/vendors/sweetalert2.js"></script>
+  <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
+  <!--  Full Calendar Plugin    -->
+  <script src="../../assets/vendors/fullcalendar.min.js"></script>
+  <!-- TagsInput Plugin -->
+  <script src="../../assets/vendors/jquery.tagsinput.js"></script>
+  <!-- Material Dashboard javascript methods -->
+  <script src="../../assets/js/turbo.js"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../../assets/js/demo.js"></script>
 
-          $('body').on('click', '#btn-color-targets > .btn', function() {
-            var color = $(this).data('target-color');
-            $('#modalColor').attr('data-modal-color', color);
-          });
-        });
-        </script>
-        <script type="text/javascript">
-        $("#printButton").on("click", function () {
-          $("#tableEmployee1").html($('#tableEmployee').html());
-          $('<iframe>', {
-            name: 'myiframe',
-            class: 'printFrame'
-          })
-          .appendTo('body')
-          .contents().find('body')
-          .append($("#printContainer"));
+  <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $(".table-responsive").perfectScrollbar();
+  });
+  $("#printButton").on("click", function () {
+    $("#basicInfoTablePrint").html($('#basicInfoTable').html());
+    $("#tableOngoingPrint").html($('#tableOngoing').html());
+    $("#tableCompletedPrint").html($('#tableCompleted').html());
 
-          window.frames['myiframe'].focus();
-          window.frames['myiframe'].print();
+    $('<iframe>', {
+      name: 'myiframe',
+      class: 'printFrame'
+    })
+    .appendTo('body')
+    .contents().find('body')
+    .append($("#printContainer"));
 
-          setTimeout(() => { $(".printFrame").remove(); }, 1000);
-        });
-        </script>
+    window.frames['myiframe'].focus();
+    window.frames['myiframe'].print();
 
-        <style media="screen">
-        @media screen {
-          #printContainer {display:none;}
-        }
+    setTimeout(() => { $(".printFrame").remove(); }, 1000);
+  });
+  </script>
 
-        @media print {
-          #printContainer {display:block;}
-        }
-        </style>
+  <style media="screen">
+  @media screen {
+    #printContainer {display:none;}
+  }
 
-        </html>
-        <?php
+  @media print {
+    #printContainer {display:block;}
+  }
+  </style>
 
-      }
-      ?>
+  </html>
+  <?php
+
+}
+?>

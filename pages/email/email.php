@@ -27,24 +27,21 @@ $mail->Port = 587;
 $mail->Username = "example@wtsolutions.cc";
 $mail->Password = "Tiger@1995";    /*Password*/
 
-$mail->setFrom('example@wtsolutions.cc', 'Example');
+$mail->setFrom('example@wtsolutions.cc', 'WT IT Solutions');
 
 $mail->addAddress($email, $name);
-//$mail->addAddress('bhrohit009@gmail.com', 'rohit bhatt');
-$mail->addReplyTo('example@wtsolutions.cc', 'Example');
-//$mail->addCC('pledgerispan25@dipr-uk.com');
-//$mail->addBCC('pledgerispana25@dipr-uk.com');
+$mail->addReplyTo('example@wtsolutions.cc', 'WT IT Solutions');
 
 /*$mail->addAttachment('/var/tmp/file.tar.gz');   */      // Add attachments
 /*$mail->addAttachment('/tmp/image.jpg', 'new.jpg'); */   // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'New Mayfair Business Centre Inquiry Recieved';
+$mail->Subject = 'OTP for Password Reset in WT-Handler';
 $mail->Body    = '
 <html>
 <body>
 <center><img style="width: 100%; height: 90%;" src="https://cryptotrackerapp.000webhostapp.com/wtEmail.png"></center><br>
-	<h4>Hello Sir/Mam,<br><br>Dear,<span style="text-transform:capitalize;"> <B>'.$name.'</B></span><strong>OTP</strong> for your password change request is <br><br><br>
+	<h4>Hello Sir/Mam,<br><br>Dear,<span style="text-transform:capitalize;"> <B>'.$name.'</B></span>&nbsp;&nbsp;<strong>OTP</strong> for your password change request is <br><br><br>
 
 	<span style="color:red;text-transform:capitalize;">'.$otp.'</span><br>
 	Kindly use this otp to change your password.

@@ -283,7 +283,7 @@ $(document).ready(function(){
 <!-- Sliders Plugin -->
 <script src="../../assets/vendors/nouislider.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+ 
 <!-- Select Plugin -->
 <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
 <!--  DataTables.net Plugin    -->

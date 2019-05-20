@@ -61,24 +61,12 @@
       <span><img src="../../assets/img/logo-w.png" style="height:50px; width:50px;">&nbsp; <strong style="color:white;position:relative;top:-22px;left:40px;font-size:14px;">DEPARTMENT REPORT</strong></span>
     </div>
     <br>
-    <center>
-      <h3 id="reportTitle"></h3>
-    </center>
   </div>
 
   <div class="row" style="padding:20px;">
     <h4>BASIC INFORMATION:</h4><br>
     <center>
       <table class="table tablePrint" id="basicInfoTablePrint" cellpadding='5'>
-
-      </table>
-    </center>
-  </div>
-
-  <div class="row" style="padding:20px;">
-    <h4>EMPLOYEE LIST:</h4><br>
-    <center>
-      <table class="table tablePrint" id="tableEmployeePrint" cellpadding='5'>
 
       </table>
     </center>
