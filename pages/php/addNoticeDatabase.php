@@ -4,7 +4,7 @@ if($_SESSION['Username']=='' && $_SESSION['Rights']!='admin')
 {
     session_unset();
     session_destroy();
-?> <script>window.open('../index.html','_self')</script> <?php
+?> <script>window.open('../php/cookiesunset.php','_self')</script> <?php
 }
 else
 {
@@ -26,8 +26,6 @@ if(isset($_SESSION['Username']))
   $p2=$row['name'];
   $sql = "INSERT INTO Notice (admin_id, admin_name, notice_date,notice_head,notice_body, notice_department) VALUES ('$p1', '$p2', '$date', '$noticeHead', '$noticeBody', '$noticeTarget')";
   $result=mysqli_query($con,$sql);
-  // $row=mysqli_fetch_array($result) or die(mysqli_error($con));
-  // echo $p1;
 }
 else
 {

@@ -164,7 +164,7 @@ else
   session_unset();
   session_destroy();
   ?>
-  <script>window.open('../../index.php','_self')</script>
+  <script>window.open('../php/cookiesunset.php','_self')</script>
   <?php
 }
 ?>

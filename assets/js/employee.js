@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $("#uploadForm").on("submit", function(e){
     e.preventDefault();
-
+      
     $.ajax({
       //  alert("registration success");
       url:"../../pages/php/upload.php",
@@ -16,6 +16,7 @@ $(document).ready(function(){
       },
       success: function(response)
       {
+          alert(response);
         if(response.match(/error/))
         {
           $('.loader').fadeOut();

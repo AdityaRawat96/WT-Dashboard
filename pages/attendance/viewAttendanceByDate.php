@@ -84,7 +84,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                       <table class="table" id="tableSelect">
                         <thead>
                           <tr>
-                            <th class="text-center">Employee Id</th>
+                            <th class="text-center">Employee Username</th>
                             <th class="text-center">Employee Name</th>
                             <th class="text-center">Absent/Present</th>
                             <th class="text-center">In Time</th>
@@ -212,7 +212,7 @@ else
   session_unset();
   session_destroy();
   ?>
-  <script>window.open('../../index.php','_self')</script>
+  <script>window.open('../php/cookiesunset.php','_self')</script>
   <?php
 }
 ?>

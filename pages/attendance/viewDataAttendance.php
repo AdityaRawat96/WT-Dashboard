@@ -1,4 +1,7 @@
 <?php
+session_start();
+if($_SESSION['Username']!=''&&$_SESSION['Rights']=='admin')
+{
 $dept=$_POST['Department'];
 if($dept=='1')
 {
@@ -38,7 +41,7 @@ if(mysqli_num_rows($result)>0)
     if($row['in_time']=='absent'){
       ?>
       <tr style="background-color: rgba(0, 0, 0, 0.1);">
-        <td class="text-center"><?php echo $row['employee_id'] ?></td>
+        <td class="text-center"><?php echo $row['employee_uname'] ?></td>
         <td class="text-center"><?php echo $row['employee_name'] ?></td>
         <td class="text-center">Absent</td>
         <td class="text-center">-----</td>
@@ -50,7 +53,7 @@ if(mysqli_num_rows($result)>0)
     {
       ?>
       <tr>
-        <td class="text-center"><?php echo $row['employee_id'] ?></td>
+        <td class="text-center"><?php echo $row['employee_uname'] ?></td>
         <td class="text-center"><?php echo $row['employee_name'] ?></td>
         <td class="text-center">Present</td>
         <td class="text-center"><?php echo $row['in_time']; ?></td>
@@ -65,5 +68,11 @@ else
 {
   echo "No data found";
 }
-
+}
+else
+{
+?>
+    <script>window.open('../php/cookiesuset.php','_self')</script>
+    <?php
+}
 ?>

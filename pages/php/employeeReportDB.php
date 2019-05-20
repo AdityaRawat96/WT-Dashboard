@@ -4,7 +4,7 @@ if($_SESSION['Username']=='' || $_SESSION['Rights']!='employee')
 {
     session_unset();
     session_destroy();
-?> <script>window.open('../index.html','_self')</script> <?php
+?> <script>window.open('../php/cookiesunset.php','_self')</script> <?php
 }
 else
 {

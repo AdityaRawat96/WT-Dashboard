@@ -1,4 +1,7 @@
 <?php
+session_start();
+if($_SESSION['Username']!=''&&$_SESSION['Rights']=='admin')
+{
 include_once 'connection.php';
 $generator = "1abcd3efgh5yz7ijkl90mnop24qrst6uvwx8";
 
@@ -85,5 +88,16 @@ else {
         $sql= mysqli_query($con,"insert into users(name,username,password,email,contact,dob,category,status,date,time,permanent_address,temprory_address,img_path,rights) values ('$name','$username','$password','$email','$contact','$newformat','$category','$status','$date','$time','$address1','$address2','$path','employee')")
         or die("eror in sql");
     }
+    $resultget=mysqli_query($con,"select id from users where username='$username'");
+    $row=mysqli_fetch_array($resultget);
+    $accessid=$row['id'];
+    $result2=mysqli_query($con,"insert into attendance(att_date,employee_id,employee_name,employee_category,employee_uname,in_time,out_time) values('$date','$accessid','$name','$category','$username','10:00:00','17:30:00')") or die(mysqli_error($con));
+}
+    }
+else
+{
+?>
+    <script>window.open('../php/cookiesuset.php','_self')</script>
+    <?php
 }
 ?>

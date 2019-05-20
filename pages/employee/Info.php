@@ -54,7 +54,17 @@ if(isset($_SESSION['Username']))
     <div class="wrapper">
 
         <!--  Sidebar included     -->
-        <?php include('../pageElements/sidebar.php'); ?>
+        
+        <?php
+            if($_SESSION['Rights']=='admin')
+            {
+                include('../pageElements/sidebar.php');   
+            } 
+            else
+            {
+              include('../pageElements/sidebar_employee.php');
+            }
+        ?>
 
         <div class="main-panel">
 
@@ -90,7 +100,7 @@ if(isset($_SESSION['Username']))
 
                                 <div class="card-content">
 
-                                    <h3>Welcome <?php echo $aname; ?></h3>
+                                    <h3><?php echo $aname; ?></h3>
 
 
 

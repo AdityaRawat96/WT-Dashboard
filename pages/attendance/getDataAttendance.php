@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+if($_SESSION['Username']!=''&&$_SESSION['Rights']=='admin')
+{
 $dept=$_POST['Department'];
 if($dept=='1')
 {
@@ -43,7 +45,7 @@ while($row=mysqli_fetch_array($result))
 
     <tr id="myrow">
       <td class="text-center">
-        <?php echo $row['employee_id']; ?>
+        <?php echo $row['employee_uname']; ?>
       </td>
       <td class="text-center">
         <?php echo $row['employee_name']; ?>
@@ -71,7 +73,7 @@ while($row=mysqli_fetch_array($result))
     ?>
     <tr id="myrow" style="background-color: rgba(0, 0, 0, 0.1);">
       <td class="text-center">
-        <?php echo $row['employee_id']; ?>
+        <?php echo $row['employee_uname']; ?>
       </td>
       <td class="text-center">
         <?php echo $row['employee_name']; ?>
@@ -95,5 +97,11 @@ while($row=mysqli_fetch_array($result))
     <?php
   }
 }
-
+}
+else
+{
+    ?>
+    <script>window.open('../php/cookiesuset.php','_self')</script>
+    <?php
+}
 ?>

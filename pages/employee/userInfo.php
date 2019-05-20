@@ -86,7 +86,7 @@ if(isset($_SESSION['Username']))
 
                                 <div class="card-content">
 
-                                    <h3>Welcome <?php echo $aname; ?></h3>
+                                    <h3><?php echo $aname; ?></h3>
 
 
 

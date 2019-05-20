@@ -5,7 +5,7 @@ if($_SESSION['Username']=='' || $_SESSION['Rights']!='employee')
 {
   session_unset();
   session_destroy();
-  ?> <script>window.open('../index.html','_self')</script> <?php
+  ?> <script>window.open('../php/cookiesunset.php','_self')</script> <?php
 }
 else
 {
@@ -58,10 +58,6 @@ else
             $('body').css('opacity','1');
             $('body').css('pointer-events','auto');
           }
-
-
-
-
         }
       });
 
@@ -76,23 +72,6 @@ else
       unset($_SESSION['reportcontact']);
 
     }
-
-    function myFunction()
-    {
-      //        alert('HII');
-      $.ajax({
-        type: 'POST',
-        url: '../php/leaveStatus.php',
-        data: {value:1},
-
-        beforeSend: function() {
-        },
-        success: function(response) {
-          window.open('../leave/viewLeave.php','_self');
-          //                    alert(response);
-        }
-      });
-    }
     </script>
     <!-- Bootstrap core CSS     -->
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -106,17 +85,7 @@ else
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
-    <style>
-    .a{
-      margin-left: 10%;
-      margin-top: 3%;
-    }
-    .mywrapper
-    {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    </style>
+
   </head>
 
   <?php
@@ -137,82 +106,80 @@ else
       <div class="main-panel">
 
         <!--  Navbar included     -->
-        <?php include('../pageElements/navbar_employee.php'); ?>
-        <div class="content">
+        <?php include('../pageElements/navbar.php'); ?>
+        <div class="content" style="overflow:hidden;">
           <div class="container">
             <div class="row">
-              <div class="col-md-8">
-                <div class="card" style="min-height: 300px">
-                  <div class="card-header card-header-icon">
-                    <i class="material-icons">user</i>
-                  </div>
+              <div class="col-md-4">
+                <div class="card" style="min-height: 338px;">
                   <div class="card-content">
-                    <h4 class="card-title">Basic Information
+                    <h4 class="card-title" style="text-align:center; font-weight:bold;" id="employeeImage">
                     </h4>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Name:</strong> </label></span>
+                    <div class="card-profile">
+                      <div class="card-avatar" style="height:500px;">
+                        <a href="#pablo">
+                          <img class="img" id="logoImage" src="<?php echo $h; ?>" style="background-size:cover;"/>
+                        </a>
                       </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="name" value="<?php echo $a; ?>" id="name" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Username:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="username" value="<?php echo $b; ?>" id="username" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Email:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="email" value="<?php echo $i; ?>" id="email" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Contact:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="contact" value="<?php echo $j; ?>" id="contact" readonly style="border:none;"> </span>
-                      </div>
-
-                    </div>
-                    <div class="row a">
-                      <div class="col-md-2">
-                        <span><label for="name"> <strong>Date of Birth:</strong> </label></span>
-                      </div>
-                      <div class="col-md-10">
-                        <span> <input type="text" name="category" value="<?php echo $c; ?>" id="category" readonly style="border:none;"> </span>
-                      </div>
-
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="card" style="height: 300px;">
-                  <div class="card-header">
+              <div class="col-md-8">
+                <div class="card" style="min-height: 338px;">
+                  <div class="card-header card-header-icon" style="position:relative; top:-5px">
+                    <i class="fas fa-info-circle fa-2x"></i>
                   </div>
                   <div class="card-content">
-                    <h4 class="card-title">Profile Photo
+                    <h4 class="card-title">BASIC INFORMATION:
                     </h4>
 
-                    <div class="card-profile">
-                      <div class="card-avatar" style="height:500px;">
-                        <a href="#pablo">
-                          <img class="img" src="<?php echo $h; ?>" style="background-size:cover;"/>
-                        </a>
+                    <div class="row">
+                      <div class="table-responsive">
+                        <table class="table table-borderless">
+                          <tr>
+                            <td>
+                              <span><label for="name"> <strong>Name:</strong> </label></span>
+                            </td>
+                            <td>
+                              <span> <input type="text" name="name" value="<?php echo $a; ?>" id="name" readonly style="border:none;"> </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span><label for="name"><strong>Username:</strong>  </label></span>
+                            </td>
+                            <td>
+                              <span> <input type="text" name="username" value="<?php echo $b; ?>" id="username" readonly style="border:none;"> </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span><label for="name"> <strong>Email:</strong> </label></span>
+                            </td>
+                            <td>
+                              <span> <input type="text" name="email" value="<?php echo $i; ?>" id="email" readonly style="border:none;"> </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span><label for="name"><strong>Contact:</strong></label></span>
+                            </td>
+                            <td>
+                              <span> <input type="text" name="contact" value="<?php echo $j; ?>" id="contact" readonly style="border:none;"> </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <span><label for="name"><strong>Date of Birth:</strong> </label></span>
+                            </td>
+                            <td>
+                              <span> <input type="text" name="category" value="<?php echo $c; ?>" id="category" readonly style="border:none;"> </span>
+                            </td>
+                          </tr>
+                        </table>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -238,13 +205,16 @@ else
                             </tbody>
                           </table>
                         </div>
+                        <br>
+                        <br>
                         <h4 class="card-title">COMPLETED TASKS</h4>
                         <div class="table-responsive">
                           <table class="table table-hover">
                             <thead class="text-primary">
                               <th>TASK ID</th>
                               <th>TASK NAME</th>
-                              <th>TASK CATEGORY</th>
+                              <th>TASK DEADLINE</th>
+                              <th>COMPLETED ON</th>
                             </thead>
                             <tbody id="completedtable">
 
@@ -252,8 +222,9 @@ else
                           </table>
                         </div>
                       </div>
+
                       <div style="text-align:center;padding-bottom:10px;">
-                        <button type="button" class='btn btn-primary' id="linkbutton" onclick="window.open('../reports/reportByEmployee.php');" style="visibility:hidden;">Return Back</button>
+                        <button type="button" class='btn btn-primary' id="printButton">PRINT REPORT</button>
                       </div>
                     </div>
                   </div>
@@ -265,6 +236,7 @@ else
               <?php include('../pageElements/footer.php'); ?>
 
             </div>
+
 
 
 
@@ -313,6 +285,7 @@ else
         <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
+          $(".table-responsive").perfectScrollbar();
           $("#simple-accordion").accordion({
             collapsible: true,
             active: false,
@@ -343,7 +316,33 @@ else
           });
         });
         </script>
+        <script type="text/javascript">
+        $("#printButton").on("click", function () {
+          $("#tableEmployee1").html($('#tableEmployee').html());
+          $('<iframe>', {
+            name: 'myiframe',
+            class: 'printFrame'
+          })
+          .appendTo('body')
+          .contents().find('body')
+          .append($("#printContainer"));
 
+          window.frames['myiframe'].focus();
+          window.frames['myiframe'].print();
+
+          setTimeout(() => { $(".printFrame").remove(); }, 1000);
+        });
+        </script>
+
+        <style media="screen">
+        @media screen {
+          #printContainer {display:none;}
+        }
+
+        @media print {
+          #printContainer {display:block;}
+        }
+        </style>
 
         </html>
         <?php

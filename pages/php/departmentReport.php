@@ -25,6 +25,9 @@ else
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <script>
+    var cno;
+    var pno;
+    var ono;
     function myajaxfunction()
     {
       var departmentCategory = '<?php echo $_SESSION['reportcategory']; ?>';
@@ -33,7 +36,7 @@ else
       if(departmentCategory == "WEB DEVELOPMENT"){
         $("#logoImage").attr("src","../../assets/img/webdevelopment.png")
       }
-      else if(departmentCategory == "CONTENT WRITNG"){
+      else if(departmentCategory == "CONTENT WRITING"){
         $("#logoImage").attr("src","../../assets/img/contentwriting.png")
       }
       else if(departmentCategory == "GRAPHIC DESIGNING"){
@@ -122,15 +125,13 @@ else
             $('body').css('opacity','1');
             $('body').css('pointer-events','auto');
             $('#employeelist').append($('.list'));
-            $('#ttasks').val(parseInt(pno)+parseInt(ono)+parseInt(cno));
-            $('#ptasks').val(pno);
-            $('#otasks').val(ono);
-            $('#ctasks').val(cno);
+            $('#ttasks').html(parseInt(pno)+parseInt(ono)+parseInt(cno));
+            $('#ptasks').html(pno);
+            $('#otasks').html(ono);
+            $('#ctasks').html(cno);
           }
-
         }
       });
-
     }
     function myblurfunction()
     {
@@ -203,7 +204,7 @@ else
                     <h4 class="card-title">BASIC INFORMATION:
                     </h4>
                     <div class="row">
-                      <table class="table table-borderless">
+                      <table class="table table-borderless" id="basicInfoTable">
                         <tr>
                           <td>
                             <span><label for="name"> <strong>TOTAL EMPLOYEES:</strong> </label></span>
@@ -217,7 +218,7 @@ else
                             <span><label for="name"><strong>TOTAL TASKS:</strong> </label></span>
                           </td>
                           <td>
-                            <span> <input type="text" name="ttasks" id="ttasks" readonly style="border:none;"> </span>
+                            <span id="ttasks"></span>
                           </td>
                         </tr>
                         <tr>
@@ -225,7 +226,7 @@ else
                             <span><label for="name"> <strong>PENDING TASKS:</strong> </label></span>
                           </td>
                           <td>
-                            <span> <input type="text" name="ptasks" id="ptasks" readonly style="border:none;"> </span>
+                            <span id="ptasks"> </span>
                           </td>
                         </tr>
                         <tr>
@@ -233,7 +234,7 @@ else
                             <span><label for="name"> <strong>ONGOING TASKS:</strong> </label></span>
                           </td>
                           <td>
-                            <span> <input type="text" name="otasks" id="otasks" readonly style="border:none;"> </span>
+                            <span id="otasks"></span>
                           </td>
                         </tr>
                         <tr>
@@ -241,7 +242,7 @@ else
                             <span><label for="name"> <strong>COMPLETED TASKS:</strong> </label></span>
                           </td>
                           <td>
-                            <span> <input type="text" name="ctasks" id="ctasks" readonly style="border:none;"> </span>
+                            <span id="ctasks"> </span>
                           </td>
                         </tr>
                       </table>
@@ -284,7 +285,7 @@ else
                       <div class="card-content" id="nodatafound" style="padding:4%;">
                         <h4 class="card-title"><strong>ONGOING TASKS:</strong></h4><br>
                         <div class="table-responsive">
-                          <table class="table table-hover">
+                          <table class="table table-hover" id="tableOngoing">
                             <thead class="text-primary">
                               <th>TASK ID</th>
                               <th>TASK NAME</th>
@@ -298,7 +299,7 @@ else
                         </div><br><br>
                         <h4 class="card-title"><strong>COMPLETED TASKS:</strong></h4><br>
                         <div class="table-responsive">
-                          <table class="table table-hover">
+                          <table class="table table-hover" id="tableCompleted">
                             <thead class="text-primary">
                               <th>TASK ID</th>
                               <th>TASK NAME</th>
@@ -330,23 +331,10 @@ else
           </div>
 
           <div class="container fluid" id="printContainer" style=" font-family: helvetica;">
-            <div class="row">
-              <center>
-                <h3>WEB DEVELOPMENT:</h3>
-              </center>
-
-            </div>
-            <div class="row">
-              <h5>EMPLOYEE LIST:</h5>
-              <center>
-              <table class="table" id="tableEmployee1" cellpadding='5'>
-
-              </table>
-            </center>
-
-            </div>
-
+            <?php include('departmentReportPrint.php'); ?>
           </div>
+
+
 
         </body>
         <script src="../../assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
@@ -396,7 +384,12 @@ else
         });
 
         $("#printButton").on("click", function () {
-          $("#tableEmployee1").html($('#tableEmployee').html());
+          $("#reportTitle").html("<?php echo $_SESSION['reportcategory']; ?>");
+          $("#basicInfoTablePrint").html($('#basicInfoTable').html());
+          $("#tableEmployeePrint").html($('#tableEmployee').html());
+          $("#tableOngoingPrint").html($('#tableOngoing').html());
+          $("#tableCompletedPrint").html($('#tableCompleted').html());
+
           $('<iframe>', {
             name: 'myiframe',
             class: 'printFrame'

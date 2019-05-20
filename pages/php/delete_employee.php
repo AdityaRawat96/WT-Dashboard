@@ -1,5 +1,7 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Calcutta');
+$date=date("Y-m-d");
 if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 {
     $id=$_POST['id'];
@@ -12,6 +14,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     if(mysqli_affected_rows($con)>0)
     {
        echo "success";
+        $result1=mysqli_query($con,"delete from attendance where employee_id='$id' and att_date='$date'") or die(mysqli_error($con));
     }
     else
     {
@@ -23,7 +26,7 @@ else
     session_unset();
     session_destroy();
     ?>
-    <script>window.open('../../cookiesunset.php','_self')</script>
+    <script>window.open('../php/cookiesunset.php','_self')</script>
     <?php
 }
 

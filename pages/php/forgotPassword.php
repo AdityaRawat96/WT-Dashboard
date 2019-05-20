@@ -331,7 +331,7 @@ $().ready(function() {
                 confirmButtonText: 'OK',
                 buttonsStyling: false
               }).then(function() {
-                window.open('../../index.html','_self');
+                window.open('../php/cookiesunset.php','_self');
               });
             }
           }

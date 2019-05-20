@@ -425,7 +425,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
                         }
                     else
                     {
-                        window.open('../php/error.php?myval=4');
+                        alert('Error Occured');
                     }
                 }
                 });
