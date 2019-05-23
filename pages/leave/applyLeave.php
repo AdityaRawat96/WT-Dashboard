@@ -243,11 +243,11 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
         },
         success: function(response)
         {
-          $('.loader').fadeOut();
           if(response.match(/success/)){
             sendNotification()
           }
           else{
+            $('.loader').fadeOut();
             swal({
               title: "Error occured!",
               timer: 5000,
@@ -289,6 +289,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
       data: { data: data},
 
       success : function(response){
+        $('.loader').fadeOut();
         swal({
           title: "Done!",
           timer: 5000,

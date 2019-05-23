@@ -13,7 +13,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     <script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  
+
   <title>WT Solutions</title><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
@@ -29,14 +29,14 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
   <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet">
-
-
-
-
-
 </head>
 
-<body>
+<body onload="$('.loader').fadeOut();">
+  <div class="loader" style="z-index:300; position:fixed; height:100%; width:100%; background-color:black; opacity: 0.8; padding-top:35vh;">
+    <center>
+      <img src="../../assets/img/loader.svg" style="position:relative; height:200px; width:200px;">
+    </center>
+  </div>
     <div class="wrapper">
 
         <!--  Sidebar included     -->
@@ -150,7 +150,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
 <!-- Sliders Plugin -->
 <script src="../../assets/vendors/nouislider.min.js"></script>
 <!--  Google Maps Plugin    -->
- 
+
 <!-- Select Plugin -->
 <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
 <!--  DataTables.net Plugin    -->
@@ -230,9 +230,9 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
           url: '../php/addNoticeDatabase.php',
           data: {  notice_head: noticeHead, notice_body: noticeBody, notice_target: target },
           beforeSend: function() {
+            $('.loader').fadeIn();
           },
           success: function(response) {
-            showAlert();
             sendNotification();
           }
         });
@@ -261,7 +261,7 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
     $.ajax({
       type: 'POST',
       url: '../php/sendNotification.php',
-      data: {  category: "notice", name: "Admin", description: "sent a new notice.", target: target, link: "../notice/viewNotice.php" },
+      data: {  category: "notice", name: "Admin", description: "sent a new notice.", target: target, link: "../dashboard/employee_dashboard.php" },
 
       success: function(response) {
         sendAlert();
@@ -274,12 +274,16 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='admin')
       name: "Admin",
       description: "sent a new notice.",
       target: target,
-      link: "../notice/viewNotice.php"
+      link: "../dashboard/employee_dashboard.php"
     };
     $.ajax({
       type: 'POST',
       url: '../../pusher.php',
       data: { data: data},
+      success: function(response){
+        $('.loader').fadeOut();
+        showAlert();
+      }
     });
   }
 

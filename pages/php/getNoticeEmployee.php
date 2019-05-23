@@ -8,9 +8,9 @@ if(isset($_SESSION['Username'])&&$_SESSION['Rights']=='employee')
   $roh=mysqli_select_db($con,'wtintern_wt')
   or die('Connection failed');
 
-  $result=mysqli_query($con,"select * from users");
+  $result=mysqli_query($con,"select * from users where username ='$a'");
   $row=mysqli_fetch_array($result);
-  $category=$row['category'];
+  $category=strtoupper($row['category']);
   $counter=0;
 
   $sql= mysqli_query($con, "SELECT * FROM Notice where notice_department='ALL' or notice_department='$category' ORDER by notice_id DESC LIMIT 5")

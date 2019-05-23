@@ -12,6 +12,8 @@ for ($i = 1; $i <= 8; $i++) {
 }
 $fname=$_POST['confirmfname'];
 $lname=$_POST['confirmlname'];
+$fname=trim($fname);
+$lname=trim($lname);
 $email=$_POST['confirmemail'];
 $dob=$_POST['confirmdob'];
 $time = strtotime($dob);
@@ -24,11 +26,14 @@ $address1=$_POST['confirmcaddress'];
 $address2=$_POST['confirmpaddress'];
 $name=$fname." ".$lname;
 $username="WT_".$fname.substr($lname,0,2).rand(10,1000);
+$username=trim($username);
+$username=strtoupper($username);
 date_default_timezone_set("Asia/Calcutta");
 $time= date("H:i:s");
 $date=date("y-m-d");
 $status='Unconfirmed';
-$password=$result;
+$password=trim($result);
+$password=strtoupper($password);
 
 
 require("../email/class.phpmailer.php");
